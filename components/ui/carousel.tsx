@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState, useCallback, useEffect, ReactNode } from "react";
-import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
+import useEmblaCarousel, {
+  type UseEmblaCarouselType,
+} from "embla-carousel-react";
 import type { EmblaOptionsType } from "embla-carousel";
 import { cn } from "@/lib/utils";
 
@@ -80,9 +82,9 @@ export function Carousel({
               key={index}
               type="button"
               className={cn(
-                "w-2 h-2 rounded-full transition-all",
+                "w-2 h-2 rounded-full transition-all !duration-300",
                 selectedIndex === index
-                  ? "bg-secondary w-4"
+                  ? "bg-secondary w-6"
                   : "bg-gray-300 dark:bg-gray-600"
               )}
               onClick={() => scrollTo(index)}

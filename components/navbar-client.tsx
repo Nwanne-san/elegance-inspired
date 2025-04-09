@@ -92,7 +92,7 @@ export default function NavbarClient() {
               alt="Elegance Inspired Limited"
               width={160}
               height={40}
-              className="h-10 w-auto"
+              className="h-6 sm:h-10 w-auto"
             />
           </div>
         </Link>

@@ -5,8 +5,86 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import { clients, testimonials } from "@/data";
+import { useEffect, useState, useCallback, useRef } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 export default function ClientsSection() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+    containScroll: false,
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  // Initialize carousel and autoplay
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    emblaApi.on("select", onSelect);
+    onSelect();
+
+    // Set up autoplay
+    const autoplay = () => {
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0);
+      }
+    };
+
+    // Start autoplay
+    autoplayRef.current = setInterval(autoplay, 5000);
+
+    // Pause autoplay on pointer down (user interaction)
+    emblaApi.on("pointerDown", () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+    });
+
+    // Resume autoplay on pointer up
+    emblaApi.on("pointerUp", () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+      autoplayRef.current = setInterval(autoplay, 5000);
+    });
+
+    return () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+      emblaApi.off("select", onSelect);
+      emblaApi.off("pointerDown", () => {});
+      emblaApi.off("pointerUp", () => {});
+    };
+  }, [emblaApi, onSelect]);
+
+  // Handle mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
+  // Handle dot click
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (!emblaApi) return;
+      emblaApi.scrollTo(index);
+    },
+    [emblaApi]
+  );
+
   return (
     <section className="py-16 md:py-24 bg-muted">
       <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14">
@@ -63,55 +141,65 @@ export default function ClientsSection() {
           </motion.div>
         </div>
 
-        {/* Testimonials */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="h-full">
-                <CardContent className="pt-6">
-                  <div className="flex mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-5 w-5 text-yellow-400 fill-yellow-400"
-                      />
-                    ))}
-                  </div>
-                  <p className="mb-6 italic text-muted-foreground">
-                    "{testimonial.text}"
-                  </p>
-                  <div className="flex items-center">
-                    <Image
-                      src={testimonial.image || "/placeholder.svg"}
-                      alt={testimonial.name}
-                      width={50}
-                      height={50}
-                      className="rounded-full mr-4"
-                    />
-                    <div>
-                      <h4 className="font-bold">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.company}
+        {/* Testimonials Carousel */}
+        <div className="relative">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="min-w-0 flex-[0_0_100%] sm:flex-[0_0_50%] md:flx-[0_0_33.333%] px-2"
+                >
+                  <Card className="h-full">
+                    <CardContent className="pt-6 pb-6">
+                      <div className="flex mb-4">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className="h-5 w-5 text-yellow-400 fill-yellow-400"
+                          />
+                        ))}
+                      </div>
+                      <p className="mb-6 italic text-muted-foreground">
+                        "{testimonial.text}"
                       </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+                      <div className="flex items-center">
+                        <Image
+                          src={testimonial.image || "/placeholder.svg"}
+                          alt={testimonial.name}
+                          width={50}
+                          height={50}
+                          className="rounded-full mr-4"
+                        />
+                        <div>
+                          <h4 className="font-bold">{testimonial.name}</h4>
+                          <p className="text-sm text-muted-foreground">
+                            {testimonial.company}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-center gap-2 mt-4">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                className={`w-2 h-2 rounded-full transition-all ${
+                  index === selectedIndex
+                    ? "bg-secondary w-4"
+                    : "bg-gray-300 dark:bg-gray-600"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+                onClick={() => scrollTo(index)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

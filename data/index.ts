@@ -37,11 +37,6 @@ export const clients = [
   "/placeholder-logo.svg",
   "/placeholder-logo.svg",
   "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
 ];
 
 export const testimonials = [
