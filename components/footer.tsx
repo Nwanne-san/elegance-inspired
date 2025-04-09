@@ -1,7 +1,13 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Facebook, Instagram, Linkedin, Twitter, InstagramIcon as TiktokIcon } from "lucide-react"
-import NewsletterForm from "@/components/newsletter-form"
+import Link from "next/link";
+import Image from "next/image";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+  InstagramIcon as TiktokIcon,
+} from "lucide-react";
+import NewsletterForm from "@/components/newsletter-form";
 
 export default function Footer() {
   return (
@@ -20,8 +26,9 @@ export default function Footer() {
               />
             </Link>
             <p className="text-gray-400 max-w-xs">
-              A leading corporate branding agency dedicated to helping businesses achieve their full potential in the
-              ever-evolving marketplace.
+              A leading corporate branding agency dedicated to helping
+              businesses achieve their full potential in the ever-evolving
+              marketplace.
             </p>
             <div className="flex space-x-4">
               <Link
@@ -40,7 +47,12 @@ export default function Footer() {
               >
                 <Facebook className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
               </Link>
-              <Link href="https://x.com/eleganceinspltd" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <Link
+                href="https://x.com/eleganceinspltd"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+              >
                 <Twitter className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
               </Link>
               <Link
@@ -51,7 +63,12 @@ export default function Footer() {
               >
                 <Linkedin className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
               </Link>
-              <Link href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <Link
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+              >
                 <TiktokIcon className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
               </Link>
             </div>
@@ -59,30 +76,47 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-4 font-axiforma">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-4 font-axiforma">
+              Quick Links
+            </h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-white/70 hover:text-[#FF6600] transition-colors">
+                <Link
+                  href="/about"
+                  className="text-white/70 hover:text-[#FF6600] transition-colors"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-white/70 hover:text-[#FF6600] transition-colors">
+                <Link
+                  href="/services"
+                  className="text-white/70 hover:text-[#FF6600] transition-colors"
+                >
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="/packages" className="text-white/70 hover:text-[#FF6600] transition-colors">
+                <Link
+                  href="/packages"
+                  className="text-white/70 hover:text-[#FF6600] transition-colors"
+                >
                   Packages
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-white/70 hover:text-[#FF6600] transition-colors">
+                <Link
+                  href="/blog"
+                  className="text-white/70 hover:text-[#FF6600] transition-colors"
+                >
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-white/70 hover:text-[#FF6600] transition-colors">
+                <Link
+                  href="/contact"
+                  className="text-white/70 hover:text-[#FF6600] transition-colors"
+                >
                   Contact Us
                 </Link>
               </li>
@@ -126,7 +160,10 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/services#consulting" className="text-white/70 hover:text-[#FF6600] transition-colors">
+                <Link
+                  href="/services#consulting"
+                  className="text-white/70 hover:text-[#FF6600] transition-colors"
+                >
                   HR Consulting
                 </Link>
               </li>
@@ -136,25 +173,34 @@ export default function Footer() {
           {/* Newsletter */}
           <div>
             <h3 className="text-lg font-bold mb-4 font-axiforma">Newsletter</h3>
-            <p className="text-white/70 mb-4">Subscribe to our newsletter for the latest updates and insights.</p>
+            <p className="text-white/70 mb-4">
+              Subscribe to our newsletter for the latest updates and insights.
+            </p>
             <NewsletterForm />
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/70 text-sm">
-            &copy; {new Date().getFullYear()} Elegance Inspired Limited. All rights reserved.
+            &copy; {new Date().getFullYear()} Elegance Inspired Limited. All
+            rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy-policy" className="text-white/70 hover:text-[#FF6600] text-sm transition-colors">
+            <Link
+              href="/privacy-policy"
+              className="text-white/70 hover:text-[#FF6600] text-sm transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="text-white/70 hover:text-[#FF6600] text-sm transition-colors">
+            <Link
+              href="/terms-of-service"
+              className="text-white/70 hover:text-[#FF6600] text-sm transition-colors"
+            >
               Terms of Service
             </Link>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }
