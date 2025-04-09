@@ -84,7 +84,7 @@ export default function NavbarClient() {
       animate={{ y: scrollingUp || !scrolled ? 0 : -100 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14 py-4 flex items-center justify-between">
         <Link href="/" className="relative z-10">
           <div className="flex items-center">
             <Image
