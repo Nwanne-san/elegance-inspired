@@ -125,7 +125,7 @@ export default function ContactInfo() {
                 <div>
                   <h3 className="font-bold mb-1">Business Hours</h3>
                   <p className="text-muted-foreground text-sm">
-                    Monday - Friday: 9am - 5pm
+                    Monday - Friday: 9am - 6pm
                   </p>
                 </div>
               </div>

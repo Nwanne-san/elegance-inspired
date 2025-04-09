@@ -39,7 +39,7 @@ export default function OurStory() {
   return (
     <section id="our-story" className="py-16 md:py-24 bg-muted scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

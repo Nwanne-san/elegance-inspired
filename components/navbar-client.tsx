@@ -118,7 +118,7 @@ export default function NavbarClient() {
                       <Link
                         key={item.name}
                         href={item.path}
-                        className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
+                        className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-secondary transition-colors"
                         onClick={closeMenu}
                       >
                         {item.name}
@@ -199,7 +199,7 @@ export default function NavbarClient() {
                     className={cn(
                       "block text-lg font-medium py-2",
                       pathname === link.path
-                        ? "text-primary"
+                        ? "text-secondary"
                         : "text-foreground"
                     )}
                     onClick={closeMenu}
@@ -213,7 +213,7 @@ export default function NavbarClient() {
                         <Link
                           key={item.name}
                           href={item.path}
-                          className="block py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                          className="block py-2 text-sm text-muted-foreground hover:text-secondary transition-colors"
                           onClick={closeMenu}
                         >
                           {item.name}
