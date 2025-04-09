@@ -4,26 +4,26 @@ export const navLinks = [
     name: "ABOUT US",
     path: "/about",
     dropdown: [
-      { name: "Who We Are", path: "/aboutwho-we-are" },
-      { name: "Our Story", path: "/aboutour-story" },
-      { name: "Creative Team", path: "/aboutcreative-team" },
+      { name: "Who We Are", path: "/about#who-we-are" },
+      { name: "Our Story", path: "/about#our-story" },
+      { name: "Creative Team", path: "/about#creative-team" },
     ],
   },
   {
     name: "SERVICES",
     path: "/services",
     dropdown: [
-      { name: "Creative Branding", path: "/servicescreative-branding" },
+      { name: "Creative Branding", path: "/services#creative-branding" },
       {
         name: "Strategic Advertising",
-        path: "/servicesstrategic-advertising",
+        path: "/services#strategic-advertising",
       },
       {
         name: "Digital Transformation",
-        path: "/servicesdigital-transformation",
+        path: "/services#digital-transformation",
       },
-      { name: "Quality Printing", path: "/servicesquality-printing" },
-      { name: "HR Consulting", path: "/servicesconsulting" },
+      { name: "Quality Printing", path: "/services#quality-printing" },
+      { name: "HR Consulting", path: "/services#consulting" },
       { name: "Packages", path: "/packages" },
     ],
   },
@@ -79,7 +79,7 @@ export const team = [
   {
     name: "Temitope Ruth Jacob",
     position: "CEO/Founder",
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/CEO.png",
     bio: [
       "Temitope Ruth Jacob is the visionary CEO and Founder of Elegance Inspired Limited. With a passion for crafting impactful brands, she leads the agency with a blend of creativity, strategic insight, and unwavering dedication. Temitope's expertise in branding and business development has helped numerous clients achieve remarkable growth and establish a strong market presence. Her leadership is driven by a commitment to excellence and a belief in the power of authentic brand experiences.",
       "Branding is not just a business for her, she has a passion to see brands thrive in the marketplace. At the core of her ambitions lies a desire to create meaningful connections between brands and consumers.",
@@ -99,7 +99,7 @@ export const team = [
   {
     name: "Cornelius Emmanuel",
     position: "Chief Operating Officer",
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/COO.png",
     bio: [
       "Cornelius Emmanuel plays a crucial role in the operational excellence of Elegance Inspired Limited. As Chief Operating Officer, he oversees the day-to-day operations, ensuring that all projects are delivered on time and within budget. His expertise in process optimization and resource management allows the agency to maintain its high standards of quality and efficiency.",
       "Cornelius is passionate about fostering a collaborative and supportive work environment, empowering his team to achieve their full potential. His strategic vision and leadership have been instrumental in the agency's growth and success.",
@@ -118,7 +118,7 @@ export const team = [
   {
     name: "Rebecca Jumoke Kinrin",
     position: "Brands & Comms. Manager",
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/B&C.png",
     bio: [
       "Rebecca Olajumoke Kinrin is a seasoned branding and communications professional with a passion for creating impactful brand experiences. At Elegance Inspired Limited, she leads the development and execution of comprehensive branding and communication strategies. Her expertise encompasses brand messaging, content creation, and media relations.",
       "Rebecca's ability to translate complex ideas into clear and engaging narratives has been instrumental in building strong brand identities for the agency's clients. She is committed to fostering open and transparent communication, both internally and externally.",
@@ -138,7 +138,7 @@ export const team = [
   {
     name: "Joseph Audu Olufu",
     position: "Manager",
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/GM.png",
     bio: [
       "Joseph Olofu Audu brings a wealth of financial expertise to Elegance Inspired Limited. As Finance Manager, he plays a critical role in managing the agency's financial resources, ensuring compliance with all regulatory requirements, and providing strategic financial guidance.",
       "His meticulous attention to detail and analytical skills enable him to identify opportunities for cost optimization and revenue growth. Joseph is committed to maintaining the highest standards of integrity and transparency in all financial matters.",
@@ -158,7 +158,7 @@ export const team = [
   {
     name: "Stephanie Momoh",
     position: "Chief Marketing Officer",
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/CMO.png",
     bio: [
       "Stephanie Momoh is a dynamic marketing leader with a proven track record of driving brand awareness and customer engagement. As Chief Marketing Officer at Elegance Inspired Limited, she is responsible for developing and implementing comprehensive marketing strategies that align with the agency's business objectives.",
       "Her expertise encompasses digital marketing, social media management, and content marketing. Stephanie is passionate about leveraging data-driven insights to optimize marketing performance and deliver measurable results.",

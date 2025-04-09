@@ -16,11 +16,10 @@ export default function HeroSection() {
         if (textRef.current) {
           new Typed(textRef.current, {
             strings: [
-              "WE INSPIRE BRAND",
-              "WE INSPIRE GROWTH",
-              "WE INSPIRE VISIBILITY",
-              "WE INSPIRE SUCCESS",
-              "WE INSPIRE RESULTS",
+              "WE INSPIRE BRAND GROWTH",
+              "WE INSPIRE BRAND VISIBILITY",
+              "WE INSPIRE BRAND SUCCESS",
+              "WE INSPIRE BRAND RESULTS",
             ],
             typeSpeed: 50,
             backSpeed: 30,
@@ -44,14 +43,14 @@ export default function HeroSection() {
       </div>
 
       <div className="container mx-auto px-4 py-12 md:py-24 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5x mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-base font-medium">
               Welcome to Elegance Inspired
             </span>
           </motion.div>
@@ -60,7 +59,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
+            className="text-4xl max-w-l md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
           >
             <span ref={textRef}></span>
           </motion.h1>
@@ -84,7 +83,7 @@ export default function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-white rounded-full"
+              className="bg-primary hover:bg-primary/60 duration-200 text-white rounded-full"
               navigate={true}
             >
               <Link href="/contact">Get Started</Link>
@@ -93,7 +92,7 @@ export default function HeroSection() {
               asChild
               variant="outline"
               size="lg"
-              className="rounded-full"
+              className="rounded-full bg-secondary hover:bg-secondary/60 duration-300"
               navigate={true}
             >
               <Link href="/services">Our Services</Link>

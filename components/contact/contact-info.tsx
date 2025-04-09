@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { Card, CardContent } from "@/components/ui/card"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Phone,
   Mail,
@@ -13,7 +13,7 @@ import {
   Linkedin,
   Twitter,
   InstagramIcon as TiktokIcon,
-} from "lucide-react"
+} from "lucide-react";
 
 export default function ContactInfo() {
   return (
@@ -26,11 +26,13 @@ export default function ContactInfo() {
       >
         <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
         <p className="text-muted-foreground mb-6">
-          We have helped numerous businesses across various industries establish a strong brand presence, amplify their
-          message, and drive meaningful engagement.
+          We have helped numerous businesses across various industries establish
+          a strong brand presence, amplify their message, and drive meaningful
+          engagement.
         </p>
         <p className="text-muted-foreground">
-          Join us on this journey of creativity and success, and let's inspire the world together.
+          Join us on this journey of creativity and success, and let's inspire
+          the world together.
         </p>
       </motion.div>
 
@@ -51,7 +53,7 @@ export default function ContactInfo() {
                   <h3 className="font-bold mb-1">Call Us</h3>
                   <Link
                     href="tel:+2348183135120"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary text-sm transition-colors"
                   >
                     +234 8183 135 120
                   </Link>
@@ -77,7 +79,7 @@ export default function ContactInfo() {
                   <h3 className="font-bold mb-1">Email Us</h3>
                   <Link
                     href="mailto:hello@eleganceinspired.org"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary text-sm transition-colors"
                   >
                     hello@eleganceinspired.org
                   </Link>
@@ -101,7 +103,7 @@ export default function ContactInfo() {
                 </div>
                 <div>
                   <h3 className="font-bold mb-1">Our Location</h3>
-                  <p className="text-muted-foreground">Abuja, Nigeria</p>
+                  <p className="text-muted-foreground text-sm">Abuja, Nigeria</p>
                 </div>
               </div>
             </CardContent>
@@ -122,7 +124,9 @@ export default function ContactInfo() {
                 </div>
                 <div>
                   <h3 className="font-bold mb-1">Business Hours</h3>
-                  <p className="text-muted-foreground">Monday - Friday: 9am - 5pm</p>
+                  <p className="text-muted-foreground text-sm">
+                    Monday - Friday: 9am - 5pm
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -142,58 +146,58 @@ export default function ContactInfo() {
             href="https://www.instagram.com/eleganceinspiredltd"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary/10 p-3 rounded-full hover:bg-primary/20 transition-colors"
+            className="bg-primary/20 p-3 rounded-full hover:bg-primary/10 group transition-colors"
             aria-label="Instagram"
           >
-            <Instagram className="h-5 w-5 text-primary" />
+            <Instagram className="h-5 w-5 group-hover:text-secondary text-primary" />
           </Link>
           <Link
             href="https://www.facebook.com/temmyjaycob"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary/10 p-3 rounded-full hover:bg-primary/20 transition-colors"
+            className="bg-primary/20 p-3 rounded-full hover:bg-primary/10 group transition-colors"
             aria-label="Facebook"
           >
-            <Facebook className="h-5 w-5 text-primary" />
+            <Facebook className="h-5 w-5 group-hover:text-secondary text-primary" />
           </Link>
           <Link
             href="https://x.com/eleganceinspltd"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary/10 p-3 rounded-full hover:bg-primary/20 transition-colors"
+            className="bg-primary/20 p-3 rounded-full hover:bg-primary/10 group transition-colors"
             aria-label="Twitter"
           >
-            <Twitter className="h-5 w-5 text-primary" />
+            <Twitter className="h-5 w-5 group-hover:text-secondary text-primary" />
           </Link>
           <Link
             href="https://www.linkedin.com/company/elegance-branding/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary/10 p-3 rounded-full hover:bg-primary/20 transition-colors"
+            className="bg-primary/20 p-3 rounded-full hover:bg-primary/10 group transition-colors"
             aria-label="LinkedIn"
           >
-            <Linkedin className="h-5 w-5 text-primary" />
+            <Linkedin className="h-5 w-5 group-hover:text-secondary text-primary" />
           </Link>
           <Link
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary/10 p-3 rounded-full hover:bg-primary/20 transition-colors"
+            className="bg-primary/20 p-3 rounded-full hover:bg-primary/10 group transition-colors"
             aria-label="TikTok"
           >
-            <TiktokIcon className="h-5 w-5 text-primary" />
+            <TiktokIcon className="h-5 w-5 group-hover:text-secondary text-primary" />
           </Link>
           <Link
             href="https://wa.me/2348183135120"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary/10 p-3 rounded-full hover:bg-primary/20 transition-colors"
+            className="bg-primary/20 p-3 rounded-full hover:bg-primary/10 transition-colors"
             aria-label="WhatsApp"
           >
-            <Phone className="h-5 w-5 text-primary" />
+            <Phone className="h-5 w-5 group-hover:text-white text-primary" />
           </Link>
         </div>
       </motion.div>
     </div>
-  )
+  );
 }
