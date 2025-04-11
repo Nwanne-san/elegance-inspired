@@ -6,6 +6,7 @@ import WhoWeAre from "@/components/about/who-we-are"
 import OurStory from "@/components/about/our-story"
 import CreativeTeam from "@/components/about/creative-team"
 import PageHeader from "@/components/page-header"
+import CTASection from "@/components/home/cta-section"
 
 export const metadata: Metadata = generateMetadata(
   "About Us - Who We Are, Our Story & Team",
@@ -25,6 +26,7 @@ export default function AboutPage() {
       <WhoWeAre />
       <OurStory />
       <CreativeTeam />
+      <CTASection/>
       <Footer />
     </main>
   )

@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const portfolioItems = [
   {
@@ -26,7 +26,7 @@ const portfolioItems = [
     image: "/placeholder.svg?height=400&width=600",
     category: "Style Guide",
   },
-]
+];
 
 export default function PortfolioHighlight() {
   return (
@@ -49,7 +49,8 @@ export default function PortfolioHighlight() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-muted-foreground max-w-2xl mx-auto"
           >
-            Explore our recent projects and see how we've helped businesses transform their brand identity.
+            Explore our recent projects and see how we've helped businesses
+            transform their brands.
           </motion.p>
         </div>
 
@@ -71,9 +72,16 @@ export default function PortfolioHighlight() {
                 className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <span className="text-sm text-[#FF6600] font-medium mb-2">{item.category}</span>
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <Link href="/portfolio" className="text-white/80 hover:text-white text-sm underline underline-offset-2">
+                <span className="text-sm text-[#FF6600] font-medium mb-2">
+                  {item.category}
+                </span>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {item.title}
+                </h3>
+                <Link
+                  href="/portfolio"
+                  className="text-white/80 hover:text-white text-sm underline underline-offset-2"
+                >
                   View Project
                 </Link>
               </div>
@@ -82,11 +90,15 @@ export default function PortfolioHighlight() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 rounded-full">
+          <Button
+            asChild
+            size="lg"
+            className="bg-primary hover:bg-primary/90 rounded-full"
+          >
             <Link href="/portfolio">View Full Portfolio</Link>
           </Button>
         </div>
       </div>
     </section>
-  )
+  );
 }

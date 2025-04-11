@@ -1,38 +1,46 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import Link from "next/link"
-import { Calendar, User } from "lucide-react"
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import Link from "next/link";
+import { Calendar, User } from "lucide-react";
 
 const blogPosts = [
   {
     title: "10 Essential Branding Tips for Startups",
-    excerpt: "Learn the key branding strategies that can help your startup stand out in a competitive market.",
-    image: "/placeholder.svg?height=300&width=500",
+    excerpt:
+      "Learn the key branding strategies that can help your startup stand out in a competitive market.",
+    image: "/blog image 1.jpg",
     date: "April 5, 2023",
     author: "Temitope Ruth Jacob",
     slug: "branding-tips-for-startups",
   },
   {
     title: "The Psychology of Color in Branding",
-    excerpt: "Discover how different colors can influence customer perception and behavior towards your brand.",
-    image: "/placeholder.svg?height=300&width=500",
+    excerpt:
+      "Discover how different colors can influence customer perception and behavior towards your brand.",
+    image: "/blog image 2.jpg",
     date: "March 18, 2023",
     author: "Cornelius Emmanuel",
     slug: "psychology-of-color-in-branding",
   },
   {
     title: "Digital Marketing Trends to Watch in 2023",
-    excerpt: "Stay ahead of the curve with these emerging digital marketing trends that are shaping the industry.",
-    image: "/placeholder.svg?height=300&width=500",
+    excerpt:
+      "Stay ahead of the curve with these emerging digital marketing trends that are shaping the industry.",
+    image: "/blog image 3.jpg",
     date: "February 22, 2023",
     author: "Rebecca Jumoke Kinrin",
     slug: "digital-marketing-trends",
   },
-]
+];
 
 export default function BlogHighlight() {
   return (
@@ -55,7 +63,8 @@ export default function BlogHighlight() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-muted-foreground max-w-2xl mx-auto"
           >
-            Discover branding and marketing insights, industry trends, and client success stories.
+            Discover branding and marketing insights, industry trends, and
+            client success stories.
           </motion.p>
         </div>
 
@@ -89,7 +98,10 @@ export default function BlogHighlight() {
                       <span>{post.author}</span>
                     </div>
                   </div>
-                  <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="hover:text-primary transition-colors"
+                  >
                     <h3 className="text-xl font-bold mb-2">{post.title}</h3>
                   </Link>
                 </CardHeader>
@@ -97,7 +109,10 @@ export default function BlogHighlight() {
                   <p className="text-muted-foreground">{post.excerpt}</p>
                 </CardContent>
                 <CardFooter>
-                  <Link href={`/blog/${post.slug}`} className="text-primary hover:text-primary/80 font-medium">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="text-primary hover:text-primary/80 font-medium"
+                  >
                     Read More →
                   </Link>
                 </CardFooter>
@@ -107,11 +122,15 @@ export default function BlogHighlight() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 rounded-full">
-            <Link href="/blog">View All Posts</Link>
+          <Button
+            asChild
+            size="lg"
+            className="bg-primary hover:bg-primary/90 rounded-full"
+          >
+            <Link href="/blog">Read All Blogs</Link>
           </Button>
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -16,10 +16,11 @@ export default function HeroSection() {
         if (textRef.current) {
           new Typed(textRef.current, {
             strings: [
-              "WE INSPIRE BRAND GROWTH",
-              "WE INSPIRE BRAND VISIBILITY",
-              "WE INSPIRE BRAND SUCCESS",
-              "WE INSPIRE BRAND RESULTS",
+              "WE INSPIRE BRAND   GROWTH",
+              "WE INSPIRE BRAND   VISIBILITY",
+              "WE INSPIRE BRAND   SUCCESS",
+              "WE INSPIRE BRAND   RESULTS",
+              "WE INSPIRE BRAND   EXCELLENCE",
             ],
             typeSpeed: 50,
             backSpeed: 30,
@@ -51,7 +52,7 @@ export default function HeroSection() {
             className="mb-6"
           >
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-base font-medium">
-              Welcome to Elegance Inspired
+              Welcome to Elegance Inspired Limited
             </span>
           </motion.div>
 
@@ -59,9 +60,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl max-w-l md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
+            className="text-4xl max-w-l md:text-6xl lg:text-7xl  font-bold mb-6 tracking-tight"
           >
-            <span ref={textRef}></span>
+            <span ref={textRef}> </span>
           </motion.h1>
 
           <motion.p
@@ -70,7 +71,10 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
           >
-            We are passionate about helping businesses elevate their brands,
+            We are passionate about helping businesses{" "}
+            <span className="font-bold text-xl text-secondary">elevate</span>{" "}
+            their{" "}
+            <span className="font-bold text-xl text-secondary">brands</span>,
             connect with their customers, and achieve their desired outcomes.
           </motion.p>
 
@@ -78,24 +82,32 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center sm:items-start"
           >
             <Button
               asChild
               size="lg"
-              className="bg-primary hover:bg-primary/60 duration-200 text-white rounded-full"
+              className="bg-primary hover:bg-primary/60 w-fit duration-200 text-white rounded-full"
               navigate={true}
             >
-              <Link href="/contact">Get Started</Link>
+              <Link href="/contact">Elevate your Brand</Link>
             </Button>
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="rounded-full bg-secondary hover:bg-secondary/60 duration-300"
+              className="rounded-full bg-secondary hover:bg-secondary/60 w-fit duration-300"
               navigate={true}
             >
-              <Link href="/services">Our Services</Link>
+              <Link href="/services">Explore Our Services</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              className="bg-primary hover:bg-primary/60 w-fit duration-200 text-white rounded-full"
+              navigate={true}
+            >
+              <Link href="/contact">Request a Call Back</Link>
             </Button>
           </motion.div>
         </div>

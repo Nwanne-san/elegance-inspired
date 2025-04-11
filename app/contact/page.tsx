@@ -6,6 +6,7 @@ import PageHeader from "@/components/page-header";
 import ContactForm from "@/components/contact/contact-form";
 import ContactInfo from "@/components/contact/contact-info";
 import ContactMap from "@/components/contact/contact-map";
+import CTASection from "@/components/home/cta-section";
 
 export const metadata: Metadata = generateMetadata(
   "Contact Us - Get in Touch with Elegance Inspired",
@@ -36,6 +37,7 @@ export default function ContactPage() {
         </div>
       </div>
       <ContactMap />
+      <CTASection/>
       <Footer />
     </main>
   );

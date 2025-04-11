@@ -9,6 +9,7 @@ import MarketingPackages from "@/components/packages/marketing-packages"
 import AdvertisingPackages from "@/components/packages/advertising-packages"
 import PrintingPackages from "@/components/packages/printing-packages"
 import PackagesCTA from "@/components/packages/packages-cta"
+import CTASection from "@/components/home/cta-section"
 
 export const metadata: Metadata = generateMetadata(
   "Our Packages - Branding, Marketing, Advertising & Printing",
@@ -31,6 +32,7 @@ export default function PackagesPage() {
       <AdvertisingPackages />
       <PrintingPackages />
       <PackagesCTA />
+      <CTASection/>
       <Footer />
     </main>
   )

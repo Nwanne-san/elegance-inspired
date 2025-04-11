@@ -92,7 +92,7 @@ export default function NavbarClient() {
               alt="Elegance Inspired Limited"
               width={160}
               height={40}
-              className="h-6 sm:h-10 w-auto"
+              className="h-8 sm:h-10 w-auto"
             />
           </div>
         </Link>
@@ -135,7 +135,7 @@ export default function NavbarClient() {
             className="bg-primary hover:bg-primary/90 text-white rounded-full"
             navigate={true}
           >
-            <Link href="/contact">Let&apos;s Talk</Link>
+            <Link href="/contact">Elevate Your Brand</Link>
           </Button>
 
           <Button
@@ -230,7 +230,7 @@ export default function NavbarClient() {
                   className="w-full bg-primary hover:bg-primary/90 text-white rounded-full"
                   navigate={true}
                 >
-                  <Link href="/contact">Let&apos;s Talk</Link>
+                  <Link href="/contact">Elevate Your Brand</Link>
                 </Button>
               </div>
             </div>

@@ -1,15 +1,23 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Check } from "lucide-react"
-import Link from "next/link"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Check } from "lucide-react";
+import Link from "next/link";
 
 const packages = [
   {
     title: "Branding Package",
-    description: "Perfect for businesses looking to establish or refresh their brand identity.",
+    description:
+      "Perfect for businesses looking to establish or refresh their brand identity.",
     features: [
       "Brand strategy Development",
       "Brand Naming (if needed)",
@@ -21,7 +29,8 @@ const packages = [
   },
   {
     title: "Marketing Package",
-    description: "Ideal for businesses ready to promote their brand and reach their target audience.",
+    description:
+      "Ideal for businesses ready to promote their brand and reach their target audience.",
     features: [
       "Social Media Profile Set-up",
       "Content Calendar Development",
@@ -34,12 +43,18 @@ const packages = [
   },
   {
     title: "Advertising Package",
-    description: "For businesses looking to maximize their visibility and reach potential customers.",
-    features: ["Ad creative design", "Targeted advertising strategy", "Campaign management", "Performance reporting"],
+    description:
+      "For businesses looking to maximize their visibility and reach potential customers.",
+    features: [
+      "Ad creative design",
+      "Targeted advertising strategy",
+      "Campaign management",
+      "Performance reporting",
+    ],
     cta: "Get Started",
     href: "/packages#advertising",
   },
-]
+];
 
 export default function PackagesHighlight() {
   const containerVariants = {
@@ -50,7 +65,7 @@ export default function PackagesHighlight() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -59,7 +74,7 @@ export default function PackagesHighlight() {
       opacity: 1,
       transition: { duration: 0.5 },
     },
-  }
+  };
 
   return (
     <section className="py-16 md:py-24 bg-muted">
@@ -72,7 +87,7 @@ export default function PackagesHighlight() {
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
-            <span className="text-secondary">Elegance Packages:</span> Choose Your Perfect Solution
+            Choose Your Perfect Solution
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -81,8 +96,9 @@ export default function PackagesHighlight() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-muted-foreground max-w-2xl mx-auto"
           >
-            We've designed these packages to cater to different needs and budgets. Choose the package that best suits
-            your needs, or contact us for a custom quote.
+            We've designed these packages to cater to different needs and
+            budgets. Choose the package that best suits your needs, or contact
+            us for a custom quote.
           </motion.p>
         </div>
 
@@ -96,7 +112,11 @@ export default function PackagesHighlight() {
           {packages.map((pkg, index) => (
             <motion.div key={index} variants={itemVariants} className="flex">
               <Card
-                className={`flex flex-col h-full w-full ${pkg.featured ? "border-primary shadow-lg relative" : "border-border/50"}`}
+                className={`flex flex-col h-full w-full ${
+                  pkg.featured
+                    ? "border-primary shadow-lg relative"
+                    : "border-border/50"
+                }`}
               >
                 {pkg.featured && (
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
@@ -104,7 +124,9 @@ export default function PackagesHighlight() {
                   </div>
                 )}
                 <CardHeader>
-                  <CardTitle className="text-xl font-bold">{pkg.title}</CardTitle>
+                  <CardTitle className="text-xl font-bold">
+                    {pkg.title}
+                  </CardTitle>
                   <CardDescription>{pkg.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
@@ -118,7 +140,12 @@ export default function PackagesHighlight() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button asChild className={`w-full ${pkg.featured ? "bg-primary hover:bg-primary/90" : ""}`}>
+                  <Button
+                    asChild
+                    className={`w-full ${
+                      pkg.featured ? "bg-primary hover:bg-primary/90" : ""
+                    }`}
+                  >
                     <Link href={pkg.href}>{pkg.cta}</Link>
                   </Button>
                 </CardFooter>
@@ -128,11 +155,15 @@ export default function PackagesHighlight() {
         </motion.div>
 
         <div className="mt-12 text-center">
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 rounded-full">
+          <Button
+            asChild
+            size="lg"
+            className="bg-primary hover:bg-primary/90 rounded-full"
+          >
             <Link href="/packages">View All Packages</Link>
           </Button>
         </div>
       </div>
     </section>
-  )
+  );
 }

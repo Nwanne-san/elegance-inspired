@@ -100,7 +100,9 @@ export default function ServicesHighlight() {
           {service.number}
         </span>
         <div className="mb-2">{service.icon}</div>
-        <CardTitle className="text-xl group-hover:text-secondary/70 duration-300 font-bold">{service.title}</CardTitle>
+        <CardTitle className="text-xl group-hover:text-secondary/70 duration-300 font-bold">
+          {service.title}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <CardDescription className="text-muted-foreground">
@@ -128,10 +130,9 @@ export default function ServicesHighlight() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-4xl font-bold mb-4"
+            className="text-3xl md:text-4xl font-bold text-center mb-4"
           >
-            <span className="text-secondary">Our Offerings:</span> Making Your
-            Brand Exceptional
+           We Make Your Brand Exceptional
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

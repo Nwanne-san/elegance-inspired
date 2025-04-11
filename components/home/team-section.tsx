@@ -49,17 +49,22 @@ export default function TeamSection() {
 
   const renderTeamCard = (member: (typeof team)[0], index: number) => (
     <Card className="overflow-hidden bg-card border-border/50 h-full hover:shadow-lg transition-all duration-300">
-      <div className="relative overflow-hidden group">
+      <div
+        className="relative overflow-hidden  group"
+        style={{
+          background: "linear-gradient(to top, #ff6600 80%, to transparent 90%",
+        }}
+      >
         <Link href="/about#creative-team" className="block">
           <Image
             src={member.image || "/placeholder.svg"}
             alt={member.name}
             width={400}
-            height={400}
-            className="w-full  object-cover object-center transition-transform duration-500 group-hover:scale-110"
+            height={300}
+            className="w-full h-auto object-cover object-center transition-transform duration-500 group-hover:scale-110"
           />
         </Link>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent sm:opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-end justify-center p-6">
+        <div className="absolute inset-0 sm:bg-gradient-to-t from-black/90 to-transparent  sm:opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-end justify-center p-6">
           <div className="flex space-x-5 sm:space-x-3">
             <a
               href={member.social.instagram}
@@ -120,8 +125,7 @@ export default function TeamSection() {
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
-            <span className="text-secondary">Our Dedicated Team:</span> Your
-            Trusted Partners in Branding
+            <span className="">Our Dedicated Team</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
