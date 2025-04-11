@@ -7,6 +7,7 @@ import {
   Twitter,
   InstagramIcon as TiktokIcon,
 } from "lucide-react";
+import { FaFacebookF, FaTiktok, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import NewsletterForm from "@/components/newsletter-form";
 
 export default function Footer() {
@@ -30,7 +31,10 @@ export default function Footer() {
               businesses achieve their full potential in the ever-evolving
               marketplace.
             </p>
-            <div className="flex space-x-4">
+            <div>
+              <h3 className="font-bold mb-1">Follow Us</h3>
+            </div>
+            <div className="flex space-x-6 sm:space-x-4">
               <Link
                 href="https://www.instagram.com/eleganceinspiredltd"
                 target="_blank"
@@ -69,7 +73,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="TikTok"
               >
-                <TiktokIcon className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
+                <FaTiktok className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
               </Link>
             </div>
           </div>
@@ -125,54 +129,36 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-bold mb-4 font-axiforma">Services</h3>
+            <h3 className="text-lg font-bold mb-4 font-axiforma">Contact</h3>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/services#creative-branding"
+                  href="tel:+2348183135120"
                   className="text-white/70 hover:text-[#FF6600] transition-colors"
                 >
-                  Creative Branding
+                  +234 8183 135 120
                 </Link>
               </li>
+
               <li>
                 <Link
-                  href="/services#strategic-advertising"
+                  href="mailto:hello@eleganceinspired.org"
                   className="text-white/70 hover:text-[#FF6600] transition-colors"
                 >
-                  Strategic Advertising
+                  hello@eleganceinspired.org
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/services#digital-transformation"
-                  className="text-white/70 hover:text-[#FF6600] transition-colors"
-                >
-                  Digital Transformation
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services#quality-printing"
-                  className="text-white/70 hover:text-[#FF6600] transition-colors"
-                >
-                  Quality Printing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services#consulting"
-                  className="text-white/70 hover:text-[#FF6600] transition-colors"
-                >
-                  HR Consulting
-                </Link>
+              <li className="text-white/70 hover:text-[#FF6600] transition-colors">
+                Abuja, Nigeria
               </li>
             </ul>
           </div>
 
           {/* Newsletter */}
           <div>
-            <h3 className="text-lg font-bold mb-4 font-axiforma">Newsletter</h3>
+            <h3 className="text-lg font-bold mb-4 font-axiforma">
+              Request Quote
+            </h3>
             <p className="text-white/70 mb-4">
               Subscribe to our newsletter for the latest updates and insights.
             </p>

@@ -32,11 +32,16 @@ export const navLinks = [
 ];
 
 export const clients = [
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
-  "/placeholder-logo.svg",
+  "/AGILE.png",
+  "/bolt.png",
+  "/Frievan.png",
+  "/higer.png",
+  "/kad.png",
+  "/nexim.png",
+  "/nnpc logo.png",
+  "/pan.png",
+  "/ronchess.png",
+  "/tls.png",
 ];
 
 export const testimonials = [
@@ -132,7 +137,7 @@ export const team = [
   },
   {
     name: "Joseph Audu Olufu",
-    position: "Manager",
+    position: "General Manager",
     image: "/GM.png",
     bio: [
       "Joseph Olofu Audu brings a wealth of financial expertise to Elegance Inspired Limited. As Finance Manager, he plays a critical role in managing the agency's financial resources, ensuring compliance with all regulatory requirements, and providing strategic financial guidance.",

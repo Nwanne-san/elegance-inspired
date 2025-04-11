@@ -165,3 +165,68 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+
+/* Add this to your globals.css file to fix the animation responsiveness issue */
+
+@media (max-width: 768px) {
+  /* Make animations load immediately on mobile */
+  .animate-on-scroll {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+
+  /* Ensure framer-motion animations don't cause layout shifts on mobile */
+  .motion-safe\:animate-none {
+    animation: none !important;
+  }
+}
+
+/* Ensure elements are visible immediately on mobile */
+@media (max-width: 768px) {
+  [data-animate="true"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Add these styles at the end of your globals.css file */
+
+/* Logo marquee animation */
+.logo-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.logo-marquee {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  width: max-content;
+}
+
+.logo-marquee.paused {
+  animation-play-state: paused;
+}
+
+.logo-item {
+  flex-shrink: 0;
+  padding: 0 1rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Move by half the width (first set of logos) */
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-marquee {
+    animation-duration: 20s; /* Faster on mobile */
+  }
+}

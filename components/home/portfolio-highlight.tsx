@@ -1,34 +1,139 @@
 "use client";
 
+import { useState, useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import useEmblaCarousel from "embla-carousel-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const portfolioItems = [
   {
-    title: "Corporate Branding",
-    image: "/placeholder.svg?height=400&width=600",
-    category: "Branding",
+    title: "Brand Identity",
+    image: "/alphabets.jpg",
+    category: "Alphabets",
   },
   {
     title: "Event Branding",
-    image: "/placeholder.svg?height=400&width=600",
-    category: "Event",
+    image: "/necci-consult.jpg",
+    category: "Necci Consulting",
   },
   {
-    title: "Product Packaging",
-    image: "/placeholder.svg?height=400&width=600",
-    category: "Packaging",
+    title: "Product Package Design",
+    image: "/ayency-foods.jpg",
+    category: "Ayency Foods & Beverages",
   },
   {
-    title: "Brand Style Guide",
-    image: "/placeholder.svg?height=400&width=600",
-    category: "Style Guide",
+    title: "Social Media Designs",
+    image: "/enived-air.jpg",
+    category: "Enived Air Logistics",
   },
 ];
 
 export default function PortfolioHighlight() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+  });
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  );
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setPrevBtnEnabled(emblaApi.canScrollPrev());
+    setNextBtnEnabled(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  // Set up autoplay
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    emblaApi.on("select", onSelect);
+    onSelect();
+
+    // Autoplay function
+    const autoplay = () => {
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0);
+      }
+    };
+
+    // Start autoplay
+    autoplayRef.current = setInterval(autoplay, 5000);
+
+    // Pause autoplay on pointer down (user interaction)
+    emblaApi.on("pointerDown", () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+    });
+
+    // Resume autoplay on pointer up
+    emblaApi.on("pointerUp", () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+      autoplayRef.current = setInterval(autoplay, 5000);
+    });
+
+    return () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current);
+      emblaApi.off("select", onSelect);
+      emblaApi.off("pointerDown", () => {});
+      emblaApi.off("pointerUp", () => {});
+    };
+  }, [emblaApi, onSelect]);
+
+  const renderPortfolioItem = (
+    item: (typeof portfolioItems)[0],
+    index: number
+  ) => (
+    <div className={`${isMobile ? "flex-[0_0_100%]" : "flex-[0_0_50%]"} px-4`}>
+      <div className="group relative overflow-hidden rounded-lg border border shadow-lg h-80">
+        <Image
+          src={item.image || "/placeholder.svg"}
+          alt={item.title}
+          width={600}
+          height={400}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+          <span className="text-sm text-[#FF6600] font-medium mb-2">
+            {item.category}
+          </span>
+          <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+          <Link
+            href="/portfolio"
+            className="text-white/80 hover:text-white text-sm underline underline-offset-2"
+          >
+            View Project
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14">
@@ -54,39 +159,47 @@ export default function PortfolioHighlight() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {portfolioItems.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-lg"
-            >
-              <Image
-                src={item.image || "/placeholder.svg"}
-                alt={item.title}
-                width={600}
-                height={400}
-                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+        <div className="relative">
+          {/* Carousel Container */}
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
+              {portfolioItems.map((item, index) =>
+                renderPortfolioItem(item, index)
+              )}
+            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <button
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md hover:bg-white dark:hover:bg-gray-800 transition-colors z-10"
+            onClick={scrollPrev}
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="h-6 w-6 text-primary" />
+          </button>
+          <button
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md hover:bg-white dark:hover:bg-gray-800 transition-colors z-10"
+            onClick={scrollNext}
+            aria-label="Next slide"
+          >
+            <ChevronRight className="h-6 w-6 text-primary" />
+          </button>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center gap-2 mt-6">
+            {portfolioItems.map((_, index) => (
+              <button
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  index === 0
+                    ? "bg-secondary w-4"
+                    : "bg-gray-300 dark:bg-gray-600"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+                onClick={() => emblaApi?.scrollTo(index)}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <span className="text-sm text-[#FF6600] font-medium mb-2">
-                  {item.category}
-                </span>
-                <h3 className="text-xl font-bold text-white mb-2">
-                  {item.title}
-                </h3>
-                <Link
-                  href="/portfolio"
-                  className="text-white/80 hover:text-white text-sm underline underline-offset-2"
-                >
-                  View Project
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
 
         <div className="mt-12 text-center">

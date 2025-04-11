@@ -17,7 +17,7 @@ export default function WhoWeAre() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Who We Are</h2>
-            <div className="space-y-4">
+            <div className="space-y-4 text-justify">
               <p>
                 Elegance Inspired is a leading corporate branding agency dedicated to helping businesses achieve their
                 full potential in the ever-evolving marketplace. We are passionate about helping businesses elevate
@@ -53,11 +53,11 @@ export default function WhoWeAre() {
             className="relative"
           >
             <Image
-              src="/placeholder.svg?height=600&width=600"
+              src="/aboutus image.jpg"
               alt="Elegance Inspired Team"
               width={600}
               height={600}
-              className="rounded-lg shadow-xl"
+              className="rounded-lg shadow-xl object-cover h-[400px]"
             />
             <div className="absolute -bottom-8 -left-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
               <div className="grid grid-cols-3 gap-6 text-center">

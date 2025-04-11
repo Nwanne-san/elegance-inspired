@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -20,6 +20,9 @@ export default function NavbarClient() {
   const [mounted, setMounted] = useState(false);
   const searchParams = useSearchParams();
   const { theme, setTheme } = useTheme();
+  const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>(
+    {}
+  );
 
   // Set mounted to true on client
   useEffect(() => {
@@ -51,7 +54,26 @@ export default function NavbarClient() {
   }, [lastScrollY]);
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+  const closeMenu = () => {
+    setIsOpen(false);
+    setOpenDropdowns({});
+  };
+
+  const toggleDropdown = (name: string) => {
+    setOpenDropdowns((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
+  };
+
+  // Determine background color based on theme and scroll state
+  const getBackgroundColor = () => {
+    // if (!scrolled) return "bg-transparent";
+
+    return theme === "dark"
+      ? "bg-primary/80 backdrop-blur-md"
+      : "bg-white/80 backdrop-blur-md";
+  };
 
   // Render a placeholder during SSR
   if (!mounted) {
@@ -74,11 +96,12 @@ export default function NavbarClient() {
       </header>
     );
   }
+
   return (
     <motion.header
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        scrolled ? "backdrop-blur-md bg-background/80" : "bg-transparent"
+        getBackgroundColor()
       )}
       initial={{ y: 0 }}
       animate={{ y: scrollingUp || !scrolled ? 0 : -100 }}
@@ -87,13 +110,24 @@ export default function NavbarClient() {
       <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14 py-4 flex items-center justify-between">
         <Link href="/" className="relative z-10">
           <div className="flex items-center">
-            <Image
-              src="/Elegance logo.png"
-              alt="Elegance Inspired Limited"
-              width={160}
-              height={40}
-              className="h-8 sm:h-10 w-auto"
-            />
+            {/* Conditional rendering for logo based on theme */}
+            {theme === "dark" ? (
+              <Image
+                src="/Elegance logo white.svg"
+                alt="Elegance Inspired Limited"
+                width={160}
+                height={40}
+                className="h-8 sm:h-10 w-auto"
+              />
+            ) : (
+              <Image
+                src="/Elegance logo.png"
+                alt="Elegance Inspired Limited"
+                width={160}
+                height={40}
+                className="h-8 sm:h-10 w-auto"
+              />
+            )}
           </div>
         </Link>
 
@@ -189,37 +223,70 @@ export default function NavbarClient() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-background/95 backdrop-blur-md"
+            className={cn(
+              "md:hidden backdrop-blur-md",
+              theme === "dark" ? "bg-gray-900/95" : "bg-background/95"
+            )}
           >
             <div className="container mx-auto px-4 py-4">
               {navLinks.map((link) => (
                 <div key={link.name} className="py-2">
-                  <Link
-                    href={link.path}
-                    className={cn(
-                      "block text-lg font-medium py-2",
-                      pathname === link.path
-                        ? "text-secondary"
-                        : "text-foreground"
-                    )}
-                    onClick={closeMenu}
-                  >
-                    {link.name}
-                  </Link>
+                  {link.dropdown ? (
+                    <button
+                      onClick={() => toggleDropdown(link.name)}
+                      className={cn(
+                        "flex items-center justify-between w-full text-left text-lg font-medium py-2",
+                        pathname.startsWith(link.path)
+                          ? "text-secondary"
+                          : "text-foreground"
+                      )}
+                    >
+                      <span>{link.name}</span>
+                      <motion.div
+                        animate={{ rotate: openDropdowns[link.name] ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ChevronDown className="h-5 w-5" />
+                      </motion.div>
+                    </button>
+                  ) : (
+                    <Link
+                      href={link.path}
+                      className={cn(
+                        "block text-lg font-medium py-2",
+                        pathname === link.path
+                          ? "text-secondary"
+                          : "text-foreground"
+                      )}
+                      onClick={closeMenu}
+                    >
+                      {link.name}
+                    </Link>
+                  )}
 
                   {link.dropdown && (
-                    <div className="pl-4 mt-1 border-l-2 border-muted">
-                      {link.dropdown.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.path}
-                          className="block py-2 text-sm text-muted-foreground hover:text-secondary transition-colors"
-                          onClick={closeMenu}
+                    <AnimatePresence>
+                      {openDropdowns[link.name] && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="pl-4 mt-1 border-l-2 border-muted"
                         >
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
+                          {link.dropdown.map((item) => (
+                            <Link
+                              key={item.name}
+                              href={item.path}
+                              className="block py-2 text-sm text-muted-foreground hover:text-secondary transition-colors"
+                              onClick={closeMenu}
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   )}
                 </div>
               ))}

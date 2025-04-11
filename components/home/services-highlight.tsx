@@ -132,7 +132,7 @@ export default function ServicesHighlight() {
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-4xl font-bold text-center mb-4"
           >
-           We Make Your Brand Exceptional
+           We Make Brands Exceptional
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

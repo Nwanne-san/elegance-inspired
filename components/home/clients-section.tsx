@@ -112,33 +112,53 @@ export default function ClientsSection() {
         </div>
 
         {/* Client Logos */}
-        <div className="mb-20">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center"
-          >
-            {clients.map((logo, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="flex justify-center"
-              >
-                <Image
-                  src={logo || "/placeholder.svg"}
-                  alt={`Client ${index + 1}`}
-                  width={140}
-                  height={70}
-                  className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+        {/* Client Logos */}
+        <div className="mb-20 overflow-hidden">
+          <div className="logo-marquee-container">
+            <div
+              className="logo-marquee"
+              onMouseEnter={() =>
+                document
+                  .querySelectorAll(".logo-marquee")
+                  .forEach((el) => el.classList.add("paused"))
+              }
+              onMouseLeave={() =>
+                document
+                  .querySelectorAll(".logo-marquee")
+                  .forEach((el) => el.classList.remove("paused"))
+              }
+            >
+              {/* First set of logos */}
+              {clients.map((logo, index) => (
+                <div key={`first-${index}`} className="logo-item">
+                  <div className="bg-white p-2 rounded-2xl flex items-center justify-center h-24 w-[180px]">
+                    <Image
+                      src={logo || "/placeholder.svg"}
+                      alt={`Client ${index + 1}`}
+                      width={140}
+                      height={70}
+                      className="h-16 w-auto object-contain  hover:-0 transition-all duration-300"
+                    />
+                  </div>
+                </div>
+              ))}
+
+              {/* Duplicate logos for seamless loop */}
+              {clients.map((logo, index) => (
+                <div key={`second-${index}`} className="logo-item">
+                  <div className="bg-white p-2 rounded-2xl flex items-center justify-center h-24 w-[180px]">
+                    <Image
+                      src={logo || "/placeholder.svg"}
+                      alt={`Client ${index + 1}`}
+                      width={140}
+                      height={70}
+                      className="h-16 w-auto object-contain  hover:-0 transition-all duration-300"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Testimonials Carousel */}

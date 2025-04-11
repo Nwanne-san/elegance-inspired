@@ -1,16 +1,29 @@
 "use client";
 
+import { useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import Link from "next/link";
 import { team } from "@/data/index";
-import { useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { Carousel, CarouselSlideResponsive } from "@/components/ui/carousel";
 
 export default function TeamSection() {
   const [isMobile, setIsMobile] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+  });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -24,6 +37,15 @@ export default function TeamSection() {
       window.removeEventListener("resize", checkMobile);
     };
   }, []);
+
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  );
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -44,13 +66,13 @@ export default function TeamSection() {
     },
   };
 
-  // Only show first 4 team members on home page
-  const displayedTeam = team.slice(0, 4);
+  // Only show first 5 team members on home page
+  const displayedTeam = team.slice(0, 5);
 
   const renderTeamCard = (member: (typeof team)[0], index: number) => (
     <Card className="overflow-hidden bg-card border-border/50 h-full hover:shadow-lg transition-all duration-300">
       <div
-        className="relative overflow-hidden  group"
+        className="relative overflow-hidden bg-gradient-to-b to-transparent from-secondary group"
         style={{
           background: "linear-gradient(to top, #ff6600 80%, to transparent 90%",
         }}
@@ -64,7 +86,7 @@ export default function TeamSection() {
             className="w-full h-auto object-cover object-center transition-transform duration-500 group-hover:scale-110"
           />
         </Link>
-        <div className="absolute inset-0 sm:bg-gradient-to-t from-black/90 to-transparent  sm:opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-end justify-center p-6">
+        <div className="absolute inset-0 sm:bg-gradient-to-t from-black/90 to-transparent sm:opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-end justify-center p-6">
           <div className="flex space-x-5 sm:space-x-3">
             <a
               href={member.social.instagram}
@@ -125,7 +147,7 @@ export default function TeamSection() {
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-4xl font-bold mb-4"
           >
-            <span className="">Our Dedicated Team</span>
+            <span className="">Meet Our Creative Team</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -157,19 +179,34 @@ export default function TeamSection() {
             ))}
           </Carousel>
         ) : (
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
-            {displayedTeam.map((member, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                {renderTeamCard(member, index)}
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="relative">
+            {/* Desktop Carousel */}
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex">
+                {displayedTeam.map((member, index) => (
+                  <div key={index} className="flex-[0_0_25%] px-4">
+                    {renderTeamCard(member, index)}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Buttons */}
+            <button
+              className="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md hover:bg-white dark:hover:bg-gray-800 transition-colors z-10"
+              onClick={scrollPrev}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="h-6 w-6 text-primary" />
+            </button>
+            <button
+              className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md hover:bg-white dark:hover:bg-gray-800 transition-colors z-10"
+              onClick={scrollNext}
+              aria-label="Next slide"
+            >
+              <ChevronRight className="h-6 w-6 text-primary" />
+            </button>
+          </div>
         )}
 
         <div className="mt-12 text-center">
