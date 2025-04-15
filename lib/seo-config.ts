@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next"
 
 // Base metadata that will be used across the site
 export const baseMetadata: Metadata = {
@@ -39,7 +39,7 @@ export const baseMetadata: Metadata = {
       "A leading corporate branding agency dedicated to helping businesses achieve their full potential in the ever-evolving marketplace.",
     images: [
       {
-        url: "/ICON.jpg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Elegance Inspired Limited",
@@ -74,15 +74,10 @@ export const baseMetadata: Metadata = {
   verification: {
     google: "google-site-verification-code",
   },
-};
+}
 
 // Function to generate page-specific metadata
-export function generateMetadata(
-  title: string,
-  description?: string,
-  ogImage?: string,
-  keywords?: string[]
-): Metadata {
+export function generateMetadata(title: string, description?: string, ogImage?: string, keywords?: string[]): Metadata {
   return {
     title,
     description: description || baseMetadata.description,
@@ -91,8 +86,7 @@ export function generateMetadata(
     openGraph: {
       ...baseMetadata.openGraph,
       title,
-      description:
-        description || (baseMetadata.openGraph?.description as string),
+      description: description || (baseMetadata.openGraph?.description as string),
       images: ogImage
         ? [
             {
@@ -110,5 +104,5 @@ export function generateMetadata(
       description: description || (baseMetadata.twitter?.description as string),
       images: ogImage ? [ogImage] : baseMetadata.twitter?.images,
     },
-  };
+  }
 }

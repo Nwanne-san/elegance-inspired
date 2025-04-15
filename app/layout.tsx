@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   title: "Elegance Inspired Limited - Corporate Branding Agency",
   description:
     "Elegance Inspired Limited is a leading corporate branding agency dedicated to helping businesses achieve their full potential in the ever-evolving marketplace.",
+    icons: {
+      icon: "/ICONS.jpg",
+    },
 };
 
 export default function RootLayout({
@@ -24,6 +27,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+        <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <LenisScrollProvider>

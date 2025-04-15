@@ -27,10 +27,11 @@ export default function PackagesPage() {
         description="Choose the package that best suits your needs, or contact us for a custom quote."
       />
       <PackagesIntro />
+      <PrintingPackages />
       <BrandingPackages />
       <MarketingPackages />
       <AdvertisingPackages />
-      <PrintingPackages />
+      
       <CTASection/>
       <Footer />
     </main>

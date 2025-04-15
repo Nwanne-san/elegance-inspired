@@ -16,8 +16,8 @@ export const navLinks = [
       { name: "Creative Branding", href: "/services#branding" },
       { name: "Strategic Advertising", href: "/services#advertising" },
       { name: "Digital Transformation", href: "/services#digital" },
-      { name: "HR Consulting", href: "/services#hr" },
       { name: "Quality Printing", href: "/services#printing" },
+      { name: "HR Consulting", href: "/services#hr" },
     ],
   },
   { name: "Packages", href: "/packages" },
@@ -168,5 +168,153 @@ export const team = [
       linkedin:
         "https://www.linkedin.com/in/stephaniemomoh?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     },
+  },
+];
+
+export type PortfolioItem = {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  client: string;
+  location?: string;
+  date: string;
+  images: string[];
+  tags: string[];
+};
+
+export const portfolioData: PortfolioItem[] = [
+  {
+    id: "necci-pr-roundtable",
+    title: "NECCI PR ROUNDTABLE 24th Edition",
+    description:
+      "Complete event branding package for NECCI PR ROUNDTABLE 24th Edition, including banners, shirts, badges, and promotional materials.",
+    category: "event-branding",
+    client: "NECCI CONSULTANTS",
+    location: "Eko Hotel Lagos, Nigeria",
+    date: "2023",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Event Branding", "Banners", "Promotional Materials"],
+  },
+  {
+    id: "alphabets-brand-identity",
+    title: "Alphabets Brand Identity",
+    description:
+      "Comprehensive brand identity design for Alphabets, including logo, color palette, typography, and brand guidelines.",
+    category: "brand-identity",
+    client: "Alphabets",
+    date: "2022",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Brand Identity", "Logo Design", "Brand Guidelines"],
+  },
+  {
+    id: "ayency-foods-packaging",
+    title: "Ayency Foods Packaging Design",
+    description:
+      "Product packaging design for Ayency Foods & Beverages, creating an appealing and functional packaging solution.",
+    category: "product-branding",
+    client: "Ayency Foods & Beverages",
+    date: "2023",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Product Branding", "Packaging Design"],
+  },
+  {
+    id: "enived-air-social-media",
+    title: "Enived Air Social Media Campaign",
+    description:
+      "Social media design and management for Enived Air Logistics, increasing brand awareness and engagement.",
+    category: "social-media-designs",
+    client: "Enived Air Logistics",
+    date: "2023",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Social Media Design", "Digital Marketing"],
+  },
+  {
+    id: "tech-company-office-signage",
+    title: "Tech Company Office Signage",
+    description:
+      "Custom office signage design and installation for a leading tech company headquarters.",
+    category: "office-signage",
+    client: "Tech Innovations Inc.",
+    date: "2022",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Office Signage", "Corporate Branding"],
+  },
+  {
+    id: "holiday-corporate-gifts",
+    title: "Holiday Corporate Gift Package",
+    description:
+      "Custom designed corporate gift packages for client appreciation during the holiday season.",
+    category: "corporate-gifts",
+    client: "Multiple Clients",
+    date: "2022",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Corporate Gifts", "Custom Design"],
+  },
+  {
+    id: "retail-brand-billboard",
+    title: "Retail Brand Billboard Campaign",
+    description:
+      "Strategic billboard placement and design for a retail brand's seasonal campaign.",
+    category: "billboard-placement",
+    client: "Fashion Retailer",
+    date: "2023",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Billboard", "Outdoor Advertising"],
+  },
+  {
+    id: "restaurant-menu-printing",
+    title: "Premium Restaurant Menu Printing",
+    description:
+      "High-quality menu design and printing for an upscale restaurant chain.",
+    category: "printing",
+    client: "Gourmet Dining Group",
+    date: "2023",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Printing", "Menu Design"],
+  },
+  {
+    id: "ecommerce-website-development",
+    title: "E-commerce Website Development",
+    description:
+      "Custom e-commerce website design and development with integrated payment solutions.",
+    category: "web-app-development",
+    client: "Online Retailer",
+    date: "2022",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Web Development", "E-commerce"],
+  },
+  {
+    id: "social-media-ad-campaign",
+    title: "Targeted Social Media Ad Campaign",
+    description:
+      "Strategic social media advertising campaign with targeted audience segmentation and performance tracking.",
+    category: "social-media-ad",
+    client: "Service Provider",
+    date: "2023",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Social Media Ads", "Digital Marketing"],
+  },
+  {
+    id: "social-media-management-retail",
+    title: "Retail Brand Social Media Management",
+    description:
+      "Ongoing social media management including content creation, scheduling, and community engagement.",
+    category: "social-media-management",
+    client: "Retail Brand",
+    date: "2023",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["Social Media Management", "Content Creation"],
+  },
+  {
+    id: "mobile-app-development",
+    title: "Customer Loyalty Mobile App",
+    description:
+      "Custom mobile application development for a customer loyalty program with rewards tracking.",
+    category: "web-app-development",
+    client: "Retail Chain",
+    date: "2022",
+    images: ["/placeholder.svg?height=600&width=800"],
+    tags: ["App Development", "Customer Loyalty"],
   },
 ];
