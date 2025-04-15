@@ -57,6 +57,12 @@ export default function ContactInfo() {
                   >
                     +234 8183 135 120
                   </Link>
+                  <Link
+                    href="tel:+2349032680876"
+                    className="block text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    +234 9032 680 876
+                  </Link>
                 </div>
               </div>
             </CardContent>
@@ -103,7 +109,9 @@ export default function ContactInfo() {
                 </div>
                 <div>
                   <h3 className="font-bold mb-1">Our Location</h3>
-                  <p className="text-muted-foreground text-sm">Abuja, Nigeria</p>
+                  <p className="text-muted-foreground text-sm">
+                    Abuja, Nigeria
+                  </p>
                 </div>
               </div>
             </CardContent>

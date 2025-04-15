@@ -31,7 +31,6 @@ export default function PackagesPage() {
       <MarketingPackages />
       <AdvertisingPackages />
       <PrintingPackages />
-      <PackagesCTA />
       <CTASection/>
       <Footer />
     </main>

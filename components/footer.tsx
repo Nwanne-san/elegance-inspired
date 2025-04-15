@@ -1,25 +1,30 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
-  InstagramIcon as TiktokIcon,
-} from "lucide-react";
-import { FaFacebookF, FaTiktok, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { FaTiktok, FaWhatsapp } from "react-icons/fa6";
 import NewsletterForm from "@/components/newsletter-form";
+import { useTheme } from "next-themes";
 
 export default function Footer() {
+  const { theme } = useTheme();
+
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-[#111827] text-white">
-      <div className="container mx-auto px-4 py-12 sm:px-10 lg:px-12 xl:px-14">
+    <footer className="bg-gray-900 text-white pt-16 pb-8">
+      <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <Link href="/" className="inline-block">
               <Image
-                src="/Elegance logo.png"
+                src={
+                  theme === "dark"
+                    ? "/Elegance logo-light.png"
+                    : "/Elegance logo.png"
+                }
                 alt="Elegance Inspired Limited"
                 width={160}
                 height={40}
@@ -34,7 +39,7 @@ export default function Footer() {
             <div>
               <h3 className="font-bold mb-1">Follow Us</h3>
             </div>
-            <div className="flex space-x-6 sm:space-x-4">
+            <div className="flex space-x-4">
               <Link
                 href="https://www.instagram.com/eleganceinspiredltd"
                 target="_blank"
@@ -74,6 +79,14 @@ export default function Footer() {
                 aria-label="TikTok"
               >
                 <FaTiktok className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
+              </Link>
+              <Link
+                href="https://wa.me/2348183135120"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
               </Link>
             </div>
           </div>
@@ -127,7 +140,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Contact */}
           <div>
             <h3 className="text-lg font-bold mb-4 font-axiforma">Contact</h3>
             <ul className="space-y-2">
@@ -139,7 +152,14 @@ export default function Footer() {
                   +234 8183 135 120
                 </Link>
               </li>
-
+              <li>
+                <Link
+                  href="tel:+2349032680876"
+                  className="text-white/70 hover:text-[#FF6600] transition-colors"
+                >
+                  +234 9032 680 876
+                </Link>
+              </li>
               <li>
                 <Link
                   href="mailto:hello@eleganceinspired.org"
@@ -148,19 +168,18 @@ export default function Footer() {
                   hello@eleganceinspired.org
                 </Link>
               </li>
-              <li className="text-white/70 hover:text-[#FF6600] transition-colors">
-                Abuja, Nigeria
-              </li>
+              <li className="text-white/70">Abuja, Nigeria</li>
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Request Quote */}
           <div>
             <h3 className="text-lg font-bold mb-4 font-axiforma">
               Request Quote
             </h3>
             <p className="text-white/70 mb-4">
-              Subscribe to our newsletter for the latest updates and insights.
+              Fill out the form below to get a custom quote for your branding
+              needs.
             </p>
             <NewsletterForm />
           </div>
@@ -168,8 +187,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/70 text-sm">
-            &copy; {new Date().getFullYear()} Elegance Inspired Limited. All
-            rights reserved.
+            &copy; {currentYear} Elegance Inspired Limited. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link

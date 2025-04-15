@@ -39,7 +39,6 @@ export default function ServicesPage() {
       <DigitalTransformation />
       <QualityPrinting />
       <HrConsulting />
-      <ServicesCTA />
       <CTASection />
       <Footer />
     </main>

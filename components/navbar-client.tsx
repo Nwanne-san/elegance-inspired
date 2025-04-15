@@ -1,309 +1,315 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useSearchParams } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ThemeToggle from "./theme-toggle";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
+import { RequestCallbackModal } from "./request-callback-modal";
 import { navLinks } from "@/data";
 
 export default function NavbarClient() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [scrollingUp, setScrollingUp] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [hidden, setHidden] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const lastScrollY = useRef(0);
+  const { theme } = useTheme();
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
-  const searchParams = useSearchParams();
-  const { theme, setTheme } = useTheme();
-  const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>(
-    {}
-  );
-
-  // Set mounted to true on client
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY > 50) {
+      if (currentScrollY > 100) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
 
-      // Show navbar when scrolling up, hide when scrolling down
-      if (currentScrollY < lastScrollY) {
-        setScrollingUp(true);
-      } else if (currentScrollY > 100 && currentScrollY > lastScrollY) {
-        setScrollingUp(false);
+      // Hide navbar when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY.current && currentScrollY > 200) {
+        setHidden(true);
+      } else {
+        setHidden(false);
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const handleDropdownToggle = (name: string) => {
+    if (activeDropdown === name) {
+      setActiveDropdown(null);
+    } else {
+      setActiveDropdown(name);
+    }
+  };
+
   const closeMenu = () => {
     setIsOpen(false);
-    setOpenDropdowns({});
+    setActiveDropdown(null);
   };
 
-  const toggleDropdown = (name: string) => {
-    setOpenDropdowns((prev) => ({
-      ...prev,
-      [name]: !prev[name],
-    }));
+  const openModal = () => {
+    setIsModalOpen(true);
+    closeMenu();
   };
 
-  // Determine background color based on theme and scroll state
-  const getBackgroundColor = () => {
-    // if (!scrolled) return "bg-transparent";
-
-    return theme === "dark"
-      ? "bg-primary/80 backdrop-blur-md"
-      : "bg-white/80 backdrop-blur-md";
+  // Check if the current path matches a link or its dropdown items
+  const isLinkActive = (link: any) => {
+    if (pathname === link.href) return true;
+    if (link.dropdown) {
+      return link.dropdown.some((item: any) => pathname === item.href);
+    }
+    return false;
   };
-
-  // Render a placeholder during SSR
-  if (!mounted) {
-    return (
-      <header className="fixed top-0 left-0 w-full z-50 bg-transparent">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="h-10 w-40"></div>
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link, i) => (
-              <div key={i} className="h-4 w-16"></div>
-            ))}
-            <div className="h-10 w-24 rounded-full"></div>
-            <div className="h-10 w-10 rounded-full"></div>
-          </nav>
-          <div className="flex items-center md:hidden">
-            <div className="h-10 w-10 mr-2"></div>
-            <div className="h-10 w-10"></div>
-          </div>
-        </div>
-      </header>
-    );
-  }
 
   return (
-    <motion.header
-      className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-        getBackgroundColor()
-      )}
-      initial={{ y: 0 }}
-      animate={{ y: scrollingUp || !scrolled ? 0 : -100 }}
-      transition={{ duration: 0.3 }}
-    >
-      <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14 py-4 flex items-center justify-between">
-        <Link href="/" className="relative z-10">
-          <div className="flex items-center">
-            {/* Conditional rendering for logo based on theme */}
-            {theme === "dark" ? (
-              <Image
-                src="/Elegance logo white.svg"
-                alt="Elegance Inspired Limited"
-                width={160}
-                height={40}
-                className="h-8 sm:h-10 w-auto"
-              />
-            ) : (
-              <Image
-                src="/Elegance logo.png"
-                alt="Elegance Inspired Limited"
-                width={160}
-                height={40}
-                className="h-8 sm:h-10 w-auto"
-              />
-            )}
-          </div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <div key={link.name} className="relative group">
-              <Link
-                href={link.path}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-secondary",
-                  pathname === link.path ? "text-secondary" : "text-foreground"
-                )}
-              >
-                {link.name}
-              </Link>
-
-              {link.dropdown && (
-                <div className="absolute left-0 mt-2 w-48 bg-background rounded-md shadow-lg overflow-hidden z-20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left">
-                  <div className="py-2">
-                    {link.dropdown.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.path}
-                        className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-secondary transition-colors"
-                        onClick={closeMenu}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-
-          <Button
-            asChild
-            className="bg-primary hover:bg-primary/90 text-white rounded-full"
-            navigate={true}
-          >
-            <Link href="/contact">Elevate Your Brand</Link>
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Toggle theme"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            <span className="sr-only">Toggle theme</span>
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
-        </nav>
-
-        {/* Mobile Navigation Toggle */}
-        <div className="flex items-center md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Toggle theme"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="mr-2"
-          >
-            <span className="sr-only">Toggle theme</span>
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Toggle menu"
-            onClick={toggleMenu}
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-        </div>
-      </div>
-
-      {/* Mobile Navigation Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className={cn(
-              "md:hidden backdrop-blur-md",
-              theme === "dark" ? "bg-gray-900/95" : "bg-background/95"
-            )}
-          >
-            <div className="container mx-auto px-4 py-4">
-              {navLinks.map((link) => (
-                <div key={link.name} className="py-2">
-                  {link.dropdown ? (
-                    <button
-                      onClick={() => toggleDropdown(link.name)}
-                      className={cn(
-                        "flex items-center justify-between w-full text-left text-lg font-medium py-2",
-                        pathname.startsWith(link.path)
-                          ? "text-secondary"
-                          : "text-foreground"
-                      )}
-                    >
-                      <span>{link.name}</span>
-                      <motion.div
-                        animate={{ rotate: openDropdowns[link.name] ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <ChevronDown className="h-5 w-5" />
-                      </motion.div>
-                    </button>
-                  ) : (
-                    <Link
-                      href={link.path}
-                      className={cn(
-                        "block text-lg font-medium py-2",
-                        pathname === link.path
-                          ? "text-secondary"
-                          : "text-foreground"
-                      )}
-                      onClick={closeMenu}
-                    >
-                      {link.name}
-                    </Link>
-                  )}
-
-                  {link.dropdown && (
-                    <AnimatePresence>
-                      {openDropdowns[link.name] && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="pl-4 mt-1 border-l-2 border-muted"
-                        >
-                          {link.dropdown.map((item) => (
-                            <Link
-                              key={item.name}
-                              href={item.path}
-                              className="block py-2 text-sm text-muted-foreground hover:text-secondary transition-colors"
-                              onClick={closeMenu}
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  )}
-                </div>
-              ))}
-
-              <div className="mt-4 pt-4 border-t border-border">
-                <Button
-                  asChild
-                  className="w-full bg-primary hover:bg-primary/90 text-white rounded-full"
-                  navigate={true}
-                >
-                  <Link href="/contact">Elevate Your Brand</Link>
-                </Button>
-              </div>
-            </div>
-          </motion.div>
+    <>
+      <motion.header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled
+            ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md"
+            : "bg-transparent",
+          hidden ? "-translate-y-full" : "translate-y-0"
         )}
-      </AnimatePresence>
-    </motion.header>
+        initial={{ y: 0 }}
+        animate={{ y: hidden ? -100 : 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+          <Link href="/" className="relative z-10">
+            <div className="relative h-12 w-40">
+              <Image
+                src={
+                  theme === "dark"
+                    ? "/Elegance logo-light.png"
+                    : "/Elegance logo.png"
+                }
+                alt="Elegance Inspired"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            <nav className="flex items-center">
+              <ul className="flex space-x-1">
+                {navLinks.map((link) => (
+                  <li key={link.name} className="relative group">
+                    {link.dropdown ? (
+                      <>
+                        <button
+                          className={cn(
+                            "px-3 py-2 rounded-md text-sm font-medium flex items-center",
+                            "hover:text-blue-600 dark:hover:text-blue-400 transition-colors",
+                            isLinkActive(link)
+                              ? "text-blue-600 dark:text-blue-400"
+                              : "text-gray-800 dark:text-white"
+                          )}
+                        >
+                          {link.name}
+                          <ChevronDown className="ml-1 h-4 w-4" />
+                        </button>
+                        {/* Show dropdown on hover for desktop */}
+                        <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                          <div
+                            className="py-1"
+                            role="menu"
+                            aria-orientation="vertical"
+                          >
+                            {link.dropdown.map((item) => (
+                              <Link
+                                key={item.name}
+                                href={item.href}
+                                className={cn(
+                                  "block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700",
+                                  pathname === item.href
+                                    ? "text-blue-600 dark:text-blue-400"
+                                    : "text-gray-700 dark:text-gray-200"
+                                )}
+                                role="menuitem"
+                                onClick={closeMenu}
+                              >
+                                {item.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "px-3 py-2 rounded-md text-sm font-medium block",
+                          "hover:text-blue-600 dark:hover:text-blue-400 transition-colors",
+                          pathname === link.href
+                            ? "text-blue-600 dark:text-blue-400"
+                            : "text-gray-800 dark:text-white"
+                        )}
+                      >
+                        {link.name}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div className="flex items-center space-x-3 ml-4">
+              <ThemeToggle />
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 dark:hover:text-gray-900"
+                onClick={openModal}
+              >
+                <Phone className="h-4 w-4" />
+                <span>Elevate your brand</span>
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation Toggle */}
+          <div className="flex items-center md:hidden space-x-3">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={cn(
+                "p-2 rounded-md",
+                scrolled
+                  ? "text-gray-800 dark:text-gray-200"
+                  : "text-gray-800 dark:text-white"
+              )}
+            >
+              <span className="sr-only">Open menu</span>
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden bg-white dark:bg-gray-900 shadow-lg overflow-hidden"
+            >
+              <div className="container mx-auto px-4 py-3">
+                <nav>
+                  <ul className="space-y-2">
+                    {navLinks.map((link) => (
+                      <li key={link.name} className="py-1">
+                        {link.dropdown ? (
+                          <div>
+                            <button
+                              className={cn(
+                                "flex justify-between items-center w-full py-2 font-medium",
+                                isLinkActive(link)
+                                  ? "text-blue-600 dark:text-blue-400"
+                                  : "text-gray-800 dark:text-white"
+                              )}
+                              onClick={() => handleDropdownToggle(link.name)}
+                            >
+                              {link.name}
+                              <ChevronDown
+                                className={`h-4 w-4 transition-transform ${
+                                  activeDropdown === link.name
+                                    ? "rotate-180"
+                                    : ""
+                                }`}
+                              />
+                            </button>
+                            <AnimatePresence>
+                              {activeDropdown === link.name && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="pl-4 space-y-2 mt-1"
+                                >
+                                  {link.dropdown.map((item) => (
+                                    <Link
+                                      key={item.name}
+                                      href={item.href}
+                                      className={cn(
+                                        "block py-2 hover:text-blue-600 dark:hover:text-blue-400",
+                                        pathname === item.href
+                                          ? "text-blue-600 dark:text-blue-400"
+                                          : "text-gray-600 dark:text-gray-300"
+                                      )}
+                                      onClick={closeMenu}
+                                    >
+                                      {item.name}
+                                    </Link>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            className={cn(
+                              "block py-2 font-medium hover:text-blue-600 dark:hover:text-blue-400",
+                              pathname === link.href
+                                ? "text-blue-600 dark:text-blue-400"
+                                : "text-gray-800 dark:text-white"
+                            )}
+                            onClick={closeMenu}
+                          >
+                            {link.name}
+                          </Link>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+                <div className="mt-4 mb-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full flex items-center justify-center gap-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 dark:hover:text-gray-900"
+                    onClick={openModal}
+                  >
+                    <Phone className="h-4 w-4" />
+                    <span>Elevate your brand</span>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+
+      <RequestCallbackModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+    </>
   );
 }

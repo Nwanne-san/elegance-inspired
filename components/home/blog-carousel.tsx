@@ -19,7 +19,7 @@ const blogPosts = [
     title: "10 Essential Branding Tips for Startups",
     excerpt:
       "Learn the key branding strategies that can help your startup stand out in a competitive market.",
-    image: "/blog image 1.jpg",
+    image: "/placeholder.svg?height=300&width=500",
     date: "April 5, 2023",
     author: "Temitope Ruth Jacob",
     slug: "branding-tips-for-startups",
@@ -28,7 +28,7 @@ const blogPosts = [
     title: "The Psychology of Color in Branding",
     excerpt:
       "Discover how different colors can influence customer perception and behavior towards your brand.",
-    image: "/blog image 2.jpg",
+    image: "/placeholder.svg?height=300&width=500",
     date: "March 18, 2023",
     author: "Cornelius Emmanuel",
     slug: "psychology-of-color-in-branding",
@@ -37,19 +37,29 @@ const blogPosts = [
     title: "Digital Marketing Trends to Watch in 2023",
     excerpt:
       "Stay ahead of the curve with these emerging digital marketing trends that are shaping the industry.",
-    image: "/blog image 3.jpg",
+    image: "/placeholder.svg?height=300&width=500",
     date: "February 22, 2023",
     author: "Rebecca Jumoke Kinrin",
     slug: "digital-marketing-trends",
   },
+  {
+    title: "How to Create a Memorable Brand Experience",
+    excerpt:
+      "Explore strategies to create meaningful brand experiences that resonate with your audience.",
+    image: "/placeholder.svg?height=300&width=500",
+    date: "January 15, 2023",
+    author: "Joseph Audu Olufu",
+    slug: "create-memorable-brand-experience",
+  },
 ];
 
-export default function BlogHighlight() {
+export default function BlogCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
     slidesToScroll: 1,
   });
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -72,9 +82,17 @@ export default function BlogHighlight() {
     [emblaApi]
   );
 
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
   // Set up autoplay
   useEffect(() => {
     if (!emblaApi) return;
+
+    emblaApi.on("select", onSelect);
+    onSelect();
 
     // Autoplay function
     const autoplay = () => {
@@ -101,8 +119,58 @@ export default function BlogHighlight() {
 
     return () => {
       if (autoplayRef.current) clearInterval(autoplayRef.current);
+      emblaApi.off("select", onSelect);
+      emblaApi.off("pointerDown", () => {});
+      emblaApi.off("pointerUp", () => {});
     };
-  }, [emblaApi]);
+  }, [emblaApi, onSelect]);
+
+  const renderBlogPost = (post: (typeof blogPosts)[0], index: number) => (
+    <div
+      className={`${isMobile ? "flex-[0_0_100%]" : "flex-[0_0_33.333%]"} px-4`}
+    >
+      <Card className="h-full overflow-hidden">
+        <div className="overflow-hidden">
+          <Image
+            src={post.image || "/placeholder.svg"}
+            alt={post.title}
+            width={500}
+            height={300}
+            className="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
+          />
+        </div>
+        <CardHeader>
+          <div className="flex items-center text-sm text-muted-foreground mb-2 space-x-4">
+            <div className="flex items-center">
+              <Calendar className="h-4 w-4 mr-1" />
+              <span>{post.date}</span>
+            </div>
+            <div className="flex items-center">
+              <User className="h-4 w-4 mr-1" />
+              <span>{post.author}</span>
+            </div>
+          </div>
+          <Link
+            href={`/blog/${post.slug}`}
+            className="hover:text-primary transition-colors"
+          >
+            <h3 className="text-xl font-bold mb-2">{post.title}</h3>
+          </Link>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">{post.excerpt}</p>
+        </CardContent>
+        <CardFooter>
+          <Link
+            href={`/blog/${post.slug}`}
+            className="text-primary hover:text-primary/80 font-medium"
+          >
+            Read More →
+          </Link>
+        </CardFooter>
+      </Card>
+    </div>
+  );
 
   return (
     <section className="py-16 md:py-24 bg-muted">
@@ -133,55 +201,7 @@ export default function BlogHighlight() {
           {/* Carousel Container */}
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
-              {blogPosts.map((post, index) => (
-                <div
-                  key={index}
-                  className={`${
-                    isMobile ? "flex-[0_0_100%]" : "flex-[0_0_33.333%]"
-                  } px-4`}
-                >
-                  <Card className="h-full overflow-hidden">
-                    <div className="overflow-hidden">
-                      <Image
-                        src={post.image || "/placeholder.svg"}
-                        alt={post.title}
-                        width={500}
-                        height={300}
-                        className="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
-                      />
-                    </div>
-                    <CardHeader>
-                      <div className="flex items-center text-sm text-muted-foreground mb-2 space-x-4">
-                        <div className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-1" />
-                          <span>{post.date}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <User className="h-4 w-4 mr-1" />
-                          <span>{post.author}</span>
-                        </div>
-                      </div>
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="hover:text-primary transition-colors"
-                      >
-                        <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-                      </Link>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{post.excerpt}</p>
-                    </CardContent>
-                    <CardFooter>
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="text-primary hover:text-primary/80 font-medium"
-                      >
-                        Read More →
-                      </Link>
-                    </CardFooter>
-                  </Card>
-                </div>
-              ))}
+              {blogPosts.map((post, index) => renderBlogPost(post, index))}
             </div>
           </div>
 
@@ -200,6 +220,22 @@ export default function BlogHighlight() {
           >
             <ChevronRight className="h-6 w-6 text-primary" />
           </button>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center gap-2 mt-6">
+            {blogPosts.map((_, index) => (
+              <button
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  index === selectedIndex
+                    ? "bg-secondary w-4"
+                    : "bg-gray-300 dark:bg-gray-600"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+                onClick={() => emblaApi?.scrollTo(index)}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="mt-12 text-center">

@@ -1,34 +1,27 @@
 export const navLinks = [
-  { name: "HOME", path: "/" },
+  { name: "Home", href: "/" },
   {
-    name: "ABOUT US",
-    path: "/about",
+    name: "About Us",
+    href: "#",
     dropdown: [
-      { name: "Who We Are", path: "/about#who-we-are" },
-      { name: "Our Story", path: "/about#our-story" },
-      { name: "Creative Team", path: "/about#creative-team" },
+      { name: "Who We Are", href: "/about" },
+      { name: "Our Team", href: "/about#team" },
+      { name: "Blog", href: "/blog" },
     ],
   },
   {
-    name: "SERVICES",
-    path: "/services",
+    name: "Services",
+    href: "#",
     dropdown: [
-      { name: "Creative Branding", path: "/services#creative-branding" },
-      {
-        name: "Strategic Advertising",
-        path: "/services#strategic-advertising",
-      },
-      {
-        name: "Digital Transformation",
-        path: "/services#digital-transformation",
-      },
-      { name: "Quality Printing", path: "/services#quality-printing" },
-      { name: "HR Consulting", path: "/services#consulting" },
-      { name: "Packages", path: "/packages" },
+      { name: "Creative Branding", href: "/services#branding" },
+      { name: "Strategic Advertising", href: "/services#advertising" },
+      { name: "Digital Transformation", href: "/services#digital" },
+      { name: "HR Consulting", href: "/services#hr" },
+      { name: "Quality Printing", href: "/services#printing" },
     ],
   },
-  { name: "JOURNAL", path: "/blog" },
-  { name: "CONTACT US", path: "/contact" },
+  { name: "Packages", href: "/packages" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export const clients = [

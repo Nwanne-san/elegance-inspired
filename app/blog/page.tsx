@@ -5,7 +5,6 @@ import { generateMetadata } from "@/lib/seo-config"
 import PageHeader from "@/components/page-header"
 import BlogGrid from "@/components/blog/blog-grid"
 import BlogCategories from "@/components/blog/blog-categories"
-import BlogNewsletter from "@/components/blog/blog-newsletter"
 import CTASection from "@/components/home/cta-section"
 
 export const metadata: Metadata = generateMetadata(
@@ -25,7 +24,6 @@ export default function BlogPage() {
       />
       <BlogCategories />
       <BlogGrid />
-      <BlogNewsletter />
       <CTASection/>
       <Footer />
     </main>

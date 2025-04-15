@@ -1,25 +1,42 @@
-import type { Metadata } from "next"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import HeroSection from "@/components/home/hero-section"
-import ServicesHighlight from "@/components/home/services-highlight"
-import AboutSection from "@/components/home/about-section"
-import PackagesHighlight from "@/components/home/packages-highlight"
-import TeamSection from "@/components/home/team-section"
-import ClientsSection from "@/components/home/clients-section"
-import PortfolioHighlight from "@/components/home/portfolio-highlight"
-import BlogHighlight from "@/components/home/blog-highlight"
-import CTASection from "@/components/home/cta-section"
+"use client";
 
-export const metadata: Metadata = {
-  title: "Elegance Inspired Limited - Corporate Branding Agency",
-  description:
-    "We elevate brands & deliver results. A leading corporate branding agency dedicated to helping businesses achieve their full potential.",
-}
+import { useState, useEffect } from "react";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import HeroSection from "@/components/home/hero-section";
+import ServicesHighlight from "@/components/home/services-highlight";
+import AboutSection from "@/components/home/about-section";
+import PackagesHighlight from "@/components/home/packages-highlight";
+import TeamSection from "@/components/home/team-section";
+import ClientsSection from "@/components/home/clients-section";
+import PortfolioHighlight from "@/components/home/portfolio-highlight";
+import BlogHighlight from "@/components/home/blog-highlight";
+import CTASection from "@/components/home/cta-section";
+import ScrollToTop from "@/components/scroll-to-top";
+import { RequestCallbackModal } from "@/components/request-callback-modal";
 
 export default function Home() {
+  const [showCallbackModal, setShowCallbackModal] = useState(false);
+
+  useEffect(() => {
+    // Check if this is the first visit today
+    const lastVisit = localStorage.getItem("lastVisit");
+    const today = new Date().toDateString();
+
+    if (!lastVisit || lastVisit !== today) {
+      // First visit today, show modal after a short delay
+      const timer = setTimeout(() => {
+        setShowCallbackModal(true);
+        // Save today's date to localStorage
+        localStorage.setItem("lastVisit", today);
+      }, 2000); // Adjust delay as needed
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col">
+    <>
       <Navbar />
       <HeroSection />
       <ServicesHighlight />
@@ -31,6 +48,12 @@ export default function Home() {
       <BlogHighlight />
       <CTASection />
       <Footer />
-    </main>
-  )
+      <ScrollToTop />
+      <RequestCallbackModal
+        show={showCallbackModal}
+        onClose={() => setShowCallbackModal(false)}
+        isOpen={false}
+      />
+    </>
+  );
 }
