@@ -22,7 +22,7 @@ export default function Footer() {
               <Image
                 src={
                   theme === "dark"
-                    ? "/Elegance logo-light.png"
+                    ? "/Elegance logo white.svg"
                     : "/Elegance logo.png"
                 }
                 alt="Elegance Inspired Limited"

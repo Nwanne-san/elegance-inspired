@@ -28,9 +28,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <LenisScrollProvider>
             <NProgressProvider />
-            <Navbar />
+            {/* <Navbar /> */}
             <main className="min-h-screen">{children}</main>
-            <Footer />
+            {/* <Footer /> */}
             <ScrollToTop />
           </LenisScrollProvider>
         </ThemeProvider>

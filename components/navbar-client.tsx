@@ -96,7 +96,7 @@ export default function NavbarClient() {
               <Image
                 src={
                   theme === "dark"
-                    ? "/Elegance logo-light.png"
+                    ? "/Elegance logo white.svg"
                     : "/Elegance logo.png"
                 }
                 alt="Elegance Inspired"
