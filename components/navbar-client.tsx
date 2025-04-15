@@ -80,10 +80,7 @@ export default function NavbarClient() {
     <>
       <motion.header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled
-            ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md"
-            : "bg-transparent",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md",
           hidden ? "-translate-y-full" : "translate-y-0"
         )}
         initial={{ y: 0 }}
@@ -118,7 +115,7 @@ export default function NavbarClient() {
                         <button
                           className={cn(
                             "px-3 py-2 rounded-md text-sm font-medium flex items-center",
-                            "hover:text-blue-600 dark:hover:text-blue-400 transition-colors",
+                            "hover:text-secondary dark:hover:text-secondary transition-colors",
                             isLinkActive(link)
                               ? "text-blue-600 dark:text-blue-400"
                               : "text-gray-800 dark:text-white"
@@ -141,7 +138,7 @@ export default function NavbarClient() {
                                 className={cn(
                                   "block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700",
                                   pathname === item.href
-                                    ? "text-blue-600 dark:text-blue-400"
+                                    ? "text-secondary dark:text-secondary"
                                     : "text-gray-700 dark:text-gray-200"
                                 )}
                                 role="menuitem"
@@ -158,9 +155,9 @@ export default function NavbarClient() {
                         href={link.href}
                         className={cn(
                           "px-3 py-2 rounded-md text-sm font-medium block",
-                          "hover:text-blue-600 dark:hover:text-blue-400 transition-colors",
+                          "hover:text-secondary dark:hover:text-secondary transition-colors",
                           pathname === link.href
-                            ? "text-blue-600 dark:text-blue-400"
+                            ? "text-secondary dark:text-secondary"
                             : "text-gray-800 dark:text-white"
                         )}
                       >

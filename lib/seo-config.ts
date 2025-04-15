@@ -39,7 +39,7 @@ export const baseMetadata: Metadata = {
       "A leading corporate branding agency dedicated to helping businesses achieve their full potential in the ever-evolving marketplace.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/ICON.jpg",
         width: 1200,
         height: 630,
         alt: "Elegance Inspired Limited",

@@ -21,6 +21,7 @@ export const navLinks = [
     ],
   },
   { name: "Packages", href: "/packages" },
+  { name: "Portfolio", href: "/portfolio" },
   { name: "Contact", href: "/contact" },
 ];
 
