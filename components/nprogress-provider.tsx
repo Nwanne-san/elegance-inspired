@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import NProgress from "nprogress";
-import { Suspense } from "react";
+import { Suspense, type ReactNode } from "react";
 
 export function NProgressProviderClient() {
   const pathname = usePathname();
@@ -36,13 +36,16 @@ export function NProgressProviderClient() {
 
   // Initialize NProgress on mount
   useEffect(() => {
-    // Configure NProgress
+    // Configure NProgress with higher z-index to appear above navbar
     NProgress.configure({
       minimum: 0.1,
       showSpinner: false,
       trickleSpeed: 200,
       easing: "ease",
       speed: 500,
+      // Increase the z-index to ensure it appears above the navbar
+      template:
+        '<div class="bar" role="bar" style="z-index:9999"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>',
     });
 
     // Add click event listener for navigation links
@@ -110,10 +113,15 @@ export function NProgressProviderClient() {
   return null;
 }
 
-export function NProgressProvider() {
+interface NProgressProviderProps {
+  children: ReactNode;
+}
+
+export function NProgressProvider({ children }: NProgressProviderProps) {
   return (
     <Suspense fallback={null}>
       <NProgressProviderClient />
+      {children}
     </Suspense>
   );
 }

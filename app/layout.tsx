@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import { NProgressProvider } from "@/components/nprogress-provider"
+import { AppProvider } from "@/components/app-provider"
 import { LenisScrollProvider } from "@/components/lenis-scroll-provider";
-import { NProgressProvider } from "@/components/nprogress-provider";
 import ScrollToTop from "@/components/scroll-to-top";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,13 +32,15 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <LenisScrollProvider>
-            <NProgressProvider />
-            {/* <Navbar /> */}
-            <main className="min-h-screen">{children}</main>
-            {/* <Footer /> */}
-            <ScrollToTop />
-          </LenisScrollProvider>
+          <AppProvider>
+            <LenisScrollProvider>
+              <NProgressProvider>
+                {children}
+                <ScrollToTop />
+                <Toaster position="top-right" richColors />
+              </NProgressProvider>
+            </LenisScrollProvider>
+          </AppProvider>
         </ThemeProvider>
       </body>
     </html>

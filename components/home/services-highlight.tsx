@@ -14,6 +14,7 @@ import { Brush, TrendingUp, Globe, Printer, Users } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Carousel, CarouselSlideResponsive } from "@/components/ui/carousel";
+import ServicesLightbulb from "./services-lightbulb";
 
 const services = [
   {
@@ -132,7 +133,7 @@ export default function ServicesHighlight() {
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-4xl font-bold text-center mb-4"
           >
-           We Make Brands Exceptional
+            We Make Brands Exceptional
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -145,6 +146,11 @@ export default function ServicesHighlight() {
             build a strong and sophisticated brand presence.
           </motion.p>
         </div>
+
+        {/* Animated Lightbulb Section */}
+        {/* <div className="mb-16">
+          <ServicesLightbulb />
+        </div> */}
 
         {isMobile ? (
           <Carousel className="mb-8">

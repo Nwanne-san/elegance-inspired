@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
 import {
   contactFormSchema,
   type ContactFormValues,
@@ -30,7 +29,6 @@ import { toast } from "sonner";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
 
   const services = [
     "Creative Branding",
@@ -72,20 +70,17 @@ export default function ContactForm() {
       });
 
       if (!response.ok) {
-        console.error("Failed to send email");
+        throw new Error("Failed to send email");
       }
-      console.log("siccesful");
-      toast({
-        title: "Message sent successfully!",
+
+      toast.success("Message sent successfully!", {
         description: "We'll get back to you as soon as possible.",
       });
 
       form.reset();
     } catch (error) {
-      toast({
-        title: "Something went wrong.",
+      toast.error("Something went wrong.", {
         description: "Please try again later.",
-        variant: "destructive",
       });
       console.error("Error sending email:", error);
     } finally {

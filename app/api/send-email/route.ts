@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     let emailSubject = subject
 
     if (formType === "contact") {
-      emailSubject = `Service Requested = ${subject}`
+      emailSubject = ` ${subject}`
       emailContent = `
         <h2>New Service Request</h2>
         <p><strong>Service Requested:</strong> ${subject}</p>
