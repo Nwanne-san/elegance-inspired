@@ -82,10 +82,10 @@ export default function NavbarClient() {
     <>
       <motion.header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled
-            ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md"
-            : "bg-transparent",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 dark:bg-gray-900/80",
+          // scrolled
+          //   ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md"
+          //   : "bg-",
           hidden ? "-translate-y-full" : "translate-y-0"
         )}
         initial={{ y: 0 }}
