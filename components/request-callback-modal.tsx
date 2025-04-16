@@ -8,23 +8,19 @@ import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { z } from "zod";
 import { toast } from "sonner";
 
 const callbackSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   phone: z.string().min(10, { message: "Please enter a valid phone number" }),
-//   email: z.string().email({ message: "Please enter a valid email address" }),
-//   message: z.string().optional(),
 });
 
 type CallbackFormData = z.infer<typeof callbackSchema>;
 
 interface RequestCallbackModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  // Add support for the alternate prop names
+  isOpen?: boolean;
+  onClose?: () => void;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   show?: boolean;
@@ -47,8 +43,6 @@ export function RequestCallbackModal({
   const [formData, setFormData] = useState<CallbackFormData>({
     name: "",
     phone: "",
-    // email: "",
-    // message: "",
   });
   const [errors, setErrors] = useState<Partial<CallbackFormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -63,16 +57,13 @@ export function RequestCallbackModal({
       // Only show on first visit of the day
       setTimeout(() => {
         if (onOpenChange) onOpenChange(true);
-        // This is just for the demo, in production we would open the modal
       }, 5000);
       localStorage.setItem("hasVisitedBefore", "true");
       localStorage.setItem("lastVisitDate", today);
     }
   }, [onOpenChange]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
@@ -91,8 +82,24 @@ export function RequestCallbackModal({
 
       setIsSubmitting(true);
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Send email using a server action or API endpoint
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to: "hello@eleganceinspired.org",
+          subject: "Call Back Requested",
+          name: formData.name,
+          phone: formData.phone,
+          formType: "callback",
+        }),
+      });
+
+      if (!response.ok) {
+        toast.error("Failed to send email");
+      }
 
       // Success
       toast.success("Thank you! We'll call you back shortly.");
@@ -100,8 +107,6 @@ export function RequestCallbackModal({
       setFormData({
         name: "",
         phone: "",
-        // email: "",
-        // message: "",
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -112,6 +117,9 @@ export function RequestCallbackModal({
           }
         });
         setErrors(fieldErrors);
+      } else {
+        toast.error("Failed to send your request. Please try again.");
+        console.error("Error sending email:", error);
       }
     } finally {
       setIsSubmitting(false);
@@ -184,34 +192,6 @@ export function RequestCallbackModal({
                     <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
                   )}
                 </div>
-
-                {/* <div>
-                  <Label htmlFor="email">Email Address</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Your email address"
-                    className={errors.email ? "border-red-500" : ""}
-                  />
-                  {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                  )}
-                </div> */}
-
-                {/* <div>
-                  <Label htmlFor="message">Message (Optional)</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="How can we help you?"
-                    rows={3}
-                  />
-                </div> */}
 
                 <Button
                   type="submit"

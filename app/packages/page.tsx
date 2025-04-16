@@ -20,7 +20,7 @@ export const metadata: Metadata = generateMetadata(
 
 export default function PackagesPage() {
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col w-full">
       <Navbar />
       <PageHeader
         title="Our Packages"

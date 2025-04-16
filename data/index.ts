@@ -43,28 +43,28 @@ export const testimonials = [
     name: "Prince Olu Kosoko",
     company: "Alpha Gravida Limited",
     title: "Chief Executive Officer",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/kosovo-EIL.jpg",
     text: "Elegance Inspired Limited is truly elegant in their disposition. From the conceptualisation of ideas with us to the implementation processes to achieve our commercial objectives. We are very satisfied with their collaborative approach and we are looking forward to more opportunities",
   },
   {
     name: "Helen Mashat",
     company: "Pumpkin Property Limited.",
     title: "Head, Marketing & Communication",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/helen-EIL.jpg",
     text: "Elegance Inspired is a top-tier branding company that combines creativity with strategic vision. They provided exceptional branded souvenirs for Pumpkin Property, showcasing their attention to detail and commitment to quality. Their innovative approach ensures brands stand out in a competitive market. Highly recommended for anyone looking to refine and enhance their brand presence.",
   },
   {
     name: "Ugo Okorie-Anche",
     company: "Gonzo Cosmetics Ltd",
     title: "Chief Executive Officer",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/ugo-EIL.jpg",
     text: "I had an amazing experience working with ELEGANCE INSPIRED. They brought my brand to life with a clear, compelling identity that perfectly aligns with my business values. Their strategic approach, creativity, and dedication made the entire process seamless and enjoyable. I’m beyond satisfied with the results and highly recommend them to anyone looking to elevate their brand",
   },
   {
     name: "David Yabrifa ",
     company: "Alphabet Events and Multimedia",
     title: "Chief Executive Officer/Founder",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/david-EIL.jpg",
     text: "One of the best decisions I ever made was to work with Elegance Inspired Limited, a go-too branding company where all your branding and design are given attention to the least details. As a start-up, we wanted a logo design and colours that will sell our brand to the world, Elegance Inspired Limited  gave their best, and I don't regret it.",
   },
 ];
@@ -93,7 +93,7 @@ export const team = [
   {
     name: "Cornelius Emmanuel",
     position: "Chief Operating Officer",
-    image: "/COO.png",
+    image: "/COO (1).png",
     bio: [
       "Cornelius Emmanuel plays a crucial role in the operational excellence of Elegance Inspired Limited. As Chief Operating Officer, he oversees the day-to-day operations, ensuring that all projects are delivered on time and within budget. His expertise in process optimization and resource management allows the agency to maintain its high standards of quality and efficiency.",
       "Cornelius is passionate about fostering a collaborative and supportive work environment, empowering his team to achieve their full potential. His strategic vision and leadership have been instrumental in the agency's growth and success.",
@@ -112,7 +112,7 @@ export const team = [
   {
     name: "Rebecca Jumoke Kinrin",
     position: "Brands & Comms. Manager",
-    image: "/B&C-zoom.png",
+    image: "/B&C (2).png",
     bio: [
       "Rebecca Olajumoke Kinrin is a seasoned branding and communications professional with a passion for creating impactful brand experiences. At Elegance Inspired Limited, she leads the development and execution of comprehensive branding and communication strategies. Her expertise encompasses brand messaging, content creation, and media relations.",
       "Rebecca's ability to translate complex ideas into clear and engaging narratives has been instrumental in building strong brand identities for the agency's clients. She is committed to fostering open and transparent communication, both internally and externally.",
@@ -132,7 +132,7 @@ export const team = [
   {
     name: "Joseph Audu Olufu",
     position: "General Manager",
-    image: "/GM.png",
+    image: "/GM (1).png",
     bio: [
       "Joseph Olofu Audu brings a wealth of financial expertise to Elegance Inspired Limited. As Finance Manager, he plays a critical role in managing the agency's financial resources, ensuring compliance with all regulatory requirements, and providing strategic financial guidance.",
       "His meticulous attention to detail and analytical skills enable him to identify opportunities for cost optimization and revenue growth. Joseph is committed to maintaining the highest standards of integrity and transparency in all financial matters.",

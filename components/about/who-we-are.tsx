@@ -7,7 +7,7 @@ import Link from "next/link"
 
 export default function WhoWeAre() {
   return (
-    <section id="who-we-are" className="py-16 md:py-24 bg-background scroll-mt-20">
+    <section id="who-we-are" className="py-16 md:py-24 bg-background scroll-mt-20 w-full">
       <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div

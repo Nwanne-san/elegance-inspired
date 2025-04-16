@@ -1,18 +1,44 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/hooks/use-toast"
-import { contactFormSchema, type ContactFormValues } from "@/lib/validation-schemas"
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import {
+  contactFormSchema,
+  type ContactFormValues,
+} from "@/lib/validation-schemas";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "sonner";
 
 export default function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const { toast } = useToast()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const services = [
+    "Creative Branding",
+    "Strategic Advertising",
+    "Digital Transformation",
+    "Quality Printing",
+    "HR Consulting",
+  ];
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -23,31 +49,47 @@ export default function ContactForm() {
       subject: "",
       message: "",
     },
-  })
+  });
 
   async function onSubmit(data: ContactFormValues) {
-    setIsSubmitting(true)
+    setIsSubmitting(true);
     try {
-      // In a real application, you would send this data to your API
-      console.log("Form submission:", data)
+      // Send email using a server action or API endpoint
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to: "hello@eleganceinspired.org",
+          subject: `Service Requested = ${data.subject}`,
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
+          formType: "contact",
+        }),
+      });
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
+      if (!response.ok) {
+        console.error("Failed to send email");
+      }
+      console.log("siccesful");
       toast({
         title: "Message sent successfully!",
         description: "We'll get back to you as soon as possible.",
-      })
+      });
 
-      form.reset()
+      form.reset();
     } catch (error) {
       toast({
         title: "Something went wrong.",
         description: "Please try again later.",
         variant: "destructive",
-      })
+      });
+      console.error("Error sending email:", error);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
   }
 
@@ -107,10 +149,24 @@ export default function ContactForm() {
               name="subject"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Subject</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Subject of your message" {...field} />
-                  </FormControl>
+                  <FormLabel>Select Service</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {services.map((service) => (
+                        <SelectItem key={service} value={service}>
+                          {service}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
@@ -124,14 +180,22 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>Message</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="How can we help you?" className="min-h-[150px]" {...field} />
+                  <Textarea
+                    placeholder="How can we help you?"
+                    className="min-h-[150px]"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-primary hover:bg-primary/90 rounded-full" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            className="w-full bg-primary hover:bg-primary/90 rounded-full"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? (
               <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
             ) : (
@@ -141,5 +205,5 @@ export default function ContactForm() {
         </form>
       </Form>
     </div>
-  )
+  );
 }

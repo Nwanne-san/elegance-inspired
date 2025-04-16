@@ -26,17 +26,17 @@ export default function ContactMap() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="rounded-lg overflow-hidden shadow-lg"
         >
-          <div className="aspect-video w-full">
+          <div className="aspect-video w-full flex items-center justify-center">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d150885.66883398202!2d7.293974425069468!3d9.024392709741416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e745f4cd62fd9%3A0x53bd17b4a20ea12b!2sAbuja%2C%20Federal%20Capital%20Territory!5e1!3m2!1sen!2sng!4v1744159271287!5m2!1sen!2sng"
-              width="100%"
+              width="80%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Elegance Inspired Limited Office Location"
-              className="w-full h-full"
+              className="w-4/5 h-full"
             ></iframe>
           </div>
         </motion.div>

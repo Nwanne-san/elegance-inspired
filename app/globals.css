@@ -166,6 +166,28 @@
   transform: translateY(0);
 }
 
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* Add this to your globals.css file to fix the animation responsiveness issue */
 
@@ -228,5 +250,26 @@
 @media (max-width: 768px) {
   .logo-marquee {
     animation-duration: 20s; /* Faster on mobile */
+  }
+
+  /* Ensure all elements are visible immediately on mobile */
+  [data-animate="true"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Prevent horizontal overflow that might cause stretching */
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Fix for framer-motion animations causing layout shifts */
+  .framer-motion-fix {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 }

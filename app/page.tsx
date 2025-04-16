@@ -36,7 +36,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <main className="w-full">
       <Navbar />
       <HeroSection />
       <ServicesHighlight />
@@ -54,6 +54,6 @@ export default function Home() {
         onClose={() => setShowCallbackModal(false)}
         isOpen={false}
       />
-    </>
+    </main>
   );
 }

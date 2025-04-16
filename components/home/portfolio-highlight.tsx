@@ -109,7 +109,7 @@ export default function PortfolioHighlight() {
     item: (typeof portfolioItems)[0],
     index: number
   ) => (
-    <div className={`${isMobile ? "flex-[0_0_100%]" : "flex-[0_0_50%]"} px-4`}>
+    <div className={`${isMobile ? "flex-[0_0_100%]" : "flex-[0_0_50%]"} px-4`} key={item.title}>
       <div className="group relative overflow-hidden rounded-lg border border shadow-lg h-80">
         <Image
           src={item.image || "/placeholder.svg"}

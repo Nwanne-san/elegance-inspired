@@ -112,7 +112,6 @@ export default function ClientsSection() {
         </div>
 
         {/* Client Logos */}
-        {/* Client Logos */}
         <div className="mb-20 overflow-hidden">
           <div className="logo-marquee-container">
             <div
@@ -198,7 +197,7 @@ export default function ClientsSection() {
                           alt={testimonial.name}
                           width={50}
                           height={50}
-                          className="rounded-full mr-4"
+                          className="rounded-full h-12 w-12 object-cover mr-4"
                         />
                         <div>
                           <h4 className="font-bold">{testimonial.name}</h4>

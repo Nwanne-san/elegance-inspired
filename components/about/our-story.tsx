@@ -39,7 +39,7 @@ export default function OurStory() {
   ];
 
   return (
-    <section id="our-story" className="py-16 md:py-24 bg-muted scroll-mt-20">
+    <section id="our-story" className="py-16 md:py-24 bg-muted scroll-mt-20 w-full">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div

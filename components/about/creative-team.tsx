@@ -116,7 +116,7 @@ export default function CreativeTeam() {
   return (
     <section
       id="creative-team"
-      className="py-16 md:py-24 bg-background scroll-mt-20"
+      className="py-16 md:py-24 bg-background scroll-mt-20 w-full"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">

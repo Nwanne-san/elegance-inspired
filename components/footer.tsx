@@ -73,7 +73,7 @@ export default function Footer() {
                 <Linkedin className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
               </Link>
               <Link
-                href="#"
+                href="https://www.tiktok.com/@eleganceinspiredltd?_t=ZM-8vZnlyYuN79&_r=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"

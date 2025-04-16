@@ -69,9 +69,11 @@ export default function NavbarClient() {
 
   // Check if the current path matches a link or its dropdown items
   const isLinkActive = (link: any) => {
-    if (pathname === link.href) return true;
+    if (pathname === link.path) return true;
+    if (pathname.startsWith("/portfolio/") && link.path === "/portfolio")
+      return true;
     if (link.dropdown) {
-      return link.dropdown.some((item: any) => pathname === item.href);
+      return link.dropdown.some((item: any) => pathname === item.path);
     }
     return false;
   };
@@ -80,7 +82,10 @@ export default function NavbarClient() {
     <>
       <motion.header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled
+            ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md"
+            : "bg-transparent",
           hidden ? "-translate-y-full" : "translate-y-0"
         )}
         initial={{ y: 0 }}
@@ -117,7 +122,7 @@ export default function NavbarClient() {
                             "px-3 py-2 rounded-md text-sm font-medium flex items-center",
                             "hover:text-secondary dark:hover:text-secondary transition-colors",
                             isLinkActive(link)
-                              ? "text-blue-600 dark:text-blue-400"
+                              ? "text-secondary dark:text-secondary"
                               : "text-gray-800 dark:text-white"
                           )}
                         >
@@ -136,7 +141,7 @@ export default function NavbarClient() {
                                 key={item.name}
                                 href={item.href}
                                 className={cn(
-                                  "block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700",
+                                  "block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-secondary",
                                   pathname === item.href
                                     ? "text-secondary dark:text-secondary"
                                     : "text-gray-700 dark:text-gray-200"
@@ -226,7 +231,7 @@ export default function NavbarClient() {
                               className={cn(
                                 "flex justify-between items-center w-full py-2 font-medium",
                                 isLinkActive(link)
-                                  ? "text-blue-600 dark:text-blue-400"
+                                  ? "text-secondary dark:text-secondary"
                                   : "text-gray-800 dark:text-white"
                               )}
                               onClick={() => handleDropdownToggle(link.name)}
@@ -254,9 +259,9 @@ export default function NavbarClient() {
                                       key={item.name}
                                       href={item.href}
                                       className={cn(
-                                        "block py-2 hover:text-blue-600 dark:hover:text-blue-400",
+                                        "block py-2 hover:text-secondary dark:hover:text-secondary",
                                         pathname === item.href
-                                          ? "text-blue-600 dark:text-blue-400"
+                                          ? "text-secondary dark:text-secondary"
                                           : "text-gray-600 dark:text-gray-300"
                                       )}
                                       onClick={closeMenu}
@@ -272,9 +277,9 @@ export default function NavbarClient() {
                           <Link
                             href={link.href}
                             className={cn(
-                              "block py-2 font-medium hover:text-blue-600 dark:hover:text-blue-400",
+                              "block py-2 font-medium hover:text-secondary dark:hover:text-secondary",
                               pathname === link.href
-                                ? "text-blue-600 dark:text-blue-400"
+                                ? "text-secondary dark:text-secondary"
                                 : "text-gray-800 dark:text-white"
                             )}
                             onClick={closeMenu}
