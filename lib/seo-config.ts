@@ -39,7 +39,7 @@ export const baseMetadata: Metadata = {
       "A leading corporate branding agency dedicated to helping businesses achieve their full potential in the ever-evolving marketplace.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image-two.jpg",
         width: 1200,
         height: 630,
         alt: "Elegance Inspired Limited",
@@ -51,7 +51,7 @@ export const baseMetadata: Metadata = {
     title: "Elegance Inspired Limited - Corporate Branding Agency",
     description:
       "A leading corporate branding agency dedicated to helping businesses achieve their full potential in the ever-evolving marketplace.",
-    images: ["/twitter-image.jpg"],
+    images: ["/og-image-two.jpg"],
     creator: "@eleganceinspltd",
   },
   robots: {
