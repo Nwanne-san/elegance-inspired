@@ -1,41 +1,19 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import NProgress from "nprogress";
 import { Suspense, type ReactNode } from "react";
 
 export function NProgressProviderClient() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const router = useRouter();
-
-  // Configure NProgress based on network conditions
-  const configureNProgressForNetwork = () => {
-    // Use the Network Information API if available to adjust progress speed
-    if ("connection" in navigator && navigator.connection) {
-      const connection = navigator.connection as any;
-      const effectiveType = connection.effectiveType || "4g";
-
-      // Adjust trickle speed based on connection type
-      switch (effectiveType) {
-        case "slow-2g":
-        case "2g":
-          NProgress.configure({ trickleSpeed: 400 });
-          break;
-        case "3g":
-          NProgress.configure({ trickleSpeed: 300 });
-          break;
-        case "4g":
-        default:
-          NProgress.configure({ trickleSpeed: 200 });
-          break;
-      }
-    }
-  };
 
   // Initialize NProgress on mount
   useEffect(() => {
+    // Import CSS directly to ensure it's loaded
+    // import("../app/nprogress.css");
+
     // Configure NProgress with higher z-index to appear above navbar
     NProgress.configure({
       minimum: 0.1,
@@ -45,7 +23,7 @@ export function NProgressProviderClient() {
       speed: 500,
       // Increase the z-index to ensure it appears above the navbar
       template:
-        '<div class="bar" role="bar" style="z-index:9999"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>',
+        '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>',
     });
 
     // Add click event listener for navigation links
@@ -66,7 +44,6 @@ export function NProgressProviderClient() {
         !e.shiftKey
       ) {
         // Start progress when link is clicked
-        configureNProgressForNetwork();
         NProgress.start();
       }
     };
@@ -78,7 +55,6 @@ export function NProgressProviderClient() {
 
       // Check if it has a data attribute indicating it will navigate
       if (button && button.dataset.navigate) {
-        configureNProgressForNetwork();
         NProgress.start();
       }
     };
@@ -96,7 +72,6 @@ export function NProgressProviderClient() {
   // Handle route changes
   useEffect(() => {
     // Start progress on route change
-    configureNProgressForNetwork();
     NProgress.start();
 
     // Complete the progress bar

@@ -2,9 +2,10 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "./nprogress.css"; // Make sure this import is here
 import { ThemeProvider } from "@/components/theme-provider";
-import { NProgressProvider } from "@/components/nprogress-provider"
-import { AppProvider } from "@/components/app-provider"
+import { NProgressProvider } from "@/components/nprogress-provider";
+import { AppProvider } from "@/components/app-provider";
 import { LenisScrollProvider } from "@/components/lenis-scroll-provider";
 import ScrollToTop from "@/components/scroll-to-top";
 import { Toaster } from "sonner";
@@ -15,9 +16,9 @@ export const metadata: Metadata = {
   title: "Elegance Inspired Limited - Corporate Branding Agency",
   description:
     "Elegance Inspired Limited is a leading corporate branding agency dedicated to helping businesses achieve their full potential in the ever-evolving marketplace.",
-    icons: {
-      icon: "/ICONS.jpg",
-    },
+  icons: {
+    icon: "/ICONS.jpg",
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-        <head>
+      <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={inter.className}>

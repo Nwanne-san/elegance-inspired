@@ -35,13 +35,15 @@ export async function POST(request: Request) {
         <p>${message}</p>
       `
     } else if (formType === "callback") {
-      emailSubject = "Call Back Requested"
-      emailContent = `
-        <h2>New Call Back Request</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-      `
-    }
+        emailSubject = "Call Back Requested"
+        emailContent = `
+          <h2>New Call Back Request</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Phone:</strong> ${phone}</p>
+          ${email ? `<p><strong>Email:</strong> ${email}</p>` : ""}
+          ${message ? `<h3>Message:</h3><p>${message}</p>` : ""}
+        `
+      }
 
     // Send the email
     await transporter.sendMail({

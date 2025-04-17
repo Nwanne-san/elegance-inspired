@@ -8,14 +8,23 @@ import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { z } from "zod";
 import { toast } from "sonner";
 
+// Update the schema to include email
 const callbackSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   phone: z.string().min(10, { message: "Please enter a valid phone number" }),
+  email: z
+    .string()
+    .email({ message: "Please enter a valid email address" })
+    .optional()
+    .or(z.literal("")),
+  //   message: z.string().optional().or(z.literal("")),
 });
 
+// Update the form data type
 type CallbackFormData = z.infer<typeof callbackSchema>;
 
 interface RequestCallbackModalProps {
@@ -40,9 +49,11 @@ export function RequestCallbackModal({
     if (onOpenChange) onOpenChange(false);
   };
 
+  // Update the initial state to include email
   const [formData, setFormData] = useState<CallbackFormData>({
     name: "",
     phone: "",
+    email: "",
   });
   const [errors, setErrors] = useState<Partial<CallbackFormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,13 +68,17 @@ export function RequestCallbackModal({
       // Only show on first visit of the day
       setTimeout(() => {
         if (onOpenChange) onOpenChange(true);
+        // This is just for the demo, in production we would open the modal
       }, 5000);
       localStorage.setItem("hasVisitedBefore", "true");
       localStorage.setItem("lastVisitDate", today);
     }
   }, [onOpenChange]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Update the handleChange function to handle all input types
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
@@ -88,25 +103,29 @@ export function RequestCallbackModal({
         headers: {
           "Content-Type": "application/json",
         },
+        // Update the API request body to include email
         body: JSON.stringify({
           to: "hello@eleganceinspired.org",
           subject: "Call Back Requested",
           name: formData.name,
           phone: formData.phone,
+          email: formData.email || "No email provided",
           formType: "callback",
         }),
       });
 
       if (!response.ok) {
-        toast.error("Failed to send email");
+        throw new Error("Failed to send email");
       }
 
       // Success
       toast.success("Thank you! We'll call you back shortly.");
       handleClose();
+      // Reset form to include email
       setFormData({
         name: "",
         phone: "",
+        email: "",
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -190,6 +209,23 @@ export function RequestCallbackModal({
                   />
                   {errors.phone && (
                     <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                  )}
+                </div>
+
+                {/* Add the email field to the form */}
+                <div>
+                  <Label htmlFor="email">Email Address (Optional)</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Your email address"
+                    className={errors.email ? "border-red-500" : ""}
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
                   )}
                 </div>
 

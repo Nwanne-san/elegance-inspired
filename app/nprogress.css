@@ -1,12 +1,13 @@
   /* Make clicks pass-through */
   #nprogress {
     pointer-events: none;
+    z-index: 99999; /* Ensure highest z-index */
   }
 
   #nprogress .bar {
     background: #ff6600;
     position: fixed;
-    z-index: 9999; /* Increased z-index to appear above navbar */
+    z-index: 99999; /* Increased z-index to appear above everything */
     top: 0;
     left: 0;
     width: 100%;

@@ -5,21 +5,21 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import { portfolioData } from "@/data/index"
+import { PortfolioItem, portfolioItems } from "@/data/portfolio-data"
 import { Card, CardContent } from "@/components/ui/card"
 
 export default function PortfolioGridClient() {
   const searchParams = useSearchParams()
-  const [filteredItems, setFilteredItems] = useState(portfolioData)
+  const [filteredItems, setFilteredItems] = useState(portfolioItems)
   
   // Get the current category from URL or default to "all"
   const currentCategory = searchParams.get("category") || "all"
 
   useEffect(() => {
     if (currentCategory === "all") {
-      setFilteredItems(portfolioData)
+      setFilteredItems(portfolioItems)
     } else {
-      setFilteredItems(portfolioData.filter(item => item.category === currentCategory))
+      setFilteredItems(portfolioItems.filter(item => item.category === currentCategory))
     }
   }, [currentCategory])
 
