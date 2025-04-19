@@ -19,9 +19,7 @@ const callbackSchema = z.object({
   email: z
     .string()
     .email({ message: "Please enter a valid email address" })
-    .optional()
-    .or(z.literal("")),
-  //   message: z.string().optional().or(z.literal("")),
+    // .or(z.literal("")),
 });
 
 // Update the form data type
@@ -177,8 +175,8 @@ export function RequestCallbackModal({
 
             <div className="p-6">
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Leave your details and our team will call you back within 24
-                hours.
+                We’re passionate about Elevating your brand. Let’s call you to
+                discuss your needs.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -214,7 +212,7 @@ export function RequestCallbackModal({
 
                 {/* Add the email field to the form */}
                 <div>
-                  <Label htmlFor="email">Email Address (Optional)</Label>
+                  <Label htmlFor="email">Email Address</Label>
                   <Input
                     id="email"
                     name="email"
@@ -237,6 +235,7 @@ export function RequestCallbackModal({
                   {isSubmitting ? "Submitting..." : "Request Call Back"}
                 </Button>
               </form>
+              <p className="text-white/70 text-center mt-3"> Our team will reach out to you within 24hrs</p>
             </div>
           </motion.div>
         </motion.div>

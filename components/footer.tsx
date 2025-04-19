@@ -6,9 +6,18 @@ import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import { FaTiktok, FaWhatsapp } from "react-icons/fa6";
 import NewsletterForm from "@/components/newsletter-form";
 import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const logoSrc =
+    theme === "dark" ? "/Elegance logo white.svg" : "/Elegance logo.png";
 
   const currentYear = new Date().getFullYear();
 
@@ -19,17 +28,15 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <Link href="/" className="inline-block">
-              <Image
-                src={
-                  theme === "dark"
-                    ? "/Elegance logo white.svg"
-                    : "/Elegance logo.png"
-                }
-                alt="Elegance Inspired Limited"
-                width={160}
-                height={40}
-                className="h-10 w-auto"
-              />
+              {mounted && (
+                <Image
+                  src={logoSrc}
+                  alt="Elegance Inspired Limited"
+                  width={160}
+                  height={40}
+                  className="h-10 w-auto"
+                />
+              )}
             </Link>
             <p className="text-gray-400 max-w-xs">
               A leading corporate branding agency dedicated to helping

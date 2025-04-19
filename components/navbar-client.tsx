@@ -24,6 +24,14 @@ export default function NavbarClient() {
   const { theme } = useTheme();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const logoSrc =
+    theme === "dark" ? "/Elegance logo white.svg" : "/Elegance logo.png";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,17 +103,15 @@ export default function NavbarClient() {
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="relative z-10">
             <div className="relative h-12 w-40">
-              <Image
-                src={
-                  theme === "dark"
-                    ? "/Elegance logo white.svg"
-                    : "/Elegance logo.png"
-                }
-                alt="Elegance Inspired"
-                fill
-                className="object-contain"
-                priority
-              />
+              {mounted && (
+                <Image
+                  src={logoSrc}
+                  alt="Elegance Inspired Limited"
+                  width={160}
+                  height={40}
+                  className="h-10 w-auto"
+                />
+              )}
             </div>
           </Link>
 
