@@ -83,9 +83,9 @@ export const team = [
     id: "temitope-ruth-jacob",
     social: {
       instagram:
-        "https://www.instagram.com/thebranding.queen?igsh=b3BpcGdiejJmcG1y&utm_source=qr",
-      facebook: "https://www.facebook.com/temitope.jacob.731?mibextid=LQQJ4d",
-      twitter: "",
+        "https://www.instagram.com/brandingqueen2?igsh=Z2pia3F4eXZ4ZnRj",
+      facebook: "https://www.facebook.com/profile.php?id=61574652656986&mibextid=kFxxJD",
+      twitter: "https://x.com/thebrand_queen?s=11&t=s_pVVBco_gTAYdv-a-BSew",
       linkedin:
         "https://www.linkedin.com/in/temitoperuthjacob?utm_source=share&utm_campaign=share_",
     },

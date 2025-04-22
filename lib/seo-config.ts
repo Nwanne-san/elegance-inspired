@@ -39,7 +39,7 @@ export const baseMetadata: Metadata = {
       "A leading corporate branding agency dedicated to helping businesses achieve their full potential in the ever-evolving marketplace.",
     images: [
       {
-        url: "/og-image-two.jpg",
+        url: "https://eleganceinspired.org/og-image-two.jpg",
         width: 1200,
         height: 630,
         alt: "Elegance Inspired Limited",
@@ -51,7 +51,7 @@ export const baseMetadata: Metadata = {
     title: "Elegance Inspired Limited - Corporate Branding Agency",
     description:
       "A leading corporate branding agency dedicated to helping businesses achieve their full potential in the ever-evolving marketplace.",
-    images: ["/og-image-two.jpg"],
+    images: ["https://eleganceinspired.org/og-image-two.jpg"],
     creator: "@eleganceinspltd",
   },
   robots: {
@@ -78,6 +78,13 @@ export const baseMetadata: Metadata = {
 
 // Function to generate page-specific metadata
 export function generateMetadata(title: string, description?: string, ogImage?: string, keywords?: string[]): Metadata {
+  // Make sure ogImage is an absolute URL if provided
+  const absoluteOgImage = ogImage
+    ? ogImage.startsWith("http")
+      ? ogImage
+      : `https://eleganceinspired.org${ogImage}`
+    : undefined
+
   return {
     title,
     description: description || baseMetadata.description,
@@ -87,10 +94,10 @@ export function generateMetadata(title: string, description?: string, ogImage?: 
       ...baseMetadata.openGraph,
       title,
       description: description || (baseMetadata.openGraph?.description as string),
-      images: ogImage
+      images: absoluteOgImage
         ? [
             {
-              url: ogImage,
+              url: absoluteOgImage,
               width: 1200,
               height: 630,
               alt: title,
@@ -102,7 +109,7 @@ export function generateMetadata(title: string, description?: string, ogImage?: 
       ...baseMetadata.twitter,
       title,
       description: description || (baseMetadata.twitter?.description as string),
-      images: ogImage ? [ogImage] : baseMetadata.twitter?.images,
+      images: absoluteOgImage ? [absoluteOgImage] : baseMetadata.twitter?.images,
     },
   }
 }
