@@ -48,7 +48,7 @@ export default function Footer() {
             </div>
             <div className="flex space-x-4">
               <Link
-                href="https://www.instagram.com/eleganceinspiredltd"
+                href="https://www.instagram.com/eleganceinspiredlimited?igsh=MXVpcjgya2xwd3J3bA%3D%3D&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -56,7 +56,7 @@ export default function Footer() {
                 <Instagram className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
               </Link>
               <Link
-                href="https://www.facebook.com/temmyjaycob"
+                href="https://www.facebook.com/share/1GK7vWJDjU/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
