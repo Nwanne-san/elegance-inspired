@@ -66,13 +66,20 @@ export default function HeroSection() {
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-muted pt-20 overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full z-0">
-          <div className="absolute inset-0 bg-primary/65 backdrop-blur-[1.5px] z-10"></div>
+          <div className="absolute inset-0 bg-primary/65 backdrop-blur-[0.5px] z-10"></div>
           <Image
             src="/DSCF6162.jpg"
             alt="Elegance Inspired Team"
             width={600}
             height={600}
-            className="rounded-lg shadow-xl object-cover w-auto sm:h-auto h-full"
+            className="sm:block hidden rounded-lg shadow-xl object-cover w-full  xl:h-auto h-full"
+          />
+          <Image
+            src="/DSCF6068 (1).jpg"
+            alt="Elegance Inspired Team"
+            width={600}
+            height={600}
+            className="sm:hidden block rounded-lg shadow-xl object-center object-cover w-auto  h-full"
           />
         </div>
 
@@ -102,7 +109,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto backdrop-blur-sm bg-black/10 p-4 rounded-lg md:motion-safe:animate-fade-in"
+              className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto sm:backdrop-blur-sm sm:bg-black/10 sm:p-4 rounded-lg md:motion-safe:animate-fade-in"
             >
               We are passionate about helping businesses{" "}
               <span className="font-bold text-xl text-secondary">elevate</span>{" "}
