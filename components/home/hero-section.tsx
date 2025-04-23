@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {RequestCallbackModal} from "@/components/request-callback-modal";
+import Image from "next/image";
+import { RequestCallbackModal } from "@/components/request-callback-modal";
 
 export default function HeroSection() {
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -65,19 +66,14 @@ export default function HeroSection() {
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-muted pt-20 overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full z-0">
-          <div className="absolute inset-0 bg-black/40 z-10"></div>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            poster="/placeholder.svg?height=1080&width=1920"
-          >
-            <source src="/elegance video.mp4" type="video/mp4" />
-            {/* Fallback background for browsers that don't support video */}
-            <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-10"></div>
-          </video>
+          <div className="absolute inset-0 bg-primary/50 backdrop-blur-[3px] z-10"></div>
+          <Image
+            src="/DSCF6162.jpg"
+            alt="Elegance Inspired Team"
+            width={600}
+            height={600}
+            className="rounded-lg shadow-xl object-cover w-auto h-auto"
+          />
         </div>
 
         <div className="container mx-auto px-4 py-12 md:py-24 relative z-10">
@@ -88,7 +84,7 @@ export default function HeroSection() {
               transition={{ duration: 0.6 }}
               className="mb-6 md:motion-safe:animate-fade-in"
             >
-              <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-base font-medium backdrop-blur-sm">
+              <span className="inline-block px-4 py-1.5 bg-primary/10 text-secondary rounded-full text-base font-medium backdrop-blur-sm">
                 Welcome to Elegance Inspired Limited
               </span>
             </motion.div>

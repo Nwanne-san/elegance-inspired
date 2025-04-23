@@ -15,7 +15,7 @@ export default function CTASection() {
   return (
     <section
       ref={ref}
-      className="py-20 relative bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-800 dark:to-blue-900"
+      className="py-20 relative bg-primary from-blue-600 to-blue-800 dark:from-blue-800 dark:to-blue-900"
     >
       <div className="relative container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14">
         <motion.div

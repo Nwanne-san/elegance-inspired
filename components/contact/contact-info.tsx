@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Phone,
@@ -35,6 +36,8 @@ export default function ContactInfo() {
           the world together.
         </p>
       </motion.div>
+
+     
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <motion.div

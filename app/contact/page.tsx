@@ -7,6 +7,8 @@ import ContactForm from "@/components/contact/contact-form";
 import ContactInfo from "@/components/contact/contact-info";
 import ContactMap from "@/components/contact/contact-map";
 import CTASection from "@/components/home/cta-section";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 export const metadata: Metadata = generateMetadata(
   "Contact Us - Get in Touch with Elegance Inspired",
@@ -28,6 +30,15 @@ export default function ContactPage() {
         title="Contact Us"
         description="We're your trusted partner in building a brand that inspires lasting connections and fuels business success."
       />
+      <div className="flex items-center justify-center w-full px-4">
+        <Image
+          src="/DSCF6099.jpg"
+          alt="Elegance Inspired Team"
+          width={800}
+          height={600}
+          className="rounded-lg shadow-xl object-cover "
+        />
+      </div>
       <div className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -37,7 +48,7 @@ export default function ContactPage() {
         </div>
       </div>
       <ContactMap />
-      <CTASection/>
+      <CTASection />
       <Footer />
     </main>
   );
