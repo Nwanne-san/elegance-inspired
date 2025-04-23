@@ -66,13 +66,13 @@ export default function HeroSection() {
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-muted pt-20 overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full z-0">
-          <div className="absolute inset-0 bg-primary/50 backdrop-blur-[3px] z-10"></div>
+          <div className="absolute inset-0 bg-primary/65 backdrop-blur-[1.5px] z-10"></div>
           <Image
             src="/DSCF6162.jpg"
             alt="Elegance Inspired Team"
             width={600}
             height={600}
-            className="rounded-lg shadow-xl object-cover w-auto h-auto"
+            className="rounded-lg shadow-xl object-cover w-auto sm:h-auto h-full"
           />
         </div>
 
