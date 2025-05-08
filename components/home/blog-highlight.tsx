@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { Calendar, User, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
+import OptimizedImage from "../optimized-image";
 
 const blogPosts = [
   {
@@ -142,11 +143,12 @@ export default function BlogHighlight() {
                 >
                   <Card className="h-full overflow-hidden">
                     <div className="overflow-hidden">
-                      <Image
+                      <OptimizedImage
                         src={post.image || "/placeholder.svg"}
                         alt={post.title}
                         width={500}
                         height={300}
+                        showLoadingIndicator={true}
                         className="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
                       />
                     </div>

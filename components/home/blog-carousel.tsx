@@ -61,7 +61,11 @@ export default function BlogCarousel() {
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+  const imagesLoadedCount = useRef(0);
+  const totalImages = blogPosts.length;
 
   // Check if mobile
   useEffect(() => {
@@ -71,6 +75,41 @@ export default function BlogCarousel() {
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Preload images
+  useEffect(() => {
+    const preloadImages = () => {
+      blogPosts.forEach((post) => {
+        const img = new Image();
+        img.src = post.image;
+        img.onload = () => {
+          imagesLoadedCount.current += 1;
+          if (imagesLoadedCount.current === totalImages) {
+            setImagesLoaded(true);
+            setIsLoading(false);
+          }
+        };
+        img.onerror = () => {
+          imagesLoadedCount.current += 1;
+          if (imagesLoadedCount.current === totalImages) {
+            setImagesLoaded(true);
+            setIsLoading(false);
+          }
+        };
+      });
+    };
+
+    preloadImages();
+
+    // Fallback in case images don't load
+    const timer = setTimeout(() => {
+      if (!imagesLoaded) {
+        setIsLoading(false);
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const scrollPrev = useCallback(
@@ -89,7 +128,7 @@ export default function BlogCarousel() {
 
   // Set up autoplay
   useEffect(() => {
-    if (!emblaApi) return;
+    if (!emblaApi || isLoading) return;
 
     emblaApi.on("select", onSelect);
     onSelect();
@@ -123,20 +162,31 @@ export default function BlogCarousel() {
       emblaApi.off("pointerDown", () => {});
       emblaApi.off("pointerUp", () => {});
     };
-  }, [emblaApi, onSelect]);
+  }, [emblaApi, onSelect, isLoading]);
 
   const renderBlogPost = (post: (typeof blogPosts)[0], index: number) => (
     <div
       className={`${isMobile ? "flex-[0_0_100%]" : "flex-[0_0_33.333%]"} px-4`}
     >
       <Card className="h-full overflow-hidden">
-        <div className="overflow-hidden">
+        <div className="overflow-hidden relative">
+          <div
+            className={`w-full h-48 bg-gray-200 dark:bg-gray-800 ${
+              isLoading ? "animate-pulse" : "hidden"
+            }`}
+          ></div>
           <Image
             src={post.image || "/placeholder.svg"}
             alt={post.title}
             width={500}
             height={300}
-            className="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
+            className={`w-full h-48 object-cover transition-transform duration-500 hover:scale-110 ${
+              isLoading ? "opacity-0" : "opacity-100"
+            }`}
+            priority={index < 2} // Prioritize loading the first two images
+            onLoad={() => {
+              if (index === 0) setIsLoading(false);
+            }}
           />
         </div>
         <CardHeader>
@@ -198,6 +248,13 @@ export default function BlogCarousel() {
         </div>
 
         <div className="relative">
+          {/* Loading Indicator */}
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center z-10 bg-muted/50">
+              <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          )}
+
           {/* Carousel Container */}
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
@@ -210,6 +267,7 @@ export default function BlogCarousel() {
             className="absolute top-1/2 -left-4 transform -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md hover:bg-white dark:hover:bg-gray-800 transition-colors z-10"
             onClick={scrollPrev}
             aria-label="Previous slide"
+            disabled={isLoading}
           >
             <ChevronLeft className="h-6 w-6 text-primary" />
           </button>
@@ -217,6 +275,7 @@ export default function BlogCarousel() {
             className="absolute top-1/2 -right-4 transform -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-md hover:bg-white dark:hover:bg-gray-800 transition-colors z-10"
             onClick={scrollNext}
             aria-label="Next slide"
+            disabled={isLoading}
           >
             <ChevronRight className="h-6 w-6 text-primary" />
           </button>
@@ -233,6 +292,7 @@ export default function BlogCarousel() {
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
                 onClick={() => emblaApi?.scrollTo(index)}
+                disabled={isLoading}
               />
             ))}
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import OptimizedImage from "@/components/optimized-image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import { clients, testimonials } from "@/data";
@@ -131,7 +131,7 @@ export default function ClientsSection() {
               {clients.map((logo, index) => (
                 <div key={`first-${index}`} className="logo-item">
                   <div className="bg-white p-2 rounded-2xl flex items-center justify-center h-24 w-[180px]">
-                    <Image
+                    <OptimizedImage
                       src={logo || "/placeholder.svg"}
                       alt={`Client ${index + 1}`}
                       width={140}
@@ -146,7 +146,8 @@ export default function ClientsSection() {
               {clients.map((logo, index) => (
                 <div key={`second-${index}`} className="logo-item">
                   <div className="bg-white p-2 rounded-2xl flex items-center justify-center h-24 w-[180px]">
-                    <Image
+                    <OptimizedImage
+                      fallback="/placeholder.svg"
                       src={logo || "/placeholder.svg"}
                       alt={`Client ${index + 1}`}
                       width={140}
@@ -192,7 +193,7 @@ export default function ClientsSection() {
                         "{testimonial.text}"
                       </p>
                       <div className="flex items-center">
-                        <Image
+                        <OptimizedImage
                           src={testimonial.image || "/placeholder.svg"}
                           alt={testimonial.name}
                           width={50}

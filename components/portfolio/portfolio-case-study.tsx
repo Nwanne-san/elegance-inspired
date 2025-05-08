@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import OptimizedImage from "../optimized-image";
 
 interface PortfolioCaseStudyProps {
   client: string;
@@ -33,12 +34,13 @@ export default function PortfolioCaseStudy({
       <Card className="overflow-hidden border border-border/50 bg-card">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="relative w-full h-[300px] md:h-full">
-            <Image
+            <OptimizedImage
               src={image || "/placeholder.svg"}
               alt={client}
               fill
               className="object-cover"
               priority
+              showLoadingIndicator={true}
             />
           </div>
           <div className="p-6">

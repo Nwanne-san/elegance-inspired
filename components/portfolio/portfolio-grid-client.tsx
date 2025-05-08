@@ -1,27 +1,30 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import Image from "next/image"
-import Link from "next/link"
-import { useSearchParams } from "next/navigation"
-import { PortfolioItem, portfolioItems } from "@/data/portfolio-data"
-import { Card, CardContent } from "@/components/ui/card"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { PortfolioItem, portfolioItems } from "@/data/portfolio-data";
+import { Card, CardContent } from "@/components/ui/card";
+import OptimizedImage from "../optimized-image";
 
 export default function PortfolioGridClient() {
-  const searchParams = useSearchParams()
-  const [filteredItems, setFilteredItems] = useState(portfolioItems)
-  
+  const searchParams = useSearchParams();
+  const [filteredItems, setFilteredItems] = useState(portfolioItems);
+
   // Get the current category from URL or default to "all"
-  const currentCategory = searchParams.get("category") || "all"
+  const currentCategory = searchParams.get("category") || "all";
 
   useEffect(() => {
     if (currentCategory === "all") {
-      setFilteredItems(portfolioItems)
+      setFilteredItems(portfolioItems);
     } else {
-      setFilteredItems(portfolioItems.filter(item => item.category === currentCategory))
+      setFilteredItems(
+        portfolioItems.filter((item) => item.category === currentCategory)
+      );
     }
-  }, [currentCategory])
+  }, [currentCategory]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -31,7 +34,7 @@ export default function PortfolioGridClient() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -40,7 +43,7 @@ export default function PortfolioGridClient() {
       opacity: 1,
       transition: { duration: 0.5 },
     },
-  }
+  };
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -48,7 +51,8 @@ export default function PortfolioGridClient() {
         <div className="text-center py-16">
           <h3 className="text-2xl font-bold mb-4">No projects found</h3>
           <p className="text-muted-foreground">
-            We don't have any projects in this category yet. Please check back later or explore other categories.
+            We don't have any projects in this category yet. Please check back
+            later or explore other categories.
           </p>
         </div>
       ) : (
@@ -61,21 +65,30 @@ export default function PortfolioGridClient() {
           {filteredItems.map((item) => (
             <motion.div key={item.id} variants={itemVariants}>
               <Card className="overflow-hidden h-full hover:shadow-lg transition-shadow duration-300">
-                <div className="relative overflow-hidden aspect-video">
-                  <Image
-                    src={item.images[0] || "/placeholder.svg"}
-                    alt={item.title}
-                    width={600}
-                    height={400}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
-                    <span className="text-sm text-[#FF6600] font-medium mb-2">{item.client}</span>
-                    <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                <Link href={`/portfolio/${item.id}`} className="group">
+                  <div className="relative overflow-hidden aspect-video">
+                    <OptimizedImage
+                      src={item.images[0] || "/placeholder.svg"}
+                      alt={item.title}
+                      width={600}
+                      height={400}
+                      showLoadingIndicator={true}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+                      <span className="text-sm text-[#FF6600] font-medium mb-2">
+                        {item.client}
+                      </span>
+                      <h3 className="text-xl font-bold text-white mb-2">
+                        {item.title}
+                      </h3>
+                    </div>
                   </div>
-                </div>
+                </Link>
                 <CardContent className="p-6">
-                  <p className="text-muted-foreground mb-4 line-clamp-2">{item.description}</p>
+                  <p className="text-muted-foreground mb-4 line-clamp-2">
+                    {item.description}
+                  </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {item.tags.slice(0, 3).map((tag, index) => (
                       <span
@@ -113,5 +126,5 @@ export default function PortfolioGridClient() {
         </motion.div>
       )}
     </div>
-  )
+  );
 }

@@ -26,13 +26,21 @@ export function useAppContext() {
 export function AppProvider({ children }: { children: ReactNode }) {
   const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
   const [hasShownModal, setHasShownModal] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
 
   // Check if we should show the modal on first visit
   useEffect(() => {
+    if (!isMounted) return;
+
     const hasVisitedToday = localStorage.getItem("elegance_visited_today");
 
     if (!hasVisitedToday && !hasShownModal) {
-      // Set a timeout to show the modal after 5 seconds
+      // Set a timeout to show the modal after 45 seconds (instead of 5)
       const timer = setTimeout(() => {
         setIsCallbackModalOpen(true);
         setHasShownModal(true);
@@ -48,11 +56,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
           59
         );
         localStorage.setItem("elegance_visited_today", expiryDate.toString());
-      }, 5000);
+      }, 45000);
 
       return () => clearTimeout(timer);
     }
-  }, [hasShownModal]);
+  }, [hasShownModal, isMounted]);
 
   const openCallbackModal = () => {
     setIsCallbackModalOpen(true);

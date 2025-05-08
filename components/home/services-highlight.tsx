@@ -148,9 +148,9 @@ export default function ServicesHighlight() {
         </div>
 
         {/* Animated Lightbulb Section */}
-        {/* <div className="mb-16">
+        <div className="mb-16">
           <ServicesLightbulb />
-        </div> */}
+        </div>
 
         {isMobile ? (
           <Carousel className="mb-8">

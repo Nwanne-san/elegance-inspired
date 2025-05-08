@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import OptimizedImage from "@/components/optimized-image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
@@ -109,9 +109,12 @@ export default function PortfolioHighlight() {
     item: (typeof portfolioItems)[0],
     index: number
   ) => (
-    <div className={`${isMobile ? "flex-[0_0_100%]" : "flex-[0_0_50%]"} px-4`} key={item.title}>
-      <div className="group relative overflow-hidden rounded-lg border border shadow-lg h-80">
-        <Image
+    <div
+      className={`${isMobile ? "flex-[0_0_100%]" : "flex-[0_0_50%]"} px-4`}
+      key={item.title}
+    >
+      <div className="group relative overflow-hidden rounded-lg border shadow-lg h-80">
+        <OptimizedImage
           src={item.image || "/placeholder.svg"}
           alt={item.title}
           width={600}
