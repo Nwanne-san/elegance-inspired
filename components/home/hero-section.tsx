@@ -4,36 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image";
 import { RequestCallbackModal } from "@/components/request-callback-modal";
+import OptimizedImage from "../optimized-image";
 
 export default function HeroSection() {
   const textRef = useRef<HTMLHeadingElement>(null);
   const [callbackModalOpen, setCallbackModalOpen] = useState(false);
-  const [imagesLoaded, setImagesLoaded] = useState({
-    desktop: false,
-    mobile: false,
-  });
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
-
-    // Preload images
-    const preloadImages = () => {
-      const desktopImg = document.createElement("img");
-      desktopImg.src = "/DSCF6162.jpg?quality=50";
-      desktopImg.onload = () =>
-        setImagesLoaded((prev) => ({ ...prev, desktop: true }));
-
-      const mobileImg = document.createElement("img");
-      mobileImg.src = "/DSCF6068 (1).jpg?quality=50";
-      mobileImg.onload = () =>
-        setImagesLoaded((prev) => ({ ...prev, mobile: true }));
-    };
-
-    preloadImages();
-
     const initTextAnimation = async () => {
       try {
         const Typed = (await import("typed.js")).default;
@@ -65,72 +43,27 @@ export default function HeroSection() {
     };
 
     initTextAnimation();
-
-    // Check if this is the first visit of the day
-    const checkFirstVisit = () => {
-      if (!isClient) return;
-
-      const lastVisit = localStorage.getItem("lastVisit");
-      const today = new Date().toDateString();
-
-      if (!lastVisit || lastVisit !== today) {
-        // First visit of the day
-        setTimeout(() => {
-          setCallbackModalOpen(true);
-        }, 45000); // Show after 45 seconds (changed from 3 seconds)
-        localStorage.setItem("lastVisit", today);
-      }
-    };
-
-    checkFirstVisit();
-  }, [isClient]);
+  }, []);
 
   return (
     <>
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-muted pt-20 overflow-hidden">
-        {/* Loading Placeholder */}
-        {(!imagesLoaded.desktop || !imagesLoaded.mobile) && (
-          <div className="absolute inset-0 w-full h-full z-0 bg-primary/30 flex items-center justify-center">
-            <div className="w-16 h-16 border-4 border-secondary border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        )}
-
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full z-0">
           <div className="absolute inset-0 bg-primary/65 backdrop-blur-[0.5px] z-10"></div>
-
-          {/* Desktop Image - with quality parameter and priority loading */}
-          <Image
-            src="/DSCF6162.jpg?quality=50"
+          <OptimizedImage
+            src="/DSCF6162.jpg"
             alt="Elegance Inspired Team"
-            width={1920}
-            height={1080}
-            quality={50}
-            priority
-            className={`sm:block hidden rounded-lg shadow-xl object-cover w-full h-full transition-opacity duration-500 ${
-              imagesLoaded.desktop ? "opacity-100" : "opacity-0"
-            }`}
-            onLoad={() =>
-              setImagesLoaded((prev) => ({ ...prev, desktop: true }))
-            }
-            sizes="(min-width: 640px) 100vw, 0vw"
+            width={600}
+            height={600}
+            className="sm:block hidden rounded-lg shadow-xl object-cover w-full  xl:h-auto h-full"
           />
-
-          {/* Mobile Image - with quality parameter and priority loading */}
-          <Image
-            src="/DSCF6068 (1).jpg?quality=50"
+          <OptimizedImage
+            src="/DSCF6068 (1).jpg"
             alt="Elegance Inspired Team"
-            width={640}
-            height={960}
-            quality={50}
-            priority
-            className={`sm:hidden block rounded-lg shadow-xl object-center object-cover w-full h-full transition-opacity duration-500 ${
-              imagesLoaded.mobile ? "opacity-100" : "opacity-0"
-            }`}
-            onLoad={() =>
-              setImagesLoaded((prev) => ({ ...prev, mobile: true }))
-            }
-            sizes="(max-width: 639px) 100vw, 0vw"
+            width={600}
+            height={600}
+            className="sm:hidden block rounded-lg shadow-xl object-center object-cover w-auto  h-full"
           />
         </div>
 
@@ -178,6 +111,7 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 className="bg-primary hover:bg-primary/60 w-fit duration-200 text-white rounded-full"
+                onClick={() => setCallbackModalOpen(true)}
               >
                 <Link href={"/contact"}>Elevate your Brand</Link>
               </Button>

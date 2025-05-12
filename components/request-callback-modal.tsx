@@ -16,10 +16,8 @@ import { toast } from "sonner";
 const callbackSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   phone: z.string().min(10, { message: "Please enter a valid phone number" }),
-  email: z
-    .string()
-    .email({ message: "Please enter a valid email address" })
-    // .or(z.literal("")),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  // .or(z.literal("")),
 });
 
 // Update the form data type
@@ -43,6 +41,7 @@ export function RequestCallbackModal({
   // Handle different prop naming conventions
   const isModalOpen = isOpen || open || show || false;
   const handleClose = () => {
+    localStorage.setItem("modalClosed", "true");
     if (onClose) onClose();
     if (onOpenChange) onOpenChange(false);
   };
@@ -118,6 +117,7 @@ export function RequestCallbackModal({
 
       // Success
       toast.success("Thank you! We'll call you back shortly.");
+      localStorage.setItem("formSubmitted", "true");
       handleClose();
       // Reset form to include email
       setFormData({
@@ -235,7 +235,10 @@ export function RequestCallbackModal({
                   {isSubmitting ? "Submitting..." : "Request Call Back"}
                 </Button>
               </form>
-              <p className="text-white/70 text-center mt-3"> Our team will reach out to you within 24hrs</p>
+              <p className="text-white/70 text-center mt-3">
+                {" "}
+                Our team will reach out to you within 24hrs
+              </p>
             </div>
           </motion.div>
         </motion.div>

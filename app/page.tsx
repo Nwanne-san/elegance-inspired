@@ -22,8 +22,6 @@ export default function Home() {
 
   useEffect(() => {
     setIsMounted(true);
-
-    // Clear any existing timers when component mounts or unmounts
     return () => {
       if (modalTimerRef.current) {
         clearTimeout(modalTimerRef.current);
@@ -32,25 +30,28 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Only run this effect after component has mounted to prevent double execution
     if (!isMounted) return;
 
-    // Check if this is the first visit or if it's been more than 24 hours
-    const lastVisit = localStorage.getItem("lastVisit");
-    const now = new Date();
-    const today = now.toDateString();
+    const modalClosed = localStorage.getItem("modalClosed");
+    const formSubmitted = localStorage.getItem("formSubmitted");
 
-    // Check if we should show the modal (first visit of the day)
-    const shouldShowModal = !lastVisit || lastVisit !== today;
-
-    if (shouldShowModal) {
-      // First visit today, show modal after 45 seconds
-      modalTimerRef.current = setTimeout(() => {
+    if (!formSubmitted) {
+      const initialTimer = setTimeout(() => {
         setShowCallbackModal(true);
-        // Save current timestamp to localStorage
-        localStorage.setItem("lastVisit", today);
-      }, 45000); // 45 seconds
+      }, 5000);
+      modalTimerRef.current = initialTimer;
     }
+    const reappearInterval = setInterval(() => {
+      const isFormSubmitted = localStorage.getItem("formSubmitted");
+      if (!isFormSubmitted) {
+        setShowCallbackModal(true);
+      }
+    }, 50000);
+
+    return () => {
+      clearTimeout(modalTimerRef.current!);
+      clearInterval(reappearInterval);
+    };
   }, [isMounted]);
 
   return (
