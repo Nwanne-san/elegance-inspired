@@ -31,19 +31,17 @@ export default function Home() {
 
   useEffect(() => {
     if (!isMounted) return;
-
-    const modalClosed = localStorage.getItem("modalClosed");
     const formSubmitted = localStorage.getItem("formSubmitted");
 
-    if (!formSubmitted) {
-      const initialTimer = setTimeout(() => {
+    // Prevent double modal trigger
+    if (!formSubmitted && !showCallbackModal) {
+      modalTimerRef.current = setTimeout(() => {
         setShowCallbackModal(true);
       }, 5000);
-      modalTimerRef.current = initialTimer;
     }
     const reappearInterval = setInterval(() => {
       const isFormSubmitted = localStorage.getItem("formSubmitted");
-      if (!isFormSubmitted) {
+      if (!isFormSubmitted && !showCallbackModal) {
         setShowCallbackModal(true);
       }
     }, 50000);
@@ -52,7 +50,7 @@ export default function Home() {
       clearTimeout(modalTimerRef.current!);
       clearInterval(reappearInterval);
     };
-  }, [isMounted]);
+  }, [isMounted, showCallbackModal]);
 
   return (
     <main className="w-full">

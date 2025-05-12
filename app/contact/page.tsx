@@ -7,8 +7,7 @@ import ContactForm from "@/components/contact/contact-form";
 import ContactInfo from "@/components/contact/contact-info";
 import ContactMap from "@/components/contact/contact-map";
 import CTASection from "@/components/home/cta-section";
-import { motion } from "framer-motion";
-import Image from "next/image";
+import OptimizedImage from "@/components/optimized-image";
 
 export const metadata: Metadata = generateMetadata(
   "Contact Us - Get in Touch with Elegance Inspired",
@@ -31,7 +30,7 @@ export default function ContactPage() {
         description="We're your trusted partner in building a brand that inspires lasting connections and fuels business success."
       />
       <div className="flex items-center justify-center w-full px-4">
-        <Image
+        <OptimizedImage
           src="/DSCF6099.jpg"
           alt="Elegance Inspired Team"
           width={800}
