@@ -25,45 +25,65 @@ export function useAppContext() {
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
-  const [hasShownModal, setHasShownModal] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [hasShownOnce, setHasShownOnce] = useState(false);
+
+  const openCallbackModal = () => setIsCallbackModalOpen(true);
+  const closeCallbackModal = () => setIsCallbackModalOpen(false);
+
+
+  const is24HoursPassed = (timestamp: string | null) => {
+    if (!timestamp) return true;
+    const now = Date.now();
+    const then = Number(timestamp);
+    return now - then > 24 * 60 * 60 * 1000;
+  };
 
   useEffect(() => {
-    setIsMounted(true);
-    return () => setIsMounted(false);
+    const formSubmitted = localStorage.getItem("formSubmitted");
+    const modalDismissedAt = localStorage.getItem("modalDismissedAt");
+
+    if (formSubmitted || !is24HoursPassed(modalDismissedAt)) return;
+
+
+    const initialTimer = setTimeout(() => {
+      setIsCallbackModalOpen(true);
+      setHasShownOnce(true);
+    }, 3000);
+
+    return () => clearTimeout(initialTimer);
   }, []);
 
-  // Check if we should show the modal on first visit
+  // If user closes the modal manually the first time, show again in 45 seconds
   useEffect(() => {
-    if (!isMounted) return;
+    const modalClosedCount = Number(
+      localStorage.getItem("modalClosedCount") || "0"
+    );
 
-    const hasVisitedToday = localStorage.getItem("elegance_visited_today");
+    if (!hasShownOnce || modalClosedCount >= 2) return;
 
-    if (!hasVisitedToday && !hasShownModal) {
-      // Set a timeout to show the modal after 45 seconds (instead of 5)
-      const timer = setTimeout(() => {
-        setIsCallbackModalOpen(true);
-        setHasShownModal(true);
+    const formSubmitted = localStorage.getItem("formSubmitted");
+    const modalDismissedAt = localStorage.getItem("modalDismissedAt");
 
-        // Set a flag in localStorage that expires at the end of the day
-        const now = new Date();
-        const expiryDate = new Date(
-          now.getFullYear(),
-          now.getMonth(),
-          now.getDate(),
-          23,
-          59,
-          59
-        );
-        localStorage.setItem("elegance_visited_today", expiryDate.toString());
-      }, 45000);
+    if (formSubmitted || !is24HoursPassed(modalDismissedAt)) return;
 
-      return () => clearTimeout(timer);
+    const reappearTimer = setTimeout(() => {
+      setIsCallbackModalOpen(true);
+    }, 45000); // 45 seconds
+
+    return () => clearTimeout(reappearTimer);
+  }, [hasShownOnce]);
+
+  const handleClose = () => {
+    // Increment close count
+    const count = Number(localStorage.getItem("modalClosedCount") || "0");
+    localStorage.setItem("modalClosedCount", String(count + 1));
+
+    // If closed again, set 24-hour lock
+    if (count + 1 >= 2) {
+      localStorage.setItem("modalDismissedAt", Date.now().toString());
     }
-  }, [hasShownModal, isMounted]);
 
-  const openCallbackModal = () => {
-    setIsCallbackModalOpen(true);
+    closeCallbackModal();
   };
 
   return (
@@ -71,7 +91,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
       {children}
       <RequestCallbackModal
         open={isCallbackModalOpen}
-        onOpenChange={setIsCallbackModalOpen}
+        onOpenChange={(val) => {
+          if (!val) handleClose();
+          else setIsCallbackModalOpen(val);
+        }}
       />
     </AppContext.Provider>
   );

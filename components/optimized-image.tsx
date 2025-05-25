@@ -59,7 +59,7 @@ export default function OptimizedImage({
           isLoading ? "opacity-0" : "opacity-100",
           className
         )}
-        onLoadingComplete={() => setIsLoading(false)}
+        onLoad={() => setIsLoading(false)}
         onError={() => {
           setIsLoading(false);
           setIsError(true);

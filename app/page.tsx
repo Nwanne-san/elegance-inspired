@@ -1,6 +1,3 @@
-"use client";
-
-import { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import HeroSection from "@/components/home/hero-section";
@@ -13,45 +10,8 @@ import PortfolioHighlight from "@/components/home/portfolio-highlight";
 import BlogHighlight from "@/components/home/blog-highlight";
 import CTASection from "@/components/home/cta-section";
 import ScrollToTop from "@/components/scroll-to-top";
-import { RequestCallbackModal } from "@/components/request-callback-modal";
 
 export default function Home() {
-  const [showCallbackModal, setShowCallbackModal] = useState(false);
-  const modalTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    return () => {
-      if (modalTimerRef.current) {
-        clearTimeout(modalTimerRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isMounted) return;
-    const formSubmitted = localStorage.getItem("formSubmitted");
-
-    // Prevent double modal trigger
-    if (!formSubmitted && !showCallbackModal) {
-      modalTimerRef.current = setTimeout(() => {
-        setShowCallbackModal(true);
-      }, 5000);
-    }
-    const reappearInterval = setInterval(() => {
-      const isFormSubmitted = localStorage.getItem("formSubmitted");
-      if (!isFormSubmitted && !showCallbackModal) {
-        setShowCallbackModal(true);
-      }
-    }, 50000);
-
-    return () => {
-      clearTimeout(modalTimerRef.current!);
-      clearInterval(reappearInterval);
-    };
-  }, [isMounted, showCallbackModal]);
-
   return (
     <main className="w-full">
       <Navbar />
@@ -66,10 +26,6 @@ export default function Home() {
       <CTASection />
       <Footer />
       <ScrollToTop />
-      <RequestCallbackModal
-        show={showCallbackModal}
-        onClose={() => setShowCallbackModal(false)}
-      />
     </main>
   );
 }

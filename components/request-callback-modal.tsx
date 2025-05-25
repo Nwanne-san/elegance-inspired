@@ -12,12 +12,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { z } from "zod";
 import { toast } from "sonner";
 
-// Update the schema to include email
 const callbackSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   phone: z.string().min(10, { message: "Please enter a valid phone number" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
-  // .or(z.literal("")),
 });
 
 // Update the form data type
@@ -41,12 +39,10 @@ export function RequestCallbackModal({
   // Handle different prop naming conventions
   const isModalOpen = isOpen || open || show || false;
   const handleClose = () => {
-    localStorage.setItem("modalClosed", "true");
     if (onClose) onClose();
     if (onOpenChange) onOpenChange(false);
   };
 
-  // Update the initial state to include email
   const [formData, setFormData] = useState<CallbackFormData>({
     name: "",
     phone: "",
@@ -56,21 +52,21 @@ export function RequestCallbackModal({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Check if modal should be shown on first visit
-  useEffect(() => {
-    const hasVisitedBefore = localStorage.getItem("hasVisitedBefore");
-    const lastVisitDate = localStorage.getItem("lastVisitDate");
-    const today = new Date().toDateString();
+  // useEffect(() => {
+  //   const hasVisitedBefore = localStorage.getItem("hasVisitedBefore");
+  //   const lastVisitDate = localStorage.getItem("lastVisitDate");
+  //   const today = new Date().toDateString();
 
-    if (!hasVisitedBefore || (lastVisitDate && lastVisitDate !== today)) {
-      // Only show on first visit of the day
-      setTimeout(() => {
-        if (onOpenChange) onOpenChange(true);
-        // This is just for the demo, in production we would open the modal
-      }, 5000);
-      localStorage.setItem("hasVisitedBefore", "true");
-      localStorage.setItem("lastVisitDate", today);
-    }
-  }, [onOpenChange]);
+  //   if (!hasVisitedBefore || (lastVisitDate && lastVisitDate !== today)) {
+  //     // Only show on first visit of the day
+  //     setTimeout(() => {
+  //       if (onOpenChange) onOpenChange(true);
+  //       // This is just for the demo, in production we would open the modal
+  //     }, 5000);
+  //     localStorage.setItem("hasVisitedBefore", "true");
+  //     localStorage.setItem("lastVisitDate", today);
+  //   }
+  // }, [onOpenChange]);
 
   // Update the handleChange function to handle all input types
   const handleChange = (
@@ -94,13 +90,12 @@ export function RequestCallbackModal({
 
       setIsSubmitting(true);
 
-      // Send email using a server action or API endpoint
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        // Update the API request body to include email
+
         body: JSON.stringify({
           to: "hello@eleganceinspired.org",
           subject: "Call Back Requested",
@@ -115,11 +110,11 @@ export function RequestCallbackModal({
         throw new Error("Failed to send email");
       }
 
-      // Success
       toast.success("Thank you! We'll call you back shortly.");
       localStorage.setItem("formSubmitted", "true");
+      if (onOpenChange) onOpenChange(false);
       handleClose();
-      // Reset form to include email
+
       setFormData({
         name: "",
         phone: "",
@@ -210,7 +205,6 @@ export function RequestCallbackModal({
                   )}
                 </div>
 
-                {/* Add the email field to the form */}
                 <div>
                   <Label htmlFor="email">Email Address</Label>
                   <Input
@@ -235,7 +229,7 @@ export function RequestCallbackModal({
                   {isSubmitting ? "Submitting..." : "Request Call Back"}
                 </Button>
               </form>
-              <p className="text-white/70 text-center mt-3">
+              <p className="dark:text-white/70 text-primary  text-center mt-3">
                 {" "}
                 Our team will reach out to you within 24hrs
               </p>
@@ -247,5 +241,4 @@ export function RequestCallbackModal({
   );
 }
 
-// For backwards compatibility
 export default RequestCallbackModal;
