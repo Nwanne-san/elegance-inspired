@@ -35,7 +35,7 @@ const printingServices = [
   },
 ];
 
-export default function QualityPrinting() {
+export default function PremiumPrinting() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function QualityPrinting() {
 
   return (
     <section
-      id="quality-printing"
+      id="premium-printing"
       className="py-16 md:py-24 bg-background scroll-mt-20"
     >
       <div className="container mx-auto px-4">
@@ -97,7 +97,7 @@ export default function QualityPrinting() {
             className="order-1 lg:order-1"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Quality Printing
+              Premium Printing
             </h2>
             <div className="space-y-4">
               <p>

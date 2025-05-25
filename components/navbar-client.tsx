@@ -102,14 +102,14 @@ export default function NavbarClient() {
       >
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="relative z-10">
-            <div className="relative h-12 w-40">
+            <div className="relative h-10 sm:h-12 w-40">
               {mounted && (
                 <Image
                   src={logoSrc}
                   alt="Elegance Inspired Limited"
                   width={160}
                   height={40}
-                  className="h-10 w-auto"
+                  className="h-8 sm:h-10 w-auto"
                 />
               )}
             </div>
@@ -143,7 +143,7 @@ export default function NavbarClient() {
                             aria-orientation="vertical"
                           >
                             {link.dropdown.map((item) => (
-                              <Link
+                              <a
                                 key={item.name}
                                 href={item.href}
                                 className={cn(
@@ -156,7 +156,7 @@ export default function NavbarClient() {
                                 onClick={closeMenu}
                               >
                                 {item.name}
-                              </Link>
+                              </a>
                             ))}
                           </div>
                         </div>
@@ -261,7 +261,7 @@ export default function NavbarClient() {
                                   className="pl-4 space-y-2 mt-1"
                                 >
                                   {link.dropdown.map((item) => (
-                                    <Link
+                                    <a
                                       key={item.name}
                                       href={item.href}
                                       className={cn(
@@ -273,7 +273,7 @@ export default function NavbarClient() {
                                       onClick={closeMenu}
                                     >
                                       {item.name}
-                                    </Link>
+                                    </a>
                                   ))}
                                 </motion.div>
                               )}

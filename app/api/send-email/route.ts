@@ -12,14 +12,14 @@ export async function POST(request: Request) {
     const transporter = nodemailer.createTransport({
       host: "smtp.zoho.com",
       port: 465,
-      secure: true, // use SSL
+      secure: true, 
       auth: {
-        user: process.env.EMAIL_USER, // your Zoho email
-        pass: process.env.EMAIL_PASSWORD, // your Zoho password or app-specific password
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASSWORD, 
       },
     })
 
-    // Format the email content based on form type
+
     let emailContent = ""
     let emailSubject = subject
 

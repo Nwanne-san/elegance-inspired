@@ -13,10 +13,10 @@ export const navLinks = [
     name: "Services",
     href: "#",
     dropdown: [
-      { name: "Creative Branding", href: "/services#branding" },
+      { name: "Corporate Branding", href: "/services#corporate-branding" },
       { name: "Strategic Advertising", href: "/services#advertising" },
-      { name: "Digital Transformation", href: "/services#digital" },
-      { name: "Quality Printing", href: "/services#printing" },
+      { name: "Digital Marketing", href: "/services#digital-marketing" },
+      { name: "Premium Printing", href: "/services#premium-printing" },
       { name: "HR Consulting", href: "/services#hr" },
     ],
   },

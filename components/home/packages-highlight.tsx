@@ -18,12 +18,7 @@ const packages = [
     title: "Branding Package",
     description:
       "Perfect for businesses looking to establish or refresh their brand identity.",
-    features: [
-      "Brand strategy Development",
-      "Brand Naming (if needed)",
-      "Basic brand messaging framework",
-      "Brand Style Guide",
-    ],
+    features: ["Essential Branding", "Elevated Branding", "Exquisite Branding"],
     cta: "Get Started",
     href: "/packages#branding",
   },
@@ -32,10 +27,9 @@ const packages = [
     description:
       "Ideal for businesses ready to promote their brand and reach their target audience.",
     features: [
-      "Social Media Profile Set-up",
-      "Content Calendar Development",
-      "Social Media Management",
-      "Detailed Targeting",
+      "Marketing Essentials",
+      "Marketing Momentum",
+      "Marketing Mastery",
     ],
     cta: "Get Started",
     href: "/packages#marketing",
@@ -45,12 +39,7 @@ const packages = [
     title: "Advertising Package",
     description:
       "For businesses looking to maximize their visibility and reach potential customers.",
-    features: [
-      "Ad creative design",
-      "Targeted advertising strategy",
-      "Campaign management",
-      "Performance reporting",
-    ],
+    features: ["Targeted Reach", "Amplified", "Max Exposure"],
     cta: "Get Started",
     href: "/packages#advertising",
   },
@@ -112,7 +101,7 @@ export default function PackagesHighlight() {
           {packages.map((pkg, index) => (
             <motion.div key={index} variants={itemVariants} className="flex">
               <Card
-                className={`flex flex-col h-full w-full ${
+                className={`flex flex-col h-full w-full hover:-mt-4 duration-500 transition-all ${
                   pkg.featured
                     ? "border-primary shadow-lg relative"
                     : "border-border/50"

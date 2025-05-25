@@ -1,18 +1,24 @@
-import type { Metadata } from "next"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import { generateMetadata } from "@/lib/seo-config"
-import PageHeader from "@/components/page-header"
-import BlogGrid from "@/components/blog/blog-grid"
-import BlogCategories from "@/components/blog/blog-categories"
-import CTASection from "@/components/home/cta-section"
+import type { Metadata } from "next";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import { generateMetadata } from "@/lib/seo-config";
+import PageHeader from "@/components/page-header";
+import BlogGrid from "@/components/blog/blog-grid";
+import BlogCategories from "@/components/blog/blog-categories";
+import CTASection from "@/components/home/cta-section";
 
 export const metadata: Metadata = generateMetadata(
   "Blog - Branding and Marketing Insights",
   "Discover branding and marketing insights, industry trends, and client success stories from Elegance Inspired Limited.",
   "/images/blog-og.jpg",
-  ["branding blog", "marketing insights", "branding tips", "industry trends", "branding success stories"],
-)
+  [
+    "branding blog",
+    "marketing insights",
+    "branding tips",
+    "industry trends",
+    "branding success stories",
+  ]
+);
 
 export default function BlogPage() {
   return (
@@ -24,8 +30,8 @@ export default function BlogPage() {
       />
       <BlogCategories />
       <BlogGrid />
-      <CTASection/>
+      <CTASection />
       <Footer />
     </main>
-  )
+  );
 }

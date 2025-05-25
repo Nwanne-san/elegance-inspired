@@ -38,7 +38,7 @@ export default function OptimizedImage({
   return (
     <div
       className={cn(
-        "relative overflow-hidden",
+        "relative overflow-hidden flex items-center",
         aspectRatio,
         containerClassName
       )}

@@ -52,7 +52,7 @@ const brandingServices = [
   },
 ];
 
-export default function CreativeBranding() {
+export default function CorporateBranding() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function CreativeBranding() {
 
   return (
     <section
-      id="creative-branding"
+      id="corporate-branding"
       className="py-16 md:py-24 bg-muted scroll-mt-20"
     >
       <div className="container mx-auto px-4">
@@ -97,7 +97,7 @@ export default function CreativeBranding() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Creative Branding
+              Corporate Branding
             </h2>
             <div className="space-y-4">
               <p>

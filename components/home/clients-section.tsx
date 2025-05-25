@@ -115,7 +115,7 @@ export default function ClientsSection() {
         <div className="mb-20 overflow-hidden">
           <div className="logo-marquee-container">
             <div
-              className="logo-marquee"
+              className="logo-marquee  items-center justify-center"
               onMouseEnter={() =>
                 document
                   .querySelectorAll(".logo-marquee")
@@ -129,14 +129,14 @@ export default function ClientsSection() {
             >
               {/* First set of logos */}
               {clients.map((logo, index) => (
-                <div key={`first-${index}`} className="logo-item">
-                  <div className="bg-white p-2 rounded-2xl flex items-center justify-center h-24 w-[180px]">
+                <div key={`first-${index}`} className="logo-item flex items-center justify-center">
+                  <div className="bg-white p-2 rounded-2xl flex items-center justify-center h- w-[180px]">
                     <OptimizedImage
                       src={logo || "/placeholder.svg"}
                       alt={`Client ${index + 1}`}
                       width={140}
                       height={70}
-                      className="h-16 w-auto object-contain  hover:-0 transition-all duration-300"
+                      className="h- w-auto object-contain object-center flex items-center hover:-0 transition-all duration-300"
                     />
                   </div>
                 </div>
@@ -152,7 +152,7 @@ export default function ClientsSection() {
                       alt={`Client ${index + 1}`}
                       width={140}
                       height={70}
-                      className="h-16 w-auto object-contain  hover:-0 transition-all duration-300"
+                      className="h-16 w-auto object-contain transition-all duration-300"
                     />
                   </div>
                 </div>

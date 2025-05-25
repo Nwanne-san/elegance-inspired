@@ -1,11 +1,19 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Instagram, FileText, Search, MousePointer, Mail, Globe, Users } from "lucide-react"
-import { useEffect, useState } from "react"
-import { Carousel, CarouselSlideResponsive } from "@/components/ui/carousel"
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Instagram,
+  FileText,
+  Search,
+  MousePointer,
+  Mail,
+  Globe,
+  Users,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Carousel, CarouselSlideResponsive } from "@/components/ui/carousel";
 
 const marketingServices = [
   {
@@ -22,7 +30,8 @@ const marketingServices = [
   },
   {
     title: "Search Engine Optimization [SEO]",
-    description: "We provide Search Engine Optimization to improve website organic rankings.",
+    description:
+      "We provide Search Engine Optimization to improve website organic rankings.",
     icon: <Search className="h-10 w-10 text-primary" />,
   },
   {
@@ -33,38 +42,44 @@ const marketingServices = [
   },
   {
     title: "Email Marketing",
-    description: "We provide effective email marketing campaigns by sending targeted newsletters.",
+    description:
+      "We provide effective email marketing campaigns by sending targeted newsletters.",
     icon: <Mail className="h-10 w-10 text-primary" />,
   },
   {
     title: "Website/App Development",
-    description: "We develop and design responsive websites and mobile applications to effectively represent brands.",
+    description:
+      "We develop and design responsive websites and mobile applications to effectively represent brands.",
     icon: <Globe className="h-10 w-10 text-primary" />,
   },
   {
     title: "Influencer Marketing",
-    description: "We leverage on the power of influencer marketing to help businesses achieve their marketing goal.",
+    description:
+      "We leverage on the power of influencer marketing to help businesses achieve their marketing goal.",
     icon: <Users className="h-10 w-10 text-primary" />,
   },
-]
+];
 
-export default function DigitalTransformation() {
-  const [isMobile, setIsMobile] = useState(false)
+export default function DigitalMarketing() {
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
+      setIsMobile(window.innerWidth < 768);
+    };
 
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
 
     return () => {
-      window.removeEventListener("resize", checkMobile)
-    }
-  }, [])
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
 
-  const renderServiceCard = (service: (typeof marketingServices)[0], index: number) => (
+  const renderServiceCard = (
+    service: (typeof marketingServices)[0],
+    index: number
+  ) => (
     <Card className="h-full border-border/50 hover:shadow-md transition-shadow duration-300">
       <CardHeader>
         <div className="mb-4">{service.icon}</div>
@@ -74,10 +89,13 @@ export default function DigitalTransformation() {
         <p className="text-muted-foreground">{service.description}</p>
       </CardContent>
     </Card>
-  )
+  );
 
   return (
-    <section id="digital-transformation" className="py-16 md:py-24 bg-muted scroll-mt-20">
+    <section
+      id="digital-marketing"
+      className="py-16 md:py-24 bg-muted scroll-mt-20"
+    >
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -86,16 +104,22 @@ export default function DigitalTransformation() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Digital Transformation</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Digital Marketing
+            </h2>
             <div className="space-y-4">
-              <p>We develop marketing strategies and campaigns to promote products or services.</p>
               <p>
-                This involves market research, identifying target audiences, creating marketing plans, and executing
-                campaigns across different channels.
+                We develop marketing strategies and campaigns to promote
+                products or services.
               </p>
               <p>
-                We'll help you understand your competitive marketplace and identify strategic opportunities for your
-                marketing efforts.
+                This involves market research, identifying target audiences,
+                creating marketing plans, and executing campaigns across
+                different channels.
+              </p>
+              <p>
+                We'll help you understand your competitive marketplace and
+                identify strategic opportunities for your marketing efforts.
               </p>
             </div>
           </motion.div>
@@ -154,5 +178,5 @@ export default function DigitalTransformation() {
         </div>
       </div>
     </section>
-  )
+  );
 }

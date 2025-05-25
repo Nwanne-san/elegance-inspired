@@ -19,11 +19,11 @@ import ServicesLightbulb from "./services-lightbulb";
 const services = [
   {
     icon: <Brush className="h-10 w-10 text-primary" />,
-    title: "Creative Branding",
+    title: "Corporate Branding",
     description:
       "We develop key messages & define a brand's purpose, values, and target audience.",
     number: "01",
-    href: "/services#creative-branding",
+    href: "/services#corporate-branding",
   },
   {
     icon: <TrendingUp className="h-10 w-10 text-primary" />,
@@ -35,19 +35,19 @@ const services = [
   },
   {
     icon: <Globe className="h-10 w-10 text-primary" />,
-    title: "Digital Transformation",
+    title: "Digital Marketing",
     description:
       "We develop marketing strategies and campaigns to promote products or services across different channels.",
     number: "03",
-    href: "/services#digital-transformation",
+    href: "/services#digital-marketing",
   },
   {
     icon: <Printer className="h-10 w-10 text-primary" />,
-    title: "Quality Printing",
+    title: "Premium Printing",
     description:
       "We offer high-quality printing options to ensure that the printed materials effectively represent the client's brand.",
     number: "04",
-    href: "/services#quality-printing",
+    href: "/services#premium-printing",
   },
   {
     icon: <Users className="h-10 w-10 text-primary" />,
@@ -116,7 +116,7 @@ export default function ServicesHighlight() {
           variant="link"
           className="p-0 text-primary hover:text-primary/80"
         >
-          <Link href={service.href}>Learn More</Link>
+          <a href={service.href}>Learn More</a>
         </Button>
       </CardFooter>
     </Card>

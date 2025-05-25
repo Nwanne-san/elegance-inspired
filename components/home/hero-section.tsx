@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { RequestCallbackModal } from "@/components/request-callback-modal";
 import OptimizedImage from "../optimized-image";
+import Image from "next/image";
 
 export default function HeroSection() {
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -48,22 +49,26 @@ export default function HeroSection() {
   return (
     <>
       <section className="relative h-[90vh] flex items-center justify-center bg-gradient-to-b from-background to-muted pt-20 overflow-hidden">
-        {/* Video Background */}
-        <div className="absolute inset-0 w-full h-full  z-0">
-          <div className="absolute inset-0 bg-black opacity-60 backdrop-blur-[0.5px] z-10"></div>
+        <div className="absolute inset-0 w-full h-full z-0">
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black opacity-60 backdrop-blur-[0.5px] z-10" />
+
+          {/* Desktop Image */}
           <OptimizedImage
-            src="/DSCF6162.jpg"
+            src="/hero-bg.jpeg"
             alt="Elegance Inspired Team"
-            width={600}
-            height={600}
-            className="sm:block hidden rounded-lg shadow-xl object-cover object-center w-full  xl:h-auto h-full"
+            fill
+            priority
+            className="hidden sm:block object-cover object-center w-full h-full"
           />
-          <OptimizedImage
-            src="/DSCF6068 (1).jpg"
+
+          {/* Mobile Image */}
+          <Image
+            src="/hero-mobile.jpeg"
             alt="Elegance Inspired Team"
-            width={600}
-            height={600}
-            className="sm:hidden block rounded-lg shadow-xl object-center object-cover w"
+            fill
+            priority
+            className="block sm:hidden object-cover object-center w-full h-full"
           />
         </div>
 

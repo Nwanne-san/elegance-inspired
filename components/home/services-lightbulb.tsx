@@ -17,24 +17,24 @@ interface ServiceItem {
 
 const services: ServiceItem[] = [
   {
-    title: "Creative Branding",
+    title: "Corporate Branding",
     description:
       "Develop key messages & define a brand's purpose, values, and target audience",
-    href: "/services#creative-branding",
+    href: "/services#corporate-branding",
     position: "top-[25%] left-0",
   },
   {
-    title: "Digital Transformation",
+    title: "Digital Marketing",
     description:
       "Develop marketing strategies and campaigns across different channels",
-    href: "/services#digital-transformation",
+    href: "/services#digital-marketing",
     position: "top-[25%] right-0",
   },
   {
-    title: "Quality Printing",
+    title: "Premium Printing",
     description:
       "High-quality printing options to effectively represent your brand",
-    href: "/services#quality-printing",
+    href: "/services#premium-printing",
     position: "bottom-[25%] left-0",
   },
   {
@@ -252,10 +252,10 @@ export default function LightbulbServices() {
                   : lineVariants
               }
               custom={index}
-              className={getLineStyle(service.position).backgroundColor}  
+              className={getLineStyle(service.position).backgroundColor}
             />
 
-            <Link
+            <a
               href={service.href}
               className="hover:text-secondary transition-colors"
             >
@@ -263,7 +263,7 @@ export default function LightbulbServices() {
               <p className="text-sm text-muted-foreground hidden md:block">
                 {service.description}
               </p>
-            </Link>
+            </a>
           </motion.div>
         ))}
       </div>
