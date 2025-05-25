@@ -111,11 +111,11 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex flex-row gap-4 justify-center items-center sm:items-start md:motion-safe:animate-fade-in"
+              className="flex flex-row gap-4 justify-center px- sm:px-0 items-center sm:items-start md:motion-safe:animate-fade-in"
             >
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/60 hidden sm:flex w-fit duration-200 text-white rounded-full"
+                className="bg-primary hover:bg-primary/60 hidden sm:flex w-fit duration-200 text-white  sm:rounded-full"
                 onClick={() => setCallbackModalOpen(true)}
               >
                 <Link href={"/contact"}>Elevate your Brand</Link>
@@ -124,14 +124,14 @@ export default function HeroSection() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="rounded-full bg-secondary text-xs sm:text-base hover:bg-secondary/60 w-fit duration-300 text-white border-secondary"
+                className="rounded-br-3xl sm:rounded-full bg-secondary text-xs sm:text-base max-sm:px-5 hover:bg-secondary/60 w-fit duration-300 text-white border-secondary"
                 navigate={true}
               >
                 <Link href="/packages">Explore Our Packages</Link>
               </Button>
               <Button
                 size="lg"
-                className="bg-black hover:bg-black/60 w-fit text-xs sm:text-base duration-200 text-white rounded-full"
+                className="bg-black hover:bg-black/60 w-fit text-xs sm:text-base duration-200 text-white max-sm:px-5 rounded-tl-3xl sm:rounded-full"
                 onClick={() => setCallbackModalOpen(true)}
               >
                 Request a Call Back

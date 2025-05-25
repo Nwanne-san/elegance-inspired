@@ -204,7 +204,7 @@ export default function LightbulbServices() {
   return (
     <div
       ref={ref}
-      className="relative w-full mx-auto py-16 px-4"
+      className="relative w-full mx-auto pt-16 sm:py-16 px-4"
       style={{ minHeight: "600px" }}
     >
       <div className="max-w-4xl mx-auto relative">

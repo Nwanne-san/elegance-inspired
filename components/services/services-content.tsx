@@ -33,6 +33,7 @@ export default function ServicesContent() {
       <Navbar />
       <PageHeader
         title="Our Services"
+        className="!pb-6"
         description="Explore our comprehensive range of services designed to elevate your brand."
       />
       <ServicesIntro />
