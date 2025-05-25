@@ -57,7 +57,7 @@ export default function AboutSection() {
 
             <div className="flex sm:grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
-                <div className="text-4xl font-bold mb-1">3+</div>
+                <div className="text-4xl font-bold mb-1">4+</div>
                 <div className="text-sm">Years of Experience</div>
               </div>
               <div className="text-center">
@@ -65,14 +65,14 @@ export default function AboutSection() {
                 <div className="text-sm">Satisfied Clients</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold mb-1">20+</div>
+                <div className="text-4xl font-bold mb-1">30+</div>
                 <div className="text-sm">Industries Served</div>
               </div>
             </div>
             <Button
               asChild
               size="lg"
-              className="bg-[#FF6600] hover:bg-[#FF6600]/90 text-white rounded-full"
+              className="bg-[#FF6600] hover:bg-[#FF6600]/90 text-white rounded-tl-3xl -full"
             >
               <Link href="/about">Get to Know More About Us</Link>
             </Button>

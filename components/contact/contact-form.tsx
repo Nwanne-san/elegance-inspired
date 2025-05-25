@@ -31,10 +31,10 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const services = [
-    "Creative Branding",
+    "Corporate Branding",
     "Strategic Advertising",
-    "Digital Transformation",
-    "Quality Printing",
+    "Digital Marketing",
+    "Premium Printing",
     "HR Consulting",
   ];
 

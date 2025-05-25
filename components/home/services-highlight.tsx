@@ -95,7 +95,7 @@ export default function ServicesHighlight() {
   };
 
   const renderServiceCard = (service: (typeof services)[0], index: number) => (
-    <Card className="h-full bg-transparent relative text-center rounded-xl shadow-md p-6 flex flex-col items-start sm:items-center gap-4 transition-shadow duration-300 hover:shadow-lg max-w-[340px] sm:max-w-[300px]">
+    <Card className="h-full bg-transparent relative text-center rounded-xl sm:hover:-mt-4  shadow-md p-6 flex flex-col items-start sm:items-center gap-4 transition-all duration-300 hover:shadow-lg max-w-[340px] sm:max-w-[300px]">
       <div className="bg-primary absolute -top-[20%] left-[15%] rounded-full p-5 flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
         {service.icon}
       </div>
@@ -137,17 +137,12 @@ export default function ServicesHighlight() {
           </motion.p>
         </div>
 
-        {/* Animated Lightbulb Section */}
-        <div className="mb-16">
-          <ServicesLightbulb />
-        </div>
-
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-col sm:flow-row items-center gap-12 sm:gap-8"
+          className="flex flex-col sm:flex-row items-center gap-12 sm:gap-8"
         >
           {services.slice(0, 4).map((service, index) => (
             <motion.div key={index} variants={itemVariants}>

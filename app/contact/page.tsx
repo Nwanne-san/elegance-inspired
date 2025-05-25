@@ -31,7 +31,7 @@ export default function ContactPage() {
       />
       <div className="flex items-center justify-center w-full px-4">
         <OptimizedImage
-          src="/DSCF6099.jpg"
+          src="/hero-desktop.jpeg"
           alt="Elegance Inspired Team"
           width={800}
           height={600}

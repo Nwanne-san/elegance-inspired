@@ -57,7 +57,7 @@ export default function CTASection() {
           >
             <Button
               size="lg"
-              className="bg-black hover:bg-black/60 sm:w-fit w-full duration-200 text-white rounded-full"
+              className="bg-black hover:bg-black/60 sm:w-fit w-full duration-200 text-white rounded-br-3xl sm:rounded-full"
               onClick={() => setCallbackModalOpen(true)}
             >
               Request a Call Back
@@ -65,7 +65,7 @@ export default function CTASection() {
             <Button
               asChild
               size="lg"
-              className="bg-[#FF6600] hover:bg-[#FF6600]/90 sm:w-fit w-full text-white rounded-full"
+              className=" sm:flex hidden bg-[#FF6600] hover:bg-[#FF6600]/90 sm:w-fit w-full text-white rounded-full"
             >
               <Link href="/contact">Contact Us</Link>
             </Button>
@@ -73,7 +73,7 @@ export default function CTASection() {
               asChild
               variant="outline"
               size="lg"
-              className="bg-transparent border-white text-white sm:w-fit w-full hover:bg-white/10 rounded-full"
+              className="bg-transparent border-white text-white sm:w-fit w-full hover:bg-white/10 rounded-tl-3xl sm:rounded-full"
             >
               <Link href="/packages" className="flex items-center">
                 Explore Packages

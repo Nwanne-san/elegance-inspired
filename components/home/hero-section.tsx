@@ -68,7 +68,7 @@ export default function HeroSection() {
             alt="Elegance Inspired Team"
             fill
             priority
-            className="block sm:hidden object-cover object-contain w-full h-full"
+            className="block sm:hidden object-cover object-center w-full h-full"
           />
         </div>
 
@@ -115,7 +115,7 @@ export default function HeroSection() {
             >
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/60 hidden sm:flex w-fit duration-200 text-white  sm:rounded-full"
+                className="bg-primary hover:bg-primary/60 hidden sm:flex w-fit duration-200 text-white  "
                 onClick={() => setCallbackModalOpen(true)}
               >
                 <Link href={"/contact"}>Elevate your Brand</Link>
@@ -124,14 +124,14 @@ export default function HeroSection() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="rounded-br-3xl sm:rounded-full bg-secondary text-xs sm:text-base max-sm:px-5 hover:bg-secondary/60 w-fit duration-300 text-white border-secondary"
+                className="rounded-br-3xl  bg-secondary text-xs sm:text-base max-sm:px-5 hover:bg-secondary/60 w-fit duration-300 text-white border-secondary"
                 navigate={true}
               >
                 <Link href="/packages">Explore Our Packages</Link>
               </Button>
               <Button
                 size="lg"
-                className="sm:bg-black bg-primary hover:bg-black/60 w-fit text-xs sm:text-base duration-200 text-white max-sm:px-5 rounded-tl-3xl sm:rounded-full"
+                className="sm:bg-black bg-primary hover:bg-black/60 w-fit text-xs sm:text-base duration-200 text-white max-sm:px-5 rounded-tl-3xl "
                 onClick={() => setCallbackModalOpen(true)}
               >
                 Request a Call Back

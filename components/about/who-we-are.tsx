@@ -20,7 +20,7 @@ export default function WhoWeAre() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Who We Are</h2>
-            <div className="space-y-4 text-justify">
+            <div className="space-y-4 text-justif">
               <p>
                 Elegance Inspired is a leading corporate branding agency
                 dedicated to helping businesses achieve their full potential in
@@ -50,17 +50,17 @@ export default function WhoWeAre() {
                 inspire the world together.
               </p>
             </div>
-            <div className="mt-8 flex sm:flex-row flex-col items-center gap-6">
+            <div className="mt-8 flex items-center gap-6 w-full">
               <Button
                 asChild
-                className="bg-primary hover:bg-primary/90 rounded-full"
+                className="bg-primary hover:bg-primary/90 rounded-br-3xl sm:rounded-full"
               >
                 <Link href="/contact">Get in Touch</Link>
               </Button>
               <a
                 href="/Elegance Inspired Ltd Brochure.pdf"
                 download
-                className="bg-secondary text-black dark:text-white hover:bg-secondary/90 rounded-full px-6 py-2 text-sm font-medium transition-colors"
+                className="bg-secondary text-black dark:text-white hover:bg-secondary/90 rounded-tl-3xl sm:rounded-full px-6 py-2 text-sm font-medium transition-colors"
               >
                 Download Brochure
               </a>
@@ -81,21 +81,21 @@ export default function WhoWeAre() {
               height={500}
               className="rounded-lg shadow-xl object-cover md:-mt-16"
             />
-            <div className="absolute -bottom-6 lg:-bottom-12  -left-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div className="absolute -bottom-6 lg:-bottom-12  -left-8 bg-white dark:bg-gray-800 p-3 sm:p-6 rounded-lg shadow-lg">
               <div className="grid grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-4xl font-bold text-primary mb-1">3+</div>
-                  <div className="text-sm">Years of Experience</div>
+                  <div className="text-2xl sm:text-4xl font-bold text-primary mb-1">4+</div>
+                  <div className="text-xs sm:text-sm">Years of Experience</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-primary mb-1">
+                  <div className="text-2xl sm:text-4xl font-bold text-primary mb-1">
                     100+
                   </div>
-                  <div className="text-sm">Satisfied Clients</div>
+                  <div className="text-xs sm:text-sm">Satisfied Clients</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-primary mb-1">5+</div>
-                  <div className="text-sm">Industries Served</div>
+                  <div className="text-2xl sm:text-4xl font-bold text-primary mb-1">30+</div>
+                  <div className="text-xs sm:text-sm">Industries Served</div>
                 </div>
               </div>
             </div>

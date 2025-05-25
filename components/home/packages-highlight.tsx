@@ -19,7 +19,7 @@ const packages = [
     description:
       "Perfect for businesses looking to establish or refresh their brand identity.",
     features: ["Essential Branding", "Elevated Branding", "Exquisite Branding"],
-    cta: "Get Started",
+    cta: "Choose Package",
     href: "/packages#branding",
   },
   {
@@ -31,7 +31,7 @@ const packages = [
       "Marketing Momentum",
       "Marketing Mastery",
     ],
-    cta: "Get Started",
+    cta: "Choose Package",
     href: "/packages#marketing",
     featured: true,
   },
@@ -40,7 +40,7 @@ const packages = [
     description:
       "For businesses looking to maximize their visibility and reach potential customers.",
     features: ["Targeted Reach", "Amplified", "Max Exposure"],
-    cta: "Get Started",
+    cta: "Choose Package",
     href: "/packages#advertising",
   },
 ];
@@ -108,7 +108,7 @@ export default function PackagesHighlight() {
                 }`}
               >
                 {pkg.featured && (
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-secondary text-white text-xs font-bold px-4 py-1 rounded-full">
                     Popular Choice
                   </div>
                 )}
@@ -147,7 +147,7 @@ export default function PackagesHighlight() {
           <Button
             asChild
             size="lg"
-            className="bg-primary hover:bg-primary/90 rounded-full"
+            className="bg-secondary hover:bg-secondary/90 rounded-br-3xl"
           >
             <Link href="/packages">View All Packages</Link>
           </Button>
