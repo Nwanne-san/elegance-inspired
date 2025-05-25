@@ -15,7 +15,7 @@ import Link from "next/link";
 
 const packages = [
   {
-    title: "Branding Package",
+    title: "Branding Packages",
     description:
       "Perfect for businesses looking to establish or refresh their brand identity.",
     features: ["Essential Branding", "Elevated Branding", "Exquisite Branding"],
@@ -23,7 +23,7 @@ const packages = [
     href: "/packages#branding",
   },
   {
-    title: "Marketing Package",
+    title: "Marketing Packages",
     description:
       "Ideal for businesses ready to promote their brand and reach their target audience.",
     features: [
@@ -36,7 +36,7 @@ const packages = [
     featured: true,
   },
   {
-    title: "Advertising Package",
+    title: "Advertising Packages",
     description:
       "For businesses looking to maximize their visibility and reach potential customers.",
     features: ["Targeted Reach", "Amplified", "Max Exposure"],
@@ -123,7 +123,7 @@ export default function PackagesHighlight() {
                     {pkg.features.map((feature, i) => (
                       <li key={i} className="flex items-start">
                         <Check className="h-5 w-5 text-primary shrink-0 mr-2" />
-                        <span>{feature}</span>
+                        <span className="mr-1">{feature} Package</span>
                       </li>
                     ))}
                   </ul>

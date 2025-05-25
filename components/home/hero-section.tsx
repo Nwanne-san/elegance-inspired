@@ -48,7 +48,7 @@ export default function HeroSection() {
 
   return (
     <>
-      <section className="relative h-[90vh] flex items-center justify-center bg-gradient-to-b from-background to-muted pt-20 overflow-hidden">
+      <section className="relative h-[65vh] sm:h-[85vh] flex items-center justify-center bg-gradient-to-b from-background to-muted pt-20 overflow-hidden">
         <div className="absolute inset-0 w-full h-full z-0">
           {/* Overlay */}
           <div className="absolute inset-0 bg-black opacity-60 backdrop-blur-[0.5px] z-10" />
@@ -64,11 +64,11 @@ export default function HeroSection() {
 
           {/* Mobile Image */}
           <Image
-            src="/hero-mobile.jpeg"
+            src="/hero-mob.jpeg"
             alt="Elegance Inspired Team"
             fill
             priority
-            className="block sm:hidden object-cover object-center w-full h-full"
+            className="block sm:hidden object-cover object-contain w-full h-full"
           />
         </div>
 
@@ -80,7 +80,7 @@ export default function HeroSection() {
               transition={{ duration: 0.6 }}
               className="mb-6 md:motion-safe:animate-fade-in"
             >
-              <span className="inline-block px-4 py-1.5 bg-primary/10 text-secondary rounded-full text-base font-medium backdrop-blur-sm">
+              <span className="inline-block px-4 py-1.5 bg-primary/10 text-secondary rounded-full text-sm sm:text-base font-medium backdrop-blur-sm">
                 Welcome to Elegance Inspired Limited
               </span>
             </motion.div>
@@ -98,12 +98,12 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto sm:backdrop-blur-sm sm:bg-black/10 sm:p-4 rounded-lg md:motion-safe:animate-fade-in"
+              className="text-sm sm:text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto sm:backdrop-blur-sm sm:bg-black/10 sm:p-4 rounded-lg md:motion-safe:animate-fade-in"
             >
               We are passionate about helping businesses{" "}
-              <span className="font-bold text-xl text-secondary">elevate</span>{" "}
+              <span className="font-bold text-sm sm:text-xl text-secondary">elevate</span>{" "}
               their{" "}
-              <span className="font-bold text-xl text-secondary">brands</span>,
+              <span className="font-bold text-sm sm:text-xl text-secondary mr-1">brands</span> 
               connect with their customers, and achieve their desired outcomes.
             </motion.p>
 
@@ -131,7 +131,7 @@ export default function HeroSection() {
               </Button>
               <Button
                 size="lg"
-                className="bg-black hover:bg-black/60 w-fit text-xs sm:text-base duration-200 text-white max-sm:px-5 rounded-tl-3xl sm:rounded-full"
+                className="sm:bg-black bg-primary hover:bg-black/60 w-fit text-xs sm:text-base duration-200 text-white max-sm:px-5 rounded-tl-3xl sm:rounded-full"
                 onClick={() => setCallbackModalOpen(true)}
               >
                 Request a Call Back

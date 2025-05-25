@@ -18,7 +18,7 @@ import ServicesLightbulb from "./services-lightbulb";
 
 const services = [
   {
-    icon: <Brush className="h-10 w-10 text-primary" />,
+    icon: <Brush className="h-10 w-10 text-white" />,
     title: "Corporate Branding",
     description:
       "We develop key messages & define a brand's purpose, values, and target audience.",
@@ -26,7 +26,7 @@ const services = [
     href: "/services#corporate-branding",
   },
   {
-    icon: <TrendingUp className="h-10 w-10 text-primary" />,
+    icon: <TrendingUp className="h-10 w-10 text-white" />,
     title: "Strategic Advertising",
     description:
       "We provide advert design, media planning, and placement to maximize the impact of advertising efforts.",
@@ -34,7 +34,7 @@ const services = [
     href: "/services#strategic-advertising",
   },
   {
-    icon: <Globe className="h-10 w-10 text-primary" />,
+    icon: <Globe className="h-10 w-10 text-white" />,
     title: "Digital Marketing",
     description:
       "We develop marketing strategies and campaigns to promote products or services across different channels.",
@@ -42,7 +42,7 @@ const services = [
     href: "/services#digital-marketing",
   },
   {
-    icon: <Printer className="h-10 w-10 text-primary" />,
+    icon: <Printer className="h-10 w-10 text-white" />,
     title: "Premium Printing",
     description:
       "We offer high-quality printing options to ensure that the printed materials effectively represent the client's brand.",
@@ -50,7 +50,7 @@ const services = [
     href: "/services#premium-printing",
   },
   {
-    icon: <Users className="h-10 w-10 text-primary" />,
+    icon: <Users className="h-10 w-10 text-white" />,
     title: "HR Consulting",
     description:
       "We offer customizable HR solutions to support businesses at every stage, from startups to established enterprises.",
@@ -95,30 +95,20 @@ export default function ServicesHighlight() {
   };
 
   const renderServiceCard = (service: (typeof services)[0], index: number) => (
-    <Card className="h-full bg-card hover:shadow-lg transition-shadow duration-300 border border-border/50 overflow-hidden group">
-      <CardHeader className="relative">
-        <span className="absolute top-4 right-4 text-4xl font-bold text-muted-foreground/10 group-hover:text-secondary/70 transition-colors duration-300">
-          {service.number}
-        </span>
-        <div className="mb-2">{service.icon}</div>
-        <CardTitle className="text-xl group-hover:text-secondary/70 duration-300 font-bold">
+    <Card className="h-full bg-transparent relative text-center rounded-xl shadow-md p-6 flex flex-col items-start sm:items-center gap-4 transition-shadow duration-300 hover:shadow-lg max-w-[340px] sm:max-w-[300px]">
+      <div className="bg-primary absolute -top-[20%] left-[15%] rounded-full p-5 flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
+        {service.icon}
+      </div>
+      <CardHeader className="pt-5 sm:pt-8 pb-0 px-0">
+        <CardTitle className="text-xl font-extrabold leading-tight">
           {service.title}
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <CardDescription className="text-muted-foreground">
+      <CardContent className="p-0 text-start sm:text-center ">
+        <CardDescription className="text-muted-foreground text-sm">
           {service.description}
         </CardDescription>
       </CardContent>
-      <CardFooter>
-        <Button
-          asChild
-          variant="link"
-          className="p-0 text-primary hover:text-primary/80"
-        >
-          <a href={service.href}>Learn More</a>
-        </Button>
-      </CardFooter>
     </Card>
   );
 
@@ -152,29 +142,19 @@ export default function ServicesHighlight() {
           <ServicesLightbulb />
         </div>
 
-        {isMobile ? (
-          <Carousel className="mb-8">
-            {services.map((service, index) => (
-              <CarouselSlideResponsive key={index} className="px-2">
-                {renderServiceCard(service, index)}
-              </CarouselSlideResponsive>
-            ))}
-          </Carousel>
-        ) : (
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {services.map((service, index) => (
-              <motion.div key={index} variants={itemVariants}>
-                {renderServiceCard(service, index)}
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="flex flex-col sm:flow-row items-center gap-12 sm:gap-8"
+        >
+          {services.slice(0, 4).map((service, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              {renderServiceCard(service, index)}
+            </motion.div>
+          ))}
+        </motion.div>
 
         <div className="mt-12 text-center">
           <Button

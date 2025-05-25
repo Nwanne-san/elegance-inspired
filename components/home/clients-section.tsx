@@ -7,6 +7,7 @@ import { Star } from "lucide-react";
 import { clients, testimonials } from "@/data";
 import { useEffect, useState, useCallback, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
 
 export default function ClientsSection() {
   const [isMobile, setIsMobile] = useState(false);
@@ -136,7 +137,7 @@ export default function ClientsSection() {
                       alt={`Client ${index + 1}`}
                       width={140}
                       height={70}
-                      className="h- w-auto object-contain object-center flex items-center hover:-0 transition-all duration-300"
+                      className="h- w-auto object-contain object-center p-2 flex items-center hover:-0 transition-all duration-300"
                     />
                   </div>
                 </div>
@@ -193,7 +194,7 @@ export default function ClientsSection() {
                         "{testimonial.text}"
                       </p>
                       <div className="flex items-center">
-                        <OptimizedImage
+                        <Image
                           src={testimonial.image || "/placeholder.svg"}
                           alt={testimonial.name}
                           width={50}
