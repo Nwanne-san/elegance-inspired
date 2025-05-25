@@ -47,23 +47,23 @@ export default function HeroSection() {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-muted pt-20 overflow-hidden">
+      <section className="relative h-[90vh] flex items-center justify-center bg-gradient-to-b from-background to-muted pt-20 overflow-hidden">
         {/* Video Background */}
-        <div className="absolute inset-0 w-full h-full z-0">
-          <div className="absolute inset-0 bg-primary/65 backdrop-blur-[0.5px] z-10"></div>
+        <div className="absolute inset-0 w-full h-full  z-0">
+          <div className="absolute inset-0 bg-black opacity-60 backdrop-blur-[0.5px] z-10"></div>
           <OptimizedImage
             src="/DSCF6162.jpg"
             alt="Elegance Inspired Team"
             width={600}
             height={600}
-            className="sm:block hidden rounded-lg shadow-xl object-cover w-full  xl:h-auto h-full"
+            className="sm:block hidden rounded-lg shadow-xl object-cover object-center w-full  xl:h-auto h-full"
           />
           <OptimizedImage
             src="/DSCF6068 (1).jpg"
             alt="Elegance Inspired Team"
             width={600}
             height={600}
-            className="sm:hidden block rounded-lg shadow-xl object-center object-cover w-auto  h-full"
+            className="sm:hidden block rounded-lg shadow-xl object-center object-cover w"
           />
         </div>
 
@@ -106,11 +106,11 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center sm:items-start md:motion-safe:animate-fade-in"
+              className="flex flex-row gap-4 justify-center items-center sm:items-start md:motion-safe:animate-fade-in"
             >
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/60 w-fit duration-200 text-white rounded-full"
+                className="bg-primary hover:bg-primary/60 hidden sm:flex w-fit duration-200 text-white rounded-full"
                 onClick={() => setCallbackModalOpen(true)}
               >
                 <Link href={"/contact"}>Elevate your Brand</Link>
@@ -119,14 +119,14 @@ export default function HeroSection() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="rounded-full bg-secondary hover:bg-secondary/60 w-fit duration-300 text-white border-secondary"
+                className="rounded-full bg-secondary text-xs sm:text-base hover:bg-secondary/60 w-fit duration-300 text-white border-secondary"
                 navigate={true}
               >
                 <Link href="/packages">Explore Our Packages</Link>
               </Button>
               <Button
                 size="lg"
-                className="bg-black hover:bg-black/60 w-fit duration-200 text-white rounded-full"
+                className="bg-black hover:bg-black/60 w-fit text-xs sm:text-base duration-200 text-white rounded-full"
                 onClick={() => setCallbackModalOpen(true)}
               >
                 Request a Call Back
