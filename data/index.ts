@@ -318,3 +318,30 @@ export const portfolioData: PortfolioItem[] = [
     tags: ["App Development", "Customer Loyalty"],
   },
 ];
+
+export const accordionData = [
+  {
+    id: "high-impact",
+    title: "High-impact projects",
+    content:
+      "We deliver transformative projects that create lasting impact for your brand. Our strategic approach ensures every project drives meaningful results and measurable growth for your business.",
+  },
+  {
+    id: "extensive-experience",
+    title: "Extensive Experience",
+    content:
+      "With years of experience across diverse industries, we bring deep expertise and proven methodologies to every project. Our team has successfully delivered solutions for businesses of all sizes.",
+  },
+  {
+    id: "experienced-team",
+    title: "Widely Experienced Team",
+    content:
+      "Our multidisciplinary team combines creative excellence with technical expertise. Each team member brings specialized skills and industry knowledge to deliver exceptional results.",
+  },
+  {
+    id: "practical-approach",
+    title: "Practical Learning Experience",
+    content:
+      "We believe in hands-on, practical solutions that work in the real world. Our approach combines industry best practices with innovative thinking to solve complex business challenges.",
+  },
+];

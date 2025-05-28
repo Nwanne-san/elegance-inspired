@@ -231,7 +231,7 @@ export function RequestCallbackModal({
               </form>
               <p className="dark:text-white/70 text-primary  text-center mt-3">
                 {" "}
-                Our team will reach out to you within 24hrs
+                Our team will reach out to you within 24hrs
               </p>
             </div>
           </motion.div>

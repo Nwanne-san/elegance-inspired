@@ -10,6 +10,7 @@ import PortfolioHighlight from "@/components/home/portfolio-highlight";
 import BlogHighlight from "@/components/home/blog-highlight";
 import CTASection from "@/components/home/cta-section";
 import ScrollToTop from "@/components/scroll-to-top";
+import WhyChooseUs from "@/components/home/why-choose-us";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <ServicesHighlight />
       <AboutSection />
       <PackagesHighlight />
+      <WhyChooseUs />
       <TeamSection />
       <ClientsSection />
       <PortfolioHighlight />
