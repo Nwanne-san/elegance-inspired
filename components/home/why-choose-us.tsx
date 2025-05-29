@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { accordionData } from "@/data";
 
-
 export default function WhyChooseUs() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
 
@@ -16,14 +15,12 @@ export default function WhyChooseUs() {
   return (
     <section className="py-16 md:py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14">
-        <div className="grid grid-cols-1 lg:grid-cols-2  items-center">
-          {/* Left side - Image */}
+        <div className="flex sm:grid md:grid-cols-1 lg:grid-cols-2 px-2 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative md:-mr-10"
+            className="sm: relative md:-mr-10 z-[2]"
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
@@ -35,18 +32,15 @@ export default function WhyChooseUs() {
             </div>
           </motion.div>
 
-          {/* Right side - Content */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative md:-ml-10"
+            className="sm:relative md:-ml-10 absolute left-0 z-10 mx-4 sm:mx-0"
           >
-            {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-primary/90 to-primary/90 rounded-2xl transform rotate-1"></div>
             <div className="relative bg-gradient-tobr from-primary via-primary/95 to-secondary rounded-2xl p-8 md:p-10 text-white">
-              {/* Header */}
               <div className="mb-8">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -68,7 +62,7 @@ export default function WhyChooseUs() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="text-3xl md:text-4xl font-bold mb-4"
+                  className="text-2xl md:text-4xl font-bold mb-4"
                 >
                   What Sets Us Apart
                 </motion.h2>
@@ -77,14 +71,13 @@ export default function WhyChooseUs() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.5 }}
-                  className="text-white/90 text-lg"
+                  className="text-white/90 sm:text-lg"
                 >
                   We love what we do, and we do it with passion.
                 </motion.p>
               </div>
 
-              {/* Accordion */}
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {accordionData.map((item, index) => (
                   <motion.div
                     key={item.id}
@@ -96,7 +89,7 @@ export default function WhyChooseUs() {
                   >
                     <button
                       onClick={() => toggleAccordion(item.id)}
-                      className="w-full flex items-center justify-between py-4 text-left group hover:text-secondary transition-colors duration-300"
+                      className="w-full flex items-center justify-between py-2 sm:py-4 text-left group hover:text-secondary transition-colors duration-300"
                     >
                       <div className="flex items-center gap-4">
                         <motion.div
@@ -106,7 +99,7 @@ export default function WhyChooseUs() {
                             scale: openAccordion === item.id ? 1.1 : 1,
                           }}
                           transition={{ duration: 0.3 }}
-                          className="w-10 h-10 rounded-lg flex items-center justify-center"
+                          className="w-7 sm:w-10 h-7 sm:h-10 rounded-lg flex items-center justify-center"
                         >
                           <motion.div
                             animate={{
@@ -121,7 +114,7 @@ export default function WhyChooseUs() {
                             )}
                           </motion.div>
                         </motion.div>
-                        <span className="text-xl font-semibold">
+                        <span className="text-base sm:text-xl font-semibold">
                           {item.title}
                         </span>
                       </div>
@@ -143,7 +136,7 @@ export default function WhyChooseUs() {
                             transition={{ duration: 0.3 }}
                             className="pb-6 pl-14"
                           >
-                            <p className="text-white/90 leading-relaxed">
+                            <p className="text-white/90 text-sm sm:text-base leading-relaxed">
                               {item.content}
                             </p>
                           </motion.div>

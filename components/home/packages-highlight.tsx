@@ -66,7 +66,7 @@ export default function PackagesHighlight() {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-muted">
+    <section className="py-16 md:py-24 ">
       <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14">
         <div className="text-center mb-16">
           <motion.h2

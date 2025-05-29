@@ -7,26 +7,27 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Alphabets, AyencyFoods, EnivedAir, NecciConsult } from "@/public";
 
 const portfolioItems = [
   {
     title: "Brand Identity",
-    image: "/alphabets.jpg",
+    image: Alphabets,
     category: "Alphabets",
   },
   {
     title: "Event Branding",
-    image: "/necci-consult.jpg",
+    image: NecciConsult,
     category: "Necci Consulting",
   },
   {
     title: "Product Package Design",
-    image: "/ayency-foods.jpg",
+    image: AyencyFoods,
     category: "Ayency Foods & Beverages",
   },
   {
     title: "Social Media Designs",
-    image: "/enived-air.jpg",
+    image: EnivedAir,
     category: "Enived Air Logistics",
   },
 ];

@@ -106,7 +106,7 @@ export default function BlogHighlight() {
   }, [emblaApi]);
 
   return (
-    <section className="py-16 md:py-24 bg-muted">
+    <section className="py-16 md:py-24 bg-">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <motion.h2
@@ -152,7 +152,7 @@ export default function BlogHighlight() {
                         className="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
                       />
                     </div>
-                    <CardHeader>
+                    <CardHeader className="p-4">
                       <div className="flex items-center text-sm text-muted-foreground mb-2 space-x-4">
                         <div className="flex items-center">
                           <Calendar className="h-4 w-4 mr-1" />
@@ -167,10 +167,10 @@ export default function BlogHighlight() {
                         href={`/blog/${post.slug}`}
                         className="hover:text-primary transition-colors"
                       >
-                        <h3 className="text-xl font-bold mb-2">{post.title}</h3>
+                        <h3 className="text-xl font-bold mb-1">{post.title}</h3>
                       </Link>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-4 pt-0">
                       <p className="text-muted-foreground">{post.excerpt}</p>
                     </CardContent>
                     <CardFooter>
