@@ -2,7 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import "./nprogress.css"; // Make sure this import is here
+import "./nprogress.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NProgressProvider } from "@/components/nprogress-provider";
 import { AppProvider } from "@/components/app-provider";

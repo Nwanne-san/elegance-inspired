@@ -30,7 +30,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const openCallbackModal = () => setIsCallbackModalOpen(true);
   const closeCallbackModal = () => setIsCallbackModalOpen(false);
 
-
   const is24HoursPassed = (timestamp: string | null) => {
     if (!timestamp) return true;
     const now = Date.now();
@@ -43,7 +42,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const modalDismissedAt = localStorage.getItem("modalDismissedAt");
 
     if (formSubmitted || !is24HoursPassed(modalDismissedAt)) return;
-
 
     const initialTimer = setTimeout(() => {
       setIsCallbackModalOpen(true);
