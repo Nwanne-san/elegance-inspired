@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import { FaTiktok, FaWhatsapp } from "react-icons/fa6";
 import NewsletterForm from "@/components/newsletter-form";
 import { useTheme } from "next-themes";
@@ -48,7 +48,7 @@ export default function Footer() {
             </div>
             <div className="flex space-x-4">
               <Link
-                href="https://www.instagram.com/eleganceinspiredlimited?igsh=MXVpcjgya2xwd3J3bA%3D%3D&utm_source=qr"
+                href="https://www.instagram.com/the_eleganceinspiredlimited?igsh=MW5nd3dsenpmNjE3cA%3D%3D&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -94,6 +94,14 @@ export default function Footer() {
                 aria-label="WhatsApp"
               >
                 <FaWhatsapp className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
+              </Link>
+              <Link
+                href="https://youtube.com/@eleganceinspiredlimited?si=4MSE5UfOdUxUmk7C"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
+                <Youtube className="h-5 w-5 text-white/70 hover:text-[#FF6600] transition-colors" />
               </Link>
             </div>
           </div>
