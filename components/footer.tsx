@@ -212,7 +212,9 @@ export default function Footer() {
               Privacy Policy
             </Link>
             <Link
-              href="/terms-of-service"
+              href="/Terms_of_Service_Elegance-Inspired-Ltd.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-white/70 hover:text-[#FF6600] text-sm transition-colors"
             >
               Terms of Service

@@ -31,7 +31,7 @@ export default function NavbarClient() {
   }, []);
 
   const logoSrc =
-    theme === "dark" ? "/Elegance logo white.svg" : "/Elegance logo.png";
+    theme === "dark" ? "/Elegance-logo-white.png" : "/Elegance logo.png";
 
   useEffect(() => {
     const handleScroll = () => {
