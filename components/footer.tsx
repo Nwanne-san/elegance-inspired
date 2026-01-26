@@ -17,7 +17,7 @@ export default function Footer() {
   }, []);
 
   const logoSrc =
-    theme === "dark" ? "/Elegance logo white.svg" : "/Elegance logo.png";
+    theme === "dark" ? "/Elegance-logo-white.png" : "/Elegance logo.png";
 
   const currentYear = new Date().getFullYear();
 
@@ -48,7 +48,7 @@ export default function Footer() {
             </div>
             <div className="flex space-x-4">
               <Link
-                href="https://www.instagram.com/the_eleganceinspiredlimited?igsh=MW5nd3dsenpmNjE3cA%3D%3D&utm_source=qr"
+                href="https://www.instagram.com/the_eleganceinspiredltd?igsh=MW5nd3dsenpmNjE3cA%3D%3D&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
