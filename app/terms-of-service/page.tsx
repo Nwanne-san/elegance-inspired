@@ -17,7 +17,7 @@ export default function TermsOfServicePage() {
     <main className="flex min-h-screen flex-col">
       <Navbar />
       <PageHeader
-        title="Terms of Service"
+        title="Terms of Branding Service"
         description="General terms governing our branding and marketing services."
         className="!pb-6"
       />

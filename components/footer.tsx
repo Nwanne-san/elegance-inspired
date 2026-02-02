@@ -217,12 +217,12 @@ export default function Footer() {
             >
               Terms of Service
             </Link>
-            <Link
+            {/* <Link
               href="/terms-of-branding-service"
               className="text-white/70 hover:text-[#FF6600] transition-colors"
             >
               Terms of Branding Service
-            </Link>
+            </Link> */}
             <Link
               href="/terms-of-social-media-service"
               className="text-white/70 hover:text-[#FF6600] transition-colors"
