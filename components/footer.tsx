@@ -200,24 +200,34 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/70 text-sm">
             &copy; {currentYear} Elegance Inspired Limited. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-4 md:mt-0 text-sm">
             <Link
               href="/privacy-policy"
-              className="text-white/70 hover:text-[#FF6600] text-sm transition-colors"
+              className="text-white/70 hover:text-[#FF6600] transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
-              href="/Terms_of_Service_Elegance-Inspired-Ltd.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-[#FF6600] text-sm transition-colors"
+              href="/terms-of-service"
+              className="text-white/70 hover:text-[#FF6600] transition-colors"
             >
               Terms of Service
+            </Link>
+            <Link
+              href="/terms-of-branding-service"
+              className="text-white/70 hover:text-[#FF6600] transition-colors"
+            >
+              Terms of Branding Service
+            </Link>
+            <Link
+              href="/terms-of-social-media-service"
+              className="text-white/70 hover:text-[#FF6600] transition-colors"
+            >
+              Terms of Social Media Service
             </Link>
           </div>
         </div>

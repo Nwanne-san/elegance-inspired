@@ -154,7 +154,7 @@ export default function ContactInfo() {
         <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
         <div className="flex space-x-4">
           <Link
-            href="https://www.instagram.com/eleganceinspiredlimited?igsh=MXVpcjgya2xwd3J3bA%3D%3D&utm_source=qr"
+            href="https://www.instagram.com/the_eleganceinspiredltd?igsh=MW5nd3dsenpmNjE3cA%3D%3D&utm_source=qr"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary/20 p-3 rounded-full hover:bg-primary/10 group transition-colors"
@@ -189,7 +189,7 @@ export default function ContactInfo() {
           >
             <Linkedin className="h-5 w-5 group-hover:text-secondary text-primary" />
           </Link>
-          <Link
+          {/* <Link
             href="#"
             target="_blank"
             rel="noopener noreferrer"
@@ -197,7 +197,7 @@ export default function ContactInfo() {
             aria-label="TikTok"
           >
             <TiktokIcon className="h-5 w-5 group-hover:text-secondary text-primary" />
-          </Link>
+          </Link> */}
           <Link
             href="https://wa.me/2348183135120"
             target="_blank"
