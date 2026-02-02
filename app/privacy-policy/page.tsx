@@ -118,14 +118,14 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li><strong>Email:</strong> <a href="mailto:hello@eleganceinspired.org">hello@eleganceinspired.org</a></li>
-              <li><strong>Website:</strong> <a href="https://www.eleganceinspired.org">www.eleganceinspired.org</a></li>
+              {/* <li><strong>Website:</strong> <a href="https://www.eleganceinspired.org">www.eleganceinspired.org</a></li> */}
               <li><strong>Address:</strong> Abuja, Nigeria</li>
             </ul>
 
-            <p className="mt-12 text-muted-foreground">
+            {/* <p className="mt-12 text-muted-foreground">
               Elegance Inspired Limited<br />
               <a href="https://www.eleganceinspired.org" className="text-primary hover:underline">www.eleganceinspired.org</a>
-            </p>
+            </p> */}
           </LegalPageLayout>
         </div>
       </div>

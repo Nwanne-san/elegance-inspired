@@ -94,10 +94,10 @@ export default function TermsOfServicePage() {
               Engagement with Elegance Inspired Limited via payment of a deposit or signing of a Statement of Work constitutes full acceptance of these Terms of Service.
             </p>
 
-            <p className="mt-12 text-muted-foreground">
+            {/* <p className="mt-12 text-muted-foreground">
               Elegance Inspired Limited<br />
               <a href="https://www.eleganceinspired.org" className="text-primary hover:underline">www.eleganceinspired.org</a>
-            </p>
+            </p> */}
           </LegalPageLayout>
         </div>
       </div>
