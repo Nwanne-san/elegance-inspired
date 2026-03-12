@@ -20,7 +20,7 @@ export default function WebinarPage() {
     <main className="flex min-h-screen flex-col">
       <Navbar />
       <PageHeader
-        title="Webinar"
+        title="Events"
         description="Live sessions on branding, strategy, and design."
       />
 
@@ -29,7 +29,7 @@ export default function WebinarPage() {
           <div className="rounded-xl border bg-card p-8 md:p-10 shadow-lg">
             <div className="flex items-center gap-2 text-primary mb-4">
               <Video className="h-6 w-6" />
-              <span className="font-semibold">Events</span>
+              <span className="font-semibold">Webinar</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               Branding Beyond Logos: Building Identity Systems That Scale
