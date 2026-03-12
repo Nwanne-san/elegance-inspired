@@ -102,7 +102,7 @@ export default function NavbarClient() {
         animate={{ y: hidden ? -100 : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="relative z-50 container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="relative z-10">
             <div className="relative h-10 sm:h-12 w-40">
               {mounted && (
@@ -241,7 +241,7 @@ export default function NavbarClient() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-white dark:bg-gray-900 shadow-lg overflow-hidden"
+              className="relative z-40 md:hidden bg-white dark:bg-gray-900 shadow-lg overflow-hidden"
             >
               <div className="container mx-auto px-4 py-3">
                 <nav>

@@ -28,6 +28,7 @@ export const navLinks = [
       { name: "Events", href: "/media/events" },
       { name: "News", href: "/media/news" },
       { name: "Blog", href: "/blog" },
+      { name: "Webinar", href: "/webinar" },
     ],
   },
   { name: "Portfolio", href: "/portfolio" },
