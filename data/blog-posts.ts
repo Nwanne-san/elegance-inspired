@@ -99,7 +99,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Learn the key branding strategies that can help your startup stand out in a competitive market.",
     image: "/placeholder.svg?height=300&width=500",
-    date: "April 5, 2023",
+    date: "April 5, 2026",
     author: "Temitope Ruth Jacob",
     category: "Branding",
     slug: "branding-tips-for-startups",
@@ -110,18 +110,18 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Discover how different colours can influence customer perception and behaviour towards your brand.",
     image: "/placeholder.svg?height=300&width=500",
-    date: "March 18, 2023",
+    date: "March 18, 2026",
     author: "Cornelius Emmanuel",
     category: "Design",
     slug: "psychology-of-color-in-branding",
     body: psychologyOfColourBody,
   },
   {
-    title: "Digital Marketing Trends to Watch in 2023",
+    title: "Digital Marketing Trends to Watch in 2026",
     excerpt:
       "Stay ahead of the curve with these emerging digital marketing trends that are shaping the industry.",
     image: "/placeholder.svg?height=300&width=500",
-    date: "February 22, 2023",
+    date: "February 22, 2026",
     author: "Rebecca Jumoke Kinrin",
     category: "Marketing",
     slug: "digital-marketing-trends",
@@ -143,7 +143,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Learn cost-effective advertising techniques that can help small businesses maximize their reach.",
     image: "/placeholder.svg?height=300&width=500",
-    date: "December 10, 2022",
+    date: "December 10, 2025",
     author: "Stephanie Momoh",
     category: "Advertising",
     slug: "advertising-strategies-small-businesses",
@@ -154,7 +154,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "See how we helped a technology company revitalize their brand and increase market share.",
     image: "/placeholder.svg?height=300&width=500",
-    date: "November 5, 2022",
+    date: "November 5, 2025",
     author: "Temitope Ruth Jacob",
     category: "Case Studies",
     slug: "case-study-tech-company-brand-transformation",

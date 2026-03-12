@@ -36,10 +36,10 @@ export default function BlogGrid() {
                       <Calendar className="h-4 w-4 mr-1" />
                       <span>{post.date}</span>
                     </div>
-                    <div className="flex items-center">
+                    {/* <div className="flex items-center">
                       <User className="h-4 w-4 mr-1" />
                       <span>{post.author}</span>
-                    </div>
+                    </div> */}
                   </div>
                   <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
                     <h3 className="text-xl font-bold mb-2">{post.title}</h3>
