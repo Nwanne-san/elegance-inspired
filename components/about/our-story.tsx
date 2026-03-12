@@ -252,7 +252,7 @@ export default function OurStory() {
               <p className="text-center text-muted-foreground mb-6 max-w-xl mx-auto">
                 See how Elegance Inspired Limited came to be and what drives us to elevate brands every day.
               </p>
-              <OurStoryVideo />
+              {/* <OurStoryVideo /> */}
             </motion.div>
           </div>
         </div>
@@ -263,7 +263,7 @@ export default function OurStory() {
 
 const YOUTUBE_EMBED_ID = "vZWLGdgSzEk";
 
-function OurStoryVideo() {
+export function OurStoryVideo() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   if (isPlaying) {

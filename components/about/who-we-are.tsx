@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { OurStoryVideo } from "./our-story";
 
 export default function WhoWeAre() {
   return (
@@ -102,6 +103,7 @@ export default function WhoWeAre() {
           </motion.div>
         </div>
       </div>
+      <OurStoryVideo />
     </section>
   );
 }
