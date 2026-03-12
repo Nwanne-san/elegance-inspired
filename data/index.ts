@@ -6,7 +6,7 @@ export const navLinks = [
     dropdown: [
       { name: "Who We Are", href: "/about" },
       { name: "Our Team", href: "/about#team" },
-      { name: "Blog", href: "/blog" },
+      // { name: "Blog", href: "/blog" },
     ],
   },
   {
@@ -27,6 +27,7 @@ export const navLinks = [
     dropdown: [
       { name: "Events", href: "/media/events" },
       { name: "News", href: "/media/news" },
+      { name: "Blog", href: "/blog" },
     ],
   },
   { name: "Portfolio", href: "/portfolio" },

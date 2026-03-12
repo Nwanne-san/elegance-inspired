@@ -81,7 +81,7 @@ export default function WhoWeAre() {
               height={500}
               className="rounded-lg shadow-xl object-cover md:-mt-16"
             />
-            <div className="absolute -bottom-6 lg:-bottom-12  -left-8 bg-white dark:bg-gray-800 p-3 sm:p-6 rounded-lg shadow-lg">
+            <div className="absolute -bottom-6 lg:-bottom-12  md:-left-8 bg-white dark:bg-gray-800 p-3 sm:p-6 rounded-lg shadow-lg">
               <div className="grid grid-cols-3 gap-6 text-center">
                 <div>
                   <div className="text-2xl sm:text-4xl font-bold text-primary mb-1">4+</div>

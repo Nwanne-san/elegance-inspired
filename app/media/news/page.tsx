@@ -4,6 +4,7 @@ import Footer from "@/components/footer";
 import { generateMetadata } from "@/lib/seo-config";
 import PageHeader from "@/components/page-header";
 import CTASection from "@/components/home/cta-section";
+import NewsGrid from "@/components/news/news-grid";
 
 export const metadata: Metadata = generateMetadata(
   "News - Elegance Inspired Limited",
@@ -21,7 +22,9 @@ export default function NewsPage() {
         description="Insights, thought leadership, and updates from Elegance Inspired Limited."
       />
 
-     
+      <section className="py-16 md:py-24 bg-background">
+        <NewsGrid />
+      </section>
 
       <CTASection />
       <Footer />

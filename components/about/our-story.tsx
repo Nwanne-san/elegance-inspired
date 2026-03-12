@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Eye, Target, Flag, Heart } from "lucide-react";
+import { Eye, Target, Flag, Heart, Play } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function OurStory() {
@@ -236,9 +237,65 @@ export default function OurStory() {
                 </div>
               </div>
             </motion.div>
+
+            {/* Video: Our Story – plays on site, no redirect */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mt-16"
+            >
+              <h3 className="text-2xl font-bold mb-4 text-center">
+                Watch Our Story
+              </h3>
+              <p className="text-center text-muted-foreground mb-6 max-w-xl mx-auto">
+                See how Elegance Inspired Limited came to be and what drives us to elevate brands every day.
+              </p>
+              <OurStoryVideo />
+            </motion.div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+const YOUTUBE_EMBED_ID = "vZWLGdgSzEk";
+
+function OurStoryVideo() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  if (isPlaying) {
+    return (
+      <div className="aspect-video max-w-4xl mx-auto rounded-lg overflow-hidden bg-muted shadow-xl">
+        <iframe
+          src={`https://www.youtube.com/embed/${YOUTUBE_EMBED_ID}?autoplay=1&rel=0`}
+          title="Elegance Inspired Limited - Our Story"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className="w-full h-full"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => setIsPlaying(true)}
+      className="relative aspect-video max-w-4xl mx-auto w-full rounded-lg overflow-hidden bg-muted shadow-xl flex items-center justify-center group"
+      aria-label="Play video"
+    >
+      <img
+        src={`https://img.youtube.com/vi/${YOUTUBE_EMBED_ID}/maxresdefault.jpg`}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
+      <div className="relative w-20 h-20 rounded-full bg-primary/90 group-hover:bg-primary flex items-center justify-center shadow-lg transition-colors">
+        <Play className="h-10 w-10 text-white ml-1" fill="currentColor" />
+      </div>
+    </button>
   );
 }
