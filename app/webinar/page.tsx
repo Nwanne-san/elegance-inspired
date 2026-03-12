@@ -42,7 +42,7 @@ export default function WebinarPage() {
             <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8">
               <span className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
-                April 3, 2026. 5:00 PM - 6:00 PM WAT
+                April 10, 2026. 5:00 PM - 6:00 PM WAT
               </span>
               <span className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
@@ -50,7 +50,7 @@ export default function WebinarPage() {
               </span>
             </div>
             <Button asChild className="rounded-full">
-              <Link href="/contact">Register your interest</Link>
+              <Link href="/contact">Register Now</Link>
             </Button>
           </div>
           <p className="text-center text-sm text-muted-foreground mt-8">
