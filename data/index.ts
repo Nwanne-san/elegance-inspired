@@ -25,7 +25,7 @@ export const navLinks = [
     name: "Media",
     href: "#",
     dropdown: [
-      { name: "Events", href: "/media/events" },
+      // { name: "Events", href: "/media/events" },
       { name: "News", href: "/media/news" },
       { name: "Blog", href: "/blog" },
       { name: "Webinar", href: "/webinar" },
