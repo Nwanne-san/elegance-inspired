@@ -68,7 +68,7 @@ export default function PortfolioGridClient() {
                 <Link href={`/portfolio/${item.id}`} className="group">
                   <div className="relative overflow-hidden aspect-video">
                     <OptimizedImage
-                      src={item.images[0] || "/placeholder.svg"}
+                      src={item.image || item.images?.[0] || "/placeholder.svg"}
                       alt={item.title}
                       width={600}
                       height={400}
@@ -86,6 +86,9 @@ export default function PortfolioGridClient() {
                   </div>
                 </Link>
                 <CardContent className="p-6">
+                  {item.date && (
+                    <p className="text-sm text-muted-foreground mb-2">{item.date}</p>
+                  )}
                   <p className="text-muted-foreground mb-4 line-clamp-2">
                     {item.description}
                   </p>

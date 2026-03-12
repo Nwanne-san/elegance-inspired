@@ -14,36 +14,9 @@ import Link from "next/link";
 import { Calendar, User, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import OptimizedImage from "../optimized-image";
+import { blogPosts } from "@/data/blog-posts";
 
-const blogPosts = [
-  {
-    title: "10 Essential Branding Tips for Startups",
-    excerpt:
-      "Learn the key branding strategies that can help your startup stand out in a competitive market.",
-    image: "/blog image 1.jpg",
-    date: "April 5, 2023",
-    author: "Temitope Ruth Jacob",
-    slug: "branding-tips-for-startups",
-  },
-  {
-    title: "The Psychology of Color in Branding",
-    excerpt:
-      "Discover how different colors can influence customer perception and behavior towards your brand.",
-    image: "/blog image 2.jpg",
-    date: "March 18, 2023",
-    author: "Cornelius Emmanuel",
-    slug: "psychology-of-color-in-branding",
-  },
-  {
-    title: "Digital Marketing Trends to Watch in 2023",
-    excerpt:
-      "Stay ahead of the curve with these emerging digital marketing trends that are shaping the industry.",
-    image: "/blog image 3.jpg",
-    date: "February 22, 2023",
-    author: "Rebecca Jumoke Kinrin",
-    slug: "digital-marketing-trends",
-  },
-];
+const featuredPosts = blogPosts.slice(0, 3);
 
 export default function BlogHighlight() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -134,7 +107,7 @@ export default function BlogHighlight() {
           {/* Carousel Container */}
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
-              {blogPosts.map((post, index) => (
+              {featuredPosts.map((post, index) => (
                 <div
                   key={index}
                   className={`${

@@ -5,63 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Calendar, User, Tag } from "lucide-react"
-
-const blogPosts = [
-  {
-    title: "10 Essential Branding Tips for Startups",
-    excerpt: "Learn the key branding strategies that can help your startup stand out in a competitive market.",
-    image: "/placeholder.svg?height=300&width=500",
-    date: "April 5, 2023",
-    author: "Temitope Ruth Jacob",
-    category: "Branding",
-    slug: "branding-tips-for-startups",
-  },
-  {
-    title: "The Psychology of Color in Branding",
-    excerpt: "Discover how different colors can influence customer perception and behavior towards your brand.",
-    image: "/placeholder.svg?height=300&width=500",
-    date: "March 18, 2023",
-    author: "Cornelius Emmanuel",
-    category: "Design",
-    slug: "psychology-of-color-in-branding",
-  },
-  {
-    title: "Digital Marketing Trends to Watch in 2023",
-    excerpt: "Stay ahead of the curve with these emerging digital marketing trends that are shaping the industry.",
-    image: "/placeholder.svg?height=300&width=500",
-    date: "February 22, 2023",
-    author: "Rebecca Jumoke Kinrin",
-    category: "Marketing",
-    slug: "digital-marketing-trends",
-  },
-  {
-    title: "How to Create a Memorable Brand Experience",
-    excerpt: "Explore strategies to create meaningful brand experiences that resonate with your audience.",
-    image: "/placeholder.svg?height=300&width=500",
-    date: "January 15, 2023",
-    author: "Joseph Audu Olufu",
-    category: "Branding",
-    slug: "create-memorable-brand-experience",
-  },
-  {
-    title: "Effective Advertising Strategies for Small Businesses",
-    excerpt: "Learn cost-effective advertising techniques that can help small businesses maximize their reach.",
-    image: "/placeholder.svg?height=300&width=500",
-    date: "December 10, 2022",
-    author: "Stephanie Momoh",
-    category: "Advertising",
-    slug: "advertising-strategies-small-businesses",
-  },
-  {
-    title: "Case Study: Brand Transformation for Tech Company",
-    excerpt: "See how we helped a technology company revitalize their brand and increase market share.",
-    image: "/placeholder.svg?height=300&width=500",
-    date: "November 5, 2022",
-    author: "Temitope Ruth Jacob",
-    category: "Case Studies",
-    slug: "case-study-tech-company-brand-transformation",
-  },
-]
+import { blogPosts } from "@/data/blog-posts"
 
 export default function BlogGrid() {
   return (

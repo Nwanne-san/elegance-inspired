@@ -138,6 +138,22 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/media/events"
+                  className="text-white/70 hover:text-[#FF6600] transition-colors"
+                >
+                  Events
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/media/news"
+                  className="text-white/70 hover:text-[#FF6600] transition-colors"
+                >
+                  News
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/portfolio"
                   className="text-white/70 hover:text-[#FF6600] transition-colors"
                 >

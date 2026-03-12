@@ -13,45 +13,9 @@ import {
 import Link from "next/link";
 import { Calendar, User, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
+import { blogPosts } from "@/data/blog-posts";
 
-const blogPosts = [
-  {
-    title: "10 Essential Branding Tips for Startups",
-    excerpt:
-      "Learn the key branding strategies that can help your startup stand out in a competitive market.",
-    image: "/placeholder.svg?height=300&width=500",
-    date: "April 5, 2023",
-    author: "Temitope Ruth Jacob",
-    slug: "branding-tips-for-startups",
-  },
-  {
-    title: "The Psychology of Color in Branding",
-    excerpt:
-      "Discover how different colors can influence customer perception and behavior towards your brand.",
-    image: "/placeholder.svg?height=300&width=500",
-    date: "March 18, 2023",
-    author: "Cornelius Emmanuel",
-    slug: "psychology-of-color-in-branding",
-  },
-  {
-    title: "Digital Marketing Trends to Watch in 2023",
-    excerpt:
-      "Stay ahead of the curve with these emerging digital marketing trends that are shaping the industry.",
-    image: "/placeholder.svg?height=300&width=500",
-    date: "February 22, 2023",
-    author: "Rebecca Jumoke Kinrin",
-    slug: "digital-marketing-trends",
-  },
-  {
-    title: "How to Create a Memorable Brand Experience",
-    excerpt:
-      "Explore strategies to create meaningful brand experiences that resonate with your audience.",
-    image: "/placeholder.svg?height=300&width=500",
-    date: "January 15, 2023",
-    author: "Joseph Audu Olufu",
-    slug: "create-memorable-brand-experience",
-  },
-];
+const featuredPosts = blogPosts.slice(0, 4);
 
 export default function BlogCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -65,7 +29,7 @@ export default function BlogCarousel() {
   const [isLoading, setIsLoading] = useState(true);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
   const imagesLoadedCount = useRef(0);
-  const totalImages = blogPosts.length;
+  const totalImages = featuredPosts.length;
 
   // Check if mobile
   useEffect(() => {
@@ -80,8 +44,8 @@ export default function BlogCarousel() {
   // Preload images
   useEffect(() => {
     const preloadImages = () => {
-      blogPosts.forEach((post) => {
-        const img = new Image();
+      featuredPosts.forEach((post) => {
+        const img = document.createElement("img");
         img.src = post.image;
         img.onload = () => {
           imagesLoadedCount.current += 1;
@@ -164,7 +128,7 @@ export default function BlogCarousel() {
     };
   }, [emblaApi, onSelect, isLoading]);
 
-  const renderBlogPost = (post: (typeof blogPosts)[0], index: number) => (
+  const renderBlogPost = (post: (typeof featuredPosts)[0], index: number) => (
     <div
       className={`${isMobile ? "flex-[0_0_100%]" : "flex-[0_0_33.333%]"} px-4`}
     >
@@ -258,7 +222,7 @@ export default function BlogCarousel() {
           {/* Carousel Container */}
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
-              {blogPosts.map((post, index) => renderBlogPost(post, index))}
+              {featuredPosts.map((post, index) => renderBlogPost(post, index))}
             </div>
           </div>
 
@@ -282,7 +246,7 @@ export default function BlogCarousel() {
 
           {/* Pagination Dots */}
           <div className="flex justify-center gap-2 mt-6">
-            {blogPosts.map((_, index) => (
+            {featuredPosts.map((_, index) => (
               <button
                 key={index}
                 className={`w-2 h-2 rounded-full transition-all ${

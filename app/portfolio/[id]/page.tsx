@@ -56,8 +56,13 @@ export default function PortfolioDetailPage({ params }: Props) {
   // Get related projects
   const relatedProjects = getRelatedPortfolioItems(params.id, 3)
 
-  // Ensure project has images array
-  const projectImages = project.images || (project.image ? [project.image] : [])
+  // Ensure project has images array; prefer main image for hero, then all for gallery
+  const projectImages = project.images?.length
+    ? project.images
+    : project.image
+      ? [project.image]
+      : [];
+  const heroImage = project.image || projectImages[0];
 
   return (
     <main className="flex min-h-screen flex-col">
@@ -166,7 +171,7 @@ export default function PortfolioDetailPage({ params }: Props) {
 
             <div className="relative rounded-lg overflow-hidden">
               <Image
-                src={projectImages[0] || "/placeholder.svg"}
+                src={heroImage || "/placeholder.svg"}
                 alt={project.title}
                 width={800}
                 height={600}

@@ -77,11 +77,13 @@ export default function NavbarClient() {
 
   // Check if the current path matches a link or its dropdown items
   const isLinkActive = (link: any) => {
-    if (pathname === link.path) return true;
-    if (pathname.startsWith("/portfolio/") && link.path === "/portfolio")
+    if (pathname === link.href) return true;
+    if (pathname.startsWith("/portfolio/") && link.href === "/portfolio")
+      return true;
+    if (pathname.startsWith("/media/") && link.href === "#" && link.name === "Media")
       return true;
     if (link.dropdown) {
-      return link.dropdown.some((item: any) => pathname === item.path);
+      return link.dropdown.some((item: any) => pathname === item.href);
     }
     return false;
   };

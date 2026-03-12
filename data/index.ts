@@ -21,6 +21,14 @@ export const navLinks = [
     ],
   },
   { name: "Packages", href: "/packages" },
+  {
+    name: "Media",
+    href: "#",
+    dropdown: [
+      { name: "Events", href: "/media/events" },
+      { name: "News", href: "/media/news" },
+    ],
+  },
   { name: "Portfolio", href: "/portfolio" },
   { name: "Contact", href: "/contact" },
 ];
