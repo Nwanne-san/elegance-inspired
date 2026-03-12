@@ -9,6 +9,7 @@ import { AppProvider } from "@/components/app-provider";
 import { LenisScrollProvider } from "@/components/lenis-scroll-provider";
 import ScrollToTop from "@/components/scroll-to-top";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -52,6 +53,7 @@ export default function RootLayout({
             <LenisScrollProvider>
               <NProgressProvider>
                 {children}
+                <Analytics />
                 <ScrollToTop />
                 <Toaster position="top-right" richColors />
               </NProgressProvider>
