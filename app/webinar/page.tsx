@@ -50,7 +50,7 @@ export default function WebinarPage() {
               </span>
             </div>
             <Button asChild className="rounded-full">
-              <Link href="/contact">Register Now</Link>
+              <Link href="https://luma.com/85ia0fn8">Register Now</Link>
             </Button>
           </div>
           <p className="text-center text-sm text-muted-foreground mt-8">

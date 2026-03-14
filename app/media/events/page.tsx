@@ -42,7 +42,7 @@ export default function EventsPage() {
             <div className="flex flex-wrap gap-6 text-sm text-muted-foreground mb-8">
               <span className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
-                Date & time to be announced
+                April 10, 2026. 5:00 PM - 6:00 PM WAT
               </span>
               <span className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
@@ -50,7 +50,7 @@ export default function EventsPage() {
               </span>
             </div>
             <Button asChild className="rounded-full">
-              <Link href="/contact">
+              <Link href="https://luma.com/85ia0fn8">
                 Register your interest
               </Link>
             </Button>
