@@ -10,9 +10,9 @@ export default function WhoWeAre() {
   return (
     <section
       id="who-we-are"
-      className="py-16 md:py-24 bg-background scroll-mt-20 w-full"
+      className="py-5 md:py-6 bg-background scroll-mt-20 w-full"
     >
-      <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14">
+      <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14 sm:pb-10 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -61,7 +61,7 @@ export default function WhoWeAre() {
               <a
                 href="/Elegance Inspired Ltd Brochure.pdf"
                 download
-                className="bg-secondary text-black dark:text-white hover:bg-secondary/90 rounded-tl-3xl sm:rounded-full px-6 py-2 text-sm font-medium transition-colors"
+                className="bg-secondary text-white dark:text-white hover:bg-secondary/90 rounded-tl-3xl sm:rounded-full px-6 py-2 text-sm font-medium transition-colors"
               >
                 Download Brochure
               </a>
@@ -76,7 +76,7 @@ export default function WhoWeAre() {
             className="relative"
           >
             <Image
-              src="/DSCF6162.jpg"
+              src="/Elegance-abour.jpeg"
               alt="Elegance Inspired Team"
               width={600}
               height={500}
@@ -103,7 +103,10 @@ export default function WhoWeAre() {
           </motion.div>
         </div>
       </div>
-      <OurStoryVideo />
+      {/* YouTube section: responsive container for mobile */}
+      <div className="container mx-auto px-4 sm:px-10 lg:px-12 xl:px-14 mt-12 sm:mt-16">
+        <OurStoryVideo />
+      </div>
     </section>
   );
 }

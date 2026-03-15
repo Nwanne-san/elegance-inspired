@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Eye, Target, Flag, Heart, Play } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Carousel, CarouselSlide } from "@/components/ui/carousel";
 
 export default function OurStory() {
   const values = [
@@ -190,32 +191,44 @@ export default function OurStory() {
               <h3 className="text-2xl font-bold mb-6 text-center">
                 Our Values
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {values.slice(0, 3).map((value, index) => (
-                  <Card key={index} className="overflow-hidden">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="bg-primary/10 p-3 rounded-full shrink-0">
-                          {value.icon}
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-lg mb-2">
-                            {value.title}
-                          </h4>
-                          <p className="text-muted-foreground">
-                            {value.description}
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+
+              {/* Mobile: carousel only (auto-advance every 5s, arrows + swipe) */}
+              <div className="md:hidden">
+                <Carousel
+                  options={{ loop: true, align: "start" }}
+                  showDots={true}
+                  showArrows={true}
+                  autoplay={true}
+                  autoplayInterval={5000}
+                >
+                  {values.map((value, index) => (
+                    <CarouselSlide key={index} className="px-1">
+                      <Card className="overflow-hidden">
+                        <CardContent className="p-6">
+                          <div className="flex items-start gap-4">
+                            <div className="bg-primary/10 p-3 rounded-full shrink-0">
+                              {value.icon}
+                            </div>
+                            <div>
+                              <h4 className="font-bold text-lg mb-2">
+                                {value.title}
+                              </h4>
+                              <p className="text-muted-foreground">
+                                {value.description}
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </CarouselSlide>
+                  ))}
+                </Carousel>
               </div>
 
-              {/* Second row centered */}
-              <div className="flex justify-center mt-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
-                  {values.slice(3).map((value, index) => (
+              {/* Desktop: grid */}
+              <div className="hidden md:block">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+                  {values.slice(0, 3).map((value, index) => (
                     <Card key={index} className="overflow-hidden">
                       <CardContent className="p-6">
                         <div className="flex items-start gap-4">
@@ -234,6 +247,29 @@ export default function OurStory() {
                       </CardContent>
                     </Card>
                   ))}
+                </div>
+                <div className="flex justify-center mt-6">
+                  <div className="grid grid-cols-2 gap-6 max-w-2xl">
+                    {values.slice(3).map((value, index) => (
+                      <Card key={index} className="overflow-hidden">
+                        <CardContent className="p-6">
+                          <div className="flex items-start gap-4">
+                            <div className="bg-primary/10 p-3 rounded-full shrink-0">
+                              {value.icon}
+                            </div>
+                            <div>
+                              <h4 className="font-bold text-lg mb-2">
+                                {value.title}
+                              </h4>
+                              <p className="text-muted-foreground">
+                                {value.description}
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -268,13 +304,13 @@ export function OurStoryVideo() {
 
   if (isPlaying) {
     return (
-      <div className="aspect-video max-w-4xl mx-auto rounded-lg overflow-hidden bg-muted shadow-xl">
+      <div className="relative w-full max-w-4xl mx-auto aspect-video min-h-[200px] sm:min-h-[280px] rounded-lg sm:rounded-xl overflow-hidden bg-muted shadow-xl">
         <iframe
           src={`https://www.youtube.com/embed/${YOUTUBE_EMBED_ID}?autoplay=1&rel=0`}
           title="Elegance Inspired Limited - Our Story"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-          className="w-full h-full"
+          className="absolute inset-0 w-full h-full"
         />
       </div>
     );
@@ -284,7 +320,7 @@ export function OurStoryVideo() {
     <button
       type="button"
       onClick={() => setIsPlaying(true)}
-      className="relative aspect-video max-w-4xl mx-auto w-full rounded-lg overflow-hidden bg-muted shadow-xl flex items-center justify-center group"
+      className="relative w-full max-w-4xl mx-auto aspect-video min-h-[180px] sm:min-h-[260px] rounded-lg sm:rounded-xl overflow-hidden bg-muted shadow-xl flex items-center justify-center group"
       aria-label="Play video"
     >
       <img
@@ -292,9 +328,9 @@ export function OurStoryVideo() {
         alt=""
         className="absolute inset-0 w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
-      <div className="relative w-20 h-20 rounded-full bg-primary/90 group-hover:bg-primary flex items-center justify-center shadow-lg transition-colors">
-        <Play className="h-10 w-10 text-white ml-1" fill="currentColor" />
+      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 group-active:bg-black/50 transition-colors" />
+      <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/90 group-hover:bg-primary flex items-center justify-center shadow-lg transition-colors min-w-[64px] min-h-[64px] sm:min-w-[80px] sm:min-h-[80px]">
+        <Play className="h-8 w-8 sm:h-10 sm:w-10 text-white ml-0.5 sm:ml-1" fill="currentColor" />
       </div>
     </button>
   );

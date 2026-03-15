@@ -13,6 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Carousel, CarouselSlide } from "@/components/ui/carousel";
 
 type TeamMember = (typeof team)[0];
 
@@ -159,12 +160,30 @@ export default function CreativeTeam() {
           </motion.p>
         </div>
 
+        {/* Mobile: carousel only (arrows + swipe) */}
+        <div className="md:hidden">
+          <Carousel
+            options={{ loop: true, align: "start" }}
+            showDots={true}
+            showArrows={true}
+          >
+            {team.map((member, index) => (
+              <CarouselSlide key={member.id} className="px-2">
+                <div onClick={() => openMember(member)}>
+                  {renderTeamCard(member, index)}
+                </div>
+              </CarouselSlide>
+            ))}
+          </Carousel>
+        </div>
+
+        {/* Desktop: grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {team.map((member, index) => (
             <motion.div

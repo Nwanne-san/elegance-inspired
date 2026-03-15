@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState, useCallback, useEffect, ReactNode } from "react";
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from "embla-carousel-react";
+import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaOptionsType } from "embla-carousel";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CarouselProps {
@@ -12,6 +11,7 @@ interface CarouselProps {
   className?: string;
   options?: EmblaOptionsType;
   showDots?: boolean;
+  showArrows?: boolean;
   autoplay?: boolean;
   autoplayInterval?: number;
 }
@@ -25,6 +25,7 @@ export function Carousel({
     containScroll: "trimSnaps",
   } as const,
   showDots = true,
+  showArrows = false,
   autoplay = false,
   autoplayInterval = 4000,
 }: CarouselProps) {
@@ -69,11 +70,35 @@ export function Carousel({
     [emblaApi]
   );
 
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+
   return (
     <div className={cn("relative", className)}>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">{children}</div>
       </div>
+
+      {showArrows && slideCount > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={scrollPrev}
+            className="absolute -left-3 inset-y-0 my-auto -translate-x-1 sm:translate-x-0 z-10 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={scrollNext}
+            className="absolute -right-3 inset-y-0 my-auto translate-x-1 sm:-translate-x-0 z-10 w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </>
+      )}
 
       {showDots && slideCount > 1 && (
         <div className="flex justify-center gap-2 mt-4">
