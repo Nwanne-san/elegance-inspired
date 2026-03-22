@@ -21,6 +21,8 @@ export const metadata: Metadata = generateMetadata(
   ]
 );
 
+export const revalidate = 3600;
+
 export default function ContactPage() {
   return (
     <main className="flex min-h-screen flex-col">
@@ -35,6 +37,10 @@ export default function ContactPage() {
           alt="Elegance Inspired Team"
           width={800}
           height={600}
+          priority
+          showLoadingIndicator={false}
+          aspectRatio="aspect-auto"
+          sizes="(max-width: 768px) 100vw, 800px"
           className="rounded-lg shadow-xl object-cover "
         />
       </div>

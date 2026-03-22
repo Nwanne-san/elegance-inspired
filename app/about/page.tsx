@@ -21,6 +21,8 @@ export const metadata: Metadata = generateMetadata(
   ]
 );
 
+export const revalidate = 3600;
+
 export default function AboutPage() {
   return (
     <main className="flex min-h-screen flex-col w-full">

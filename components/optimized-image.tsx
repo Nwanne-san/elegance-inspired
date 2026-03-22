@@ -24,26 +24,30 @@ export default function OptimizedImage({
   priority = false,
   ...props
 }: OptimizedImageProps) {
+  const fill = Boolean(props.fill);
   const [isLoading, setIsLoading] = useState(!priority);
   const [imgSrc, setImgSrc] = useState(src);
-  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    // Reset states when src changes
     if (!priority) setIsLoading(true);
-    setIsError(false);
     setImgSrc(src);
   }, [src, priority]);
+
+  const showSpinner =
+    showLoadingIndicator && !priority && isLoading;
+  const imageVisible = priority || !isLoading;
 
   return (
     <div
       className={cn(
-        "relative overflow-hidden flex items-center",
-        aspectRatio,
+        "relative overflow-hidden",
+        fill
+          ? "absolute inset-0 h-full w-full min-h-0"
+          : cn("flex items-center", aspectRatio),
         containerClassName
       )}
     >
-      {isLoading && showLoadingIndicator && (
+      {showSpinner && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-800 animate-pulse z-10">
           <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
         </div>
@@ -56,13 +60,12 @@ export default function OptimizedImage({
         height={height}
         className={cn(
           "transition-opacity duration-300 object-cover",
-          isLoading ? "opacity-0" : "opacity-100",
+          imageVisible ? "opacity-100" : "opacity-0",
           className
         )}
         onLoad={() => setIsLoading(false)}
         onError={() => {
           setIsLoading(false);
-          setIsError(true);
           setImgSrc(fallback);
         }}
         priority={priority}

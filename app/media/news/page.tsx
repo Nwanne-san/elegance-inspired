@@ -13,6 +13,8 @@ export const metadata: Metadata = generateMetadata(
   ["news", "branding insights", "colour psychology", "brand strategy", "Elegance Inspired"]
 );
 
+export const revalidate = 3600;
+
 export default function NewsPage() {
   return (
     <main className="flex min-h-screen flex-col">

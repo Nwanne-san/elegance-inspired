@@ -15,6 +15,8 @@ export const metadata: Metadata = generateMetadata(
   ["webinar", "webinars", "Elegance Inspired", "branding webinars"]
 );
 
+export const revalidate = 3600;
+
 export default function WebinarPage() {
   return (
     <main className="flex min-h-screen flex-col">
