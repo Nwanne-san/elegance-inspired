@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { to, subject, name, email, phone, message, formType } = body
+    const { to, subject, name, email, phone, message, formType, location, organization } = body
 
     // Import nodemailer dynamically to avoid server-side issues
     const nodemailer = (await import("nodemailer")).default
@@ -41,6 +41,8 @@ export async function POST(request: Request) {
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Phone:</strong> ${phone}</p>
           ${email ? `<p><strong>Email:</strong> ${email}</p>` : ""}
+          ${organization ? `<p><strong>Organization:</strong> ${organization}</p>` : ""}
+          ${location ? `<p><strong>Location:</strong> ${location}</p>` : ""}
           ${message ? `<h3>Message:</h3><p>${message}</p>` : ""}
         `
       }

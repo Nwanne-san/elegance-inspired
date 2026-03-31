@@ -2,13 +2,26 @@
 
 import type React from "react";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { Check, ChevronsUpDown, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 import { z } from "zod";
 import { toast } from "sonner";
 
@@ -16,7 +29,53 @@ const callbackSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   phone: z.string().min(10, { message: "Please enter a valid phone number" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
+  organization: z
+    .string()
+    .min(2, { message: "Please enter your organization name" }),
+  location: z.string().min(1, { message: "Please select your location" }),
 });
+
+const locationOptions = [
+  "Abia - Umuahia, Nigeria",
+  "Adamawa - Yola, Nigeria",
+  "Akwa Ibom - Uyo, Nigeria",
+  "Anambra - Awka, Nigeria",
+  "Bauchi - Bauchi, Nigeria",
+  "Bayelsa - Yenagoa, Nigeria",
+  "Benue - Makurdi, Nigeria",
+  "Borno - Maiduguri, Nigeria",
+  "Cross River - Calabar, Nigeria",
+  "Delta - Asaba, Nigeria",
+  "Ebonyi - Abakaliki, Nigeria",
+  "Edo - Benin City, Nigeria",
+  "Ekiti - Ado Ekiti, Nigeria",
+  "Enugu - Enugu, Nigeria",
+  "Gombe - Gombe, Nigeria",
+  "Imo - Owerri, Nigeria",
+  "Jigawa - Dutse, Nigeria",
+  "Kaduna - Kaduna, Nigeria",
+  "Kano - Kano, Nigeria",
+  "Katsina - Katsina, Nigeria",
+  "Kebbi - Birnin Kebbi, Nigeria",
+  "Kogi - Lokoja, Nigeria",
+  "Kwara - Ilorin, Nigeria",
+  "Lagos - Ikeja, Nigeria",
+  "Nasarawa - Lafia, Nigeria",
+  "Niger - Minna, Nigeria",
+  "Ogun - Abeokuta, Nigeria",
+  "Ondo - Akure, Nigeria",
+  "Osun - Osogbo, Nigeria",
+  "Oyo - Ibadan, Nigeria",
+  "Plateau - Jos, Nigeria",
+  "Rivers - Port Harcourt, Nigeria",
+  "Sokoto - Sokoto, Nigeria",
+  "Taraba - Jalingo, Nigeria",
+  "Yobe - Damaturu, Nigeria",
+  "Zamfara - Gusau, Nigeria",
+  "Federal Capital Territory - Abuja, Nigeria",
+  "California - Sacramento, USA",
+  "New York - Albany, USA",
+] as const;
 
 // Update the form data type
 type CallbackFormData = z.infer<typeof callbackSchema>;
@@ -47,9 +106,12 @@ export function RequestCallbackModal({
     name: "",
     phone: "",
     email: "",
+    organization: "",
+    location: "",
   });
   const [errors, setErrors] = useState<Partial<CallbackFormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [locationOpen, setLocationOpen] = useState(false);
 
   // Check if modal should be shown on first visit
   // useEffect(() => {
@@ -69,15 +131,21 @@ export function RequestCallbackModal({
   // }, [onOpenChange]);
 
   // Update the handleChange function to handle all input types
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
     // Clear error when user starts typing
     if (errors[name as keyof CallbackFormData]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  const handleLocationChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, location: value }));
+
+    if (errors.location) {
+      setErrors((prev) => ({ ...prev, location: undefined }));
     }
   };
 
@@ -102,6 +170,8 @@ export function RequestCallbackModal({
           name: formData.name,
           phone: formData.phone,
           email: formData.email || "No email provided",
+          organization: formData.organization,
+          location: formData.location,
           formType: "callback",
         }),
       });
@@ -119,6 +189,8 @@ export function RequestCallbackModal({
         name: "",
         phone: "",
         email: "",
+        organization: "",
+        location: "",
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -153,7 +225,7 @@ export function RequestCallbackModal({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", damping: 20 }}
-            className="bg-white dark:bg-gray-900 rounded-lg shadow-xl w-full max-w-md overflow-hidden"
+            className="bg-white dark:bg-gray-900 rounded-lg shadow-xl w-full max-w-md lg:max-w-3xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between p-4 border-b dark:border-gray-700">
@@ -174,7 +246,10 @@ export function RequestCallbackModal({
                 discuss your needs.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form
+                onSubmit={handleSubmit}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-4"
+              >
                 <div>
                   <Label htmlFor="name">Full Name</Label>
                   <Input
@@ -221,9 +296,91 @@ export function RequestCallbackModal({
                   )}
                 </div>
 
+                <div>
+                  <Label htmlFor="organization">Organization</Label>
+                  <Input
+                    id="organization"
+                    name="organization"
+                    value={formData.organization}
+                    onChange={handleChange}
+                    placeholder="Your organization"
+                    className={errors.organization ? "border-red-500" : ""}
+                  />
+                  {errors.organization && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.organization}
+                    </p>
+                  )}
+                </div>
+
+                <div className="lg:col-span-2">
+                  <Label htmlFor="location">Location</Label>
+                  <Popover open={locationOpen} onOpenChange={setLocationOpen}>
+                    <PopoverTrigger asChild>
+                      <Button
+                        id="location"
+                        variant="outline"
+                        role="combobox"
+                        aria-expanded={locationOpen}
+                        className={cn(
+                          "w-full justify-between font-normal",
+                          errors.location && "border-red-500"
+                        )}
+                      >
+                        {formData.location || "Select your location"}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      side="bottom"
+                      align="start"
+                      sideOffset={8}
+                      avoidCollisions={false}
+                      className="w-[--radix-popover-trigger-width] p-0"
+                    >
+                      <Command>
+                        <CommandInput placeholder="Search location..." />
+                        <CommandList
+                          className="max-h-48 overflow-y-scroll overscroll-contain"
+                          onWheel={(e) => e.stopPropagation()}
+                        >
+                          <CommandEmpty>No location found.</CommandEmpty>
+                          <CommandGroup>
+                            {locationOptions.map((location) => (
+                              <CommandItem
+                                key={location}
+                                value={location}
+                                onSelect={() => {
+                                  handleLocationChange(location);
+                                  setLocationOpen(false);
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    formData.location === location
+                                      ? "opacity-100"
+                                      : "opacity-0"
+                                  )}
+                                />
+                                {location}
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </CommandList>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                  {errors.location && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.location}
+                    </p>
+                  )}
+                </div>
+
                 <Button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                  className="w-full lg:col-span-2 bg-blue-600 hover:bg-blue-700 text-white"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Request Call Back"}
