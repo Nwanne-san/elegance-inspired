@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server"
+import {
+  buildCallbackEmailHtml,
+  buildContactEmailHtml,
+} from "@/lib/email-template"
 
 export async function POST(request: Request) {
   try {
@@ -24,28 +28,32 @@ export async function POST(request: Request) {
     let emailSubject = subject
 
     if (formType === "contact") {
-      emailSubject = ` ${subject}`
-      emailContent = `
-        <h2>New Service Request</h2>
-        <p><strong>Service Requested:</strong> ${subject}</p>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
-        <h3>Message:</h3>
-        <p>${message}</p>
-      `
+      emailSubject = `New enquiry: ${subject || "Service request"}`
+      emailContent = buildContactEmailHtml({
+        subject: subject || "General",
+        name: name || "",
+        email: email || "",
+        phone: phone || "Not provided",
+        message: message || "",
+      })
     } else if (formType === "callback") {
-        emailSubject = "Call Back Requested"
-        emailContent = `
-          <h2>New Call Back Request</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Phone:</strong> ${phone}</p>
-          ${email ? `<p><strong>Email:</strong> ${email}</p>` : ""}
-          ${organization ? `<p><strong>Organization:</strong> ${organization}</p>` : ""}
-          ${location ? `<p><strong>Location:</strong> ${location}</p>` : ""}
-          ${message ? `<h3>Message:</h3><p>${message}</p>` : ""}
-        `
+        emailSubject = "Call back requested — Elegance Inspired"
+        emailContent = buildCallbackEmailHtml({
+          name: name || "",
+          phone: phone || "",
+          email: email || undefined,
+          organization: organization || undefined,
+          location: location || undefined,
+          message: message || undefined,
+        })
       }
+
+    if (!emailContent) {
+      return NextResponse.json(
+        { error: "Unsupported or missing form type" },
+        { status: 400 }
+      )
+    }
 
     // Send the email
     await transporter.sendMail({

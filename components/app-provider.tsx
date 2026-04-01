@@ -8,6 +8,15 @@ import {
   type ReactNode,
 } from "react";
 import RequestCallbackModal from "@/components/request-callback-modal";
+import { WebinarFlyerModal } from "@/components/webinar-flyer-modal";
+
+/** Minimum time between automatic webinar flyer prompts after a dismiss. */
+const WEBINAR_FLYER_COOLDOWN_MS = 15 * 60 * 1000;
+/** Minimum time between automatic callback prompts after a dismiss. */
+const CALLBACK_MODAL_COOLDOWN_MS = 15 * 60 * 1000;
+
+const LS_WEBINAR_DISMISSED = "ei_webinar_flyer_dismissed_at";
+const LS_CALLBACK_DISMISSED = "ei_callback_modal_dismissed_at";
 
 type AppContextType = {
   openCallbackModal: () => void;
@@ -23,74 +32,86 @@ export function useAppContext() {
   return context;
 }
 
+function canAutoPromptAgain(lastDismissedAt: string | null, cooldownMs: number) {
+  if (!lastDismissedAt) return true;
+  const then = Number(lastDismissedAt);
+  if (Number.isNaN(then)) return true;
+  return Date.now() - then >= cooldownMs;
+}
+
 export function AppProvider({ children }: { children: ReactNode }) {
   const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
-  const [hasShownOnce, setHasShownOnce] = useState(false);
+  const [isFlyerModalOpen, setIsFlyerModalOpen] = useState(false);
 
   const openCallbackModal = () => setIsCallbackModalOpen(true);
   const closeCallbackModal = () => setIsCallbackModalOpen(false);
 
-  const is24HoursPassed = (timestamp: string | null) => {
-    if (!timestamp) return true;
-    const now = Date.now();
-    const then = Number(timestamp);
-    return now - then > 24 * 60 * 60 * 1000;
-  };
+  // Webinar flyer: auto-open once per session when cooldown allows (~2s delay)
+  useEffect(() => {
+    const dismissedAt = localStorage.getItem(LS_WEBINAR_DISMISSED);
+    if (!canAutoPromptAgain(dismissedAt, WEBINAR_FLYER_COOLDOWN_MS)) return;
 
+    const initialTimer = setTimeout(() => {
+      setIsFlyerModalOpen(true);
+    }, 2000);
+
+    return () => clearTimeout(initialTimer);
+  }, []);
+
+  // Callback: auto-open ~3s only if flyer is not scheduled first (flyer on cooldown)
   useEffect(() => {
     const formSubmitted = localStorage.getItem("formSubmitted");
-    const modalDismissedAt = localStorage.getItem("modalDismissedAt");
+    if (formSubmitted) return;
 
-    if (formSubmitted || !is24HoursPassed(modalDismissedAt)) return;
+    const callbackDismissed = localStorage.getItem(LS_CALLBACK_DISMISSED);
+    if (!canAutoPromptAgain(callbackDismissed, CALLBACK_MODAL_COOLDOWN_MS)) return;
+
+    const flyerDismissed = localStorage.getItem(LS_WEBINAR_DISMISSED);
+    if (canAutoPromptAgain(flyerDismissed, WEBINAR_FLYER_COOLDOWN_MS)) {
+      return;
+    }
 
     const initialTimer = setTimeout(() => {
       setIsCallbackModalOpen(true);
-      setHasShownOnce(true);
     }, 3000);
 
     return () => clearTimeout(initialTimer);
   }, []);
 
-  // If user closes the modal manually the first time, show again in 45 seconds
-  useEffect(() => {
-    const modalClosedCount = Number(
-      localStorage.getItem("modalClosedCount") || "0"
-    );
-
-    if (!hasShownOnce || modalClosedCount >= 2) return;
+  const handleFlyerClose = () => {
+    localStorage.setItem(LS_WEBINAR_DISMISSED, String(Date.now()));
+    setIsFlyerModalOpen(false);
 
     const formSubmitted = localStorage.getItem("formSubmitted");
-    const modalDismissedAt = localStorage.getItem("modalDismissedAt");
+    if (formSubmitted) return;
 
-    if (formSubmitted || !is24HoursPassed(modalDismissedAt)) return;
+    const callbackDismissed = localStorage.getItem(LS_CALLBACK_DISMISSED);
+    if (!canAutoPromptAgain(callbackDismissed, CALLBACK_MODAL_COOLDOWN_MS)) return;
 
-    const reappearTimer = setTimeout(() => {
+    setTimeout(() => {
       setIsCallbackModalOpen(true);
-    }, 45000); // 45 seconds
+    }, 3000);
+  };
 
-    return () => clearTimeout(reappearTimer);
-  }, [hasShownOnce]);
-
-  const handleClose = () => {
-    // Increment close count
-    const count = Number(localStorage.getItem("modalClosedCount") || "0");
-    localStorage.setItem("modalClosedCount", String(count + 1));
-
-    // If closed again, set 24-hour lock
-    if (count + 1 >= 2) {
-      localStorage.setItem("modalDismissedAt", Date.now().toString());
-    }
-
+  const handleCallbackClose = () => {
+    localStorage.setItem(LS_CALLBACK_DISMISSED, String(Date.now()));
     closeCallbackModal();
   };
 
   return (
     <AppContext.Provider value={{ openCallbackModal }}>
       {children}
+      <WebinarFlyerModal
+        open={isFlyerModalOpen}
+        onOpenChange={(val) => {
+          if (!val) handleFlyerClose();
+          else setIsFlyerModalOpen(val);
+        }}
+      />
       <RequestCallbackModal
         open={isCallbackModalOpen}
         onOpenChange={(val) => {
-          if (!val) handleClose();
+          if (!val) handleCallbackClose();
           else setIsCallbackModalOpen(val);
         }}
       />
