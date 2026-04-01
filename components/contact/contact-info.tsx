@@ -46,7 +46,7 @@ export default function ContactInfo() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <Card>
+          <Card className="glass-card">
             <CardContent className="p-3 h-40">
               <div className="flex gap-2 flex-col items-start space-x-2 xl:space-x-">
                 <div className="bg-primary/10 p-3 rounded-full">
@@ -78,7 +78,7 @@ export default function ContactInfo() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Card>
+          <Card className="glass-card">
             <CardContent className="p-3 h-40">
               <div className="flex gap-2 flex-col items-start space-x-2 xl:space-x-">
                 <div className="bg-primary/10 p-3 rounded-full">
@@ -104,7 +104,7 @@ export default function ContactInfo() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <Card>
+          <Card className="glass-card">
             <CardContent className="p-3 h-40">
               <div className="flex gap-2 flex-col items-start space-x-2 xl:space-x-">
                 <div className="bg-primary/10 p-3 rounded-full">
@@ -127,7 +127,7 @@ export default function ContactInfo() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Card>
+          <Card className="glass-card">
             <CardContent className="p-3 h-40">
               <div className="flex gap-2 flex-col items-start space-x-2 xl:space-x-">
                 <div className="bg-primary/10 p-3 rounded-full">

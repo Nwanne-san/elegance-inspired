@@ -95,7 +95,7 @@ export default function ServicesHighlight() {
   };
 
   const renderServiceCard = (service: (typeof services)[0], index: number) => (
-    <Card className="h-full bg-transparent relative text-center rounded-xl sm:hover:-mt-4  shadow-md p-6 flex flex-col items-start sm:items-center gap-4 transition-all duration-300 hover:shadow-lg max-w-[340px] sm:max-w-[300px]">
+    <Card className="glass-card h-full relative text-center rounded-xl sm:hover:-mt-4 p-6 flex flex-col items-start sm:items-center gap-4 transition-all duration-300 hover:shadow-2xl max-w-[340px] sm:max-w-[300px]">
       <div className="bg-primary absolute -top-[20%] left-[15%] rounded-full p-5 flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20">
         {service.icon}
       </div>

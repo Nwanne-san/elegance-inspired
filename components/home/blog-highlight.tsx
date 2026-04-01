@@ -114,7 +114,7 @@ export default function BlogHighlight() {
                     isMobile ? "flex-[0_0_100%]" : "flex-[0_0_33.333%]"
                   } px-4`}
                 >
-                  <Card className="h-full overflow-hidden">
+                  <Card className="glass-card h-full overflow-hidden">
                     <div className="overflow-hidden">
                       <OptimizedImage
                         src={post.image || "/placeholder.svg"}

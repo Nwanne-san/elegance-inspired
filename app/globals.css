@@ -61,6 +61,72 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  @keyframes ei-cta-ripple {
+    0% {
+      transform: scale(0.15);
+      opacity: 0.72;
+    }
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  .ei-cta-btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .ei-cta-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      circle 90px at 50% 50%,
+      rgba(255, 255, 255, 0.26) 0%,
+      transparent 85%
+    );
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ei-cta-btn:active:not(:disabled)::after {
+    animation: ei-cta-ripple 0.48s ease-out forwards;
+  }
+
+  .ei-cta-btn--outline::after {
+    background: radial-gradient(
+      circle 90px at 50% 50%,
+      rgba(0, 62, 173, 0.12) 0%,
+      transparent 85%
+    );
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/60 text-card-foreground backdrop-blur-2xl border-[0.5px] shadow-xl;
+    border-color: rgb(255 255 255 / 0.22);
+    box-shadow:
+      0 10px 40px rgb(0 0 0 / 0.07),
+      0 2px 10px rgb(0 0 0 / 0.04),
+      inset 0 1px 0 rgb(255 255 255 / 0.35);
+  }
+
+  .dark .glass-card {
+    @apply bg-card/50;
+    border-color: rgb(255 255 255 / 0.08);
+    box-shadow:
+      0 12px 40px rgb(0 0 0 / 0.35),
+      0 2px 8px rgb(0 0 0 / 0.2),
+      inset 0 1px 0 rgb(255 255 255 / 0.06);
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

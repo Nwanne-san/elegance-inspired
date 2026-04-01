@@ -224,7 +224,7 @@ export function RequestCallbackModal({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", damping: 20 }}
-            className="bg-card text-card-foreground rounded-2xl shadow-2xl shadow-primary/10 border border-border w-full max-w-md lg:max-w-3xl overflow-hidden"
+            className="glass-card rounded-2xl w-full max-w-md lg:max-w-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative bg-primary text-primary-foreground px-5 py-5 lg:px-6">
@@ -252,7 +252,7 @@ export function RequestCallbackModal({
               </div>
             </div>
 
-            <div className="p-6 lg:p-8 bg-gradient-to-b from-muted/30 to-card">
+            <div className="p-6 lg:p-8 bg-gradient-to-b from-muted/25 via-card/40 to-background/35 backdrop-blur-md">
               <p className="text-muted-foreground mb-6 text-[15px] leading-relaxed">
                 We’re passionate about elevating your brand. Share your details
                 and we’ll call you to discuss your needs.
@@ -272,7 +272,7 @@ export function RequestCallbackModal({
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Your full name"
-                    className={`mt-1.5 rounded-lg border-border bg-background focus-visible:ring-primary ${errors.name ? "border-destructive" : ""}`}
+                    className={`mt-1.5 rounded-lg border border-border bg-background focus-visible:ring-primary ${errors.name ? "border-destructive" : ""}`}
                   />
                   {errors.name && (
                     <p className="text-red-500 text-sm mt-1">{errors.name}</p>
@@ -289,7 +289,7 @@ export function RequestCallbackModal({
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Your phone number"
-                    className={`mt-1.5 rounded-lg border-border bg-background focus-visible:ring-primary ${errors.phone ? "border-destructive" : ""}`}
+                    className={`mt-1.5 rounded-lg border border-border bg-background focus-visible:ring-primary ${errors.phone ? "border-destructive" : ""}`}
                   />
                   {errors.phone && (
                     <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
@@ -307,7 +307,7 @@ export function RequestCallbackModal({
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Your email address"
-                    className={`mt-1.5 rounded-lg border-border bg-background focus-visible:ring-primary ${errors.email ? "border-destructive" : ""}`}
+                    className={`mt-1.5 rounded-lg border border-border bg-background focus-visible:ring-primary ${errors.email ? "border-destructive" : ""}`}
                   />
                   {errors.email && (
                     <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -324,7 +324,7 @@ export function RequestCallbackModal({
                     value={formData.organization}
                     onChange={handleChange}
                     placeholder="Your organization"
-                    className={`mt-1.5 rounded-lg border-border bg-background focus-visible:ring-primary ${errors.organization ? "border-destructive" : ""}`}
+                    className={`mt-1.5 rounded-lg border border-border bg-background focus-visible:ring-primary ${errors.organization ? "border-destructive" : ""}`}
                   />
                   {errors.organization && (
                     <p className="text-red-500 text-sm mt-1">
@@ -345,7 +345,7 @@ export function RequestCallbackModal({
                         role="combobox"
                         aria-expanded={locationOpen}
                         className={cn(
-                          "mt-1.5 w-full justify-between rounded-lg font-normal border-border hover:bg-muted/60 hover:border-primary/40",
+                          "mt-1.5 w-full justify-between rounded-lg font-normal border border-border hover:bg-muted/60 hover:border-primary/40 hover:!scale-100",
                           errors.location && "border-destructive"
                         )}
                       >
@@ -402,7 +402,7 @@ export function RequestCallbackModal({
 
                 <Button
                   type="submit"
-                  className="w-full lg:col-span-2 rounded-full bg-primary text-primary-foreground shadow-md hover:bg-primary/90 hover:shadow-lg transition-shadow"
+                  className="w-full lg:col-span-2 rounded-full hover:!scale-100"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting…" : "Request call back"}

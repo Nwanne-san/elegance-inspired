@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Check } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const packages = [
   {
@@ -101,11 +102,11 @@ export default function PackagesHighlight() {
           {packages.map((pkg, index) => (
             <motion.div key={index} variants={itemVariants} className="flex">
               <Card
-                className={`flex flex-col h-full w-full hover:-mt-4 duration-500 transition-all ${
-                  pkg.featured
-                    ? "border-primary shadow-lg relative"
-                    : "border-border/50"
-                }`}
+                className={cn(
+                  "glass-card flex flex-col h-full w-full hover:-mt-4 duration-500 transition-all relative",
+                  pkg.featured &&
+                    "ring-2 ring-primary/30 border-primary/40 shadow-primary/10"
+                )}
               >
                 {pkg.featured && (
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-secondary text-white text-xs font-bold px-4 py-1 rounded-full">

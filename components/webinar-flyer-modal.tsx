@@ -58,7 +58,7 @@ export function WebinarFlyerModal({
                   priority
                 />
               </div>
-              <div className="flex flex-col gap-2 border-t border-border bg-muted/40 px-4 py-4 sm:flex-row sm:justify-center">
+              <div className="flex flex-col gap-2 sm:gap-6 border-t border-border bg-muted/40 px-4 py-4 sm:flex-row sm:justify-center">
                 <Button
                   asChild
                   className="rounded-full bg-primary text-primary-foreground shadow-md transition-colors hover:bg-primary/90"

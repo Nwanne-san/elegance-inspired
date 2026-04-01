@@ -27,7 +27,7 @@ export default function PackagesCTA() {
             className="mb-12"
           >
             <h3 className="text-2xl font-bold mb-6 text-center">Additional Notes</h3>
-            <Card>
+            <Card className="glass-card">
               <CardContent className="p-6">
                 <ul className="space-y-3">
                   {additionalNotes.map((note, index) => (

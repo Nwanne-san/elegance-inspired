@@ -132,7 +132,7 @@ export default function BlogCarousel() {
     <div
       className={`${isMobile ? "flex-[0_0_100%]" : "flex-[0_0_33.333%]"} px-4`}
     >
-      <Card className="h-full overflow-hidden">
+      <Card className="glass-card h-full overflow-hidden">
         <div className="overflow-hidden relative">
           <div
             className={`w-full h-48 bg-gray-200 dark:bg-gray-800 ${
