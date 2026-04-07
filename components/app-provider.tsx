@@ -14,6 +14,8 @@ import { WebinarFlyerModal } from "@/components/webinar-flyer-modal";
 const WEBINAR_FLYER_COOLDOWN_MS = 15 * 60 * 1000;
 /** Minimum time between automatic callback prompts after a dismiss. */
 const CALLBACK_MODAL_COOLDOWN_MS = 15 * 60 * 1000;
+/** Initial delay before the callback modal auto-opens (5 minutes). */
+const CALLBACK_MODAL_INITIAL_DELAY_MS = 5 * 60 * 1000;
 
 const LS_WEBINAR_DISMISSED = "ei_webinar_flyer_dismissed_at";
 const LS_CALLBACK_DISMISSED = "ei_callback_modal_dismissed_at";
@@ -73,7 +75,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     const initialTimer = setTimeout(() => {
       setIsCallbackModalOpen(true);
-    }, 3000);
+    }, CALLBACK_MODAL_INITIAL_DELAY_MS);
 
     return () => clearTimeout(initialTimer);
   }, []);
@@ -90,7 +92,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     setTimeout(() => {
       setIsCallbackModalOpen(true);
-    }, 3000);
+    }, CALLBACK_MODAL_INITIAL_DELAY_MS);
   };
 
   const handleCallbackClose = () => {
