@@ -19,7 +19,7 @@ const CALLBACK_MODAL_INITIAL_DELAY_MS = 5 * 60 * 1000;
 
 const LS_WEBINAR_DISMISSED = "ei_webinar_flyer_dismissed_at";
 const LS_CALLBACK_DISMISSED = "ei_callback_modal_dismissed_at";
-
+const SS_INITIAL_LOAD = "ei_initial_load_done";
 type AppContextType = {
   openCallbackModal: () => void;
 };
@@ -34,7 +34,10 @@ export function useAppContext() {
   return context;
 }
 
-function canAutoPromptAgain(lastDismissedAt: string | null, cooldownMs: number) {
+function canAutoPromptAgain(
+  lastDismissedAt: string | null,
+  cooldownMs: number,
+) {
   if (!lastDismissedAt) return true;
   const then = Number(lastDismissedAt);
   if (Number.isNaN(then)) return true;
@@ -66,7 +69,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (formSubmitted) return;
 
     const callbackDismissed = localStorage.getItem(LS_CALLBACK_DISMISSED);
-    if (!canAutoPromptAgain(callbackDismissed, CALLBACK_MODAL_COOLDOWN_MS)) return;
+    if (!canAutoPromptAgain(callbackDismissed, CALLBACK_MODAL_COOLDOWN_MS))
+      return;
 
     const flyerDismissed = localStorage.getItem(LS_WEBINAR_DISMISSED);
     if (canAutoPromptAgain(flyerDismissed, WEBINAR_FLYER_COOLDOWN_MS)) {
@@ -79,7 +83,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     return () => clearTimeout(initialTimer);
   }, []);
-
   const handleFlyerClose = () => {
     localStorage.setItem(LS_WEBINAR_DISMISSED, String(Date.now()));
     setIsFlyerModalOpen(false);
@@ -88,11 +91,22 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (formSubmitted) return;
 
     const callbackDismissed = localStorage.getItem(LS_CALLBACK_DISMISSED);
-    if (!canAutoPromptAgain(callbackDismissed, CALLBACK_MODAL_COOLDOWN_MS)) return;
+    if (!canAutoPromptAgain(callbackDismissed, CALLBACK_MODAL_COOLDOWN_MS))
+      return;
+
+    // 👇 NEW LOGIC HERE
+    const isInitialLoad = !sessionStorage.getItem(SS_INITIAL_LOAD);
+
+    // mark as visited
+    sessionStorage.setItem(SS_INITIAL_LOAD, "true");
+
+    const delay = isInitialLoad
+      ? CALLBACK_MODAL_INITIAL_DELAY_MS * 2 // e.g. 10 minutes instead of 5
+      : CALLBACK_MODAL_INITIAL_DELAY_MS;
 
     setTimeout(() => {
       setIsCallbackModalOpen(true);
-    }, CALLBACK_MODAL_INITIAL_DELAY_MS);
+    }, delay);
   };
 
   const handleCallbackClose = () => {

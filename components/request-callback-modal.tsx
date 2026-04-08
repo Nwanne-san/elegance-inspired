@@ -216,7 +216,7 @@ export function RequestCallbackModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/55 backdrop-blur-[2px]"
+          className="fixed inset-0 z-50 flex items-center justify-center p-8 bg-black/55 backdrop-blur-[2px]"
           onClick={handleClose}
         >
           <motion.div
@@ -234,9 +234,6 @@ export function RequestCallbackModal({
               />
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-foreground/80 mb-1">
-                    Elegance Inspired
-                  </p>
                   <h2 className="text-xl font-bold tracking-tight">
                     Request a call back
                   </h2>
@@ -252,15 +249,15 @@ export function RequestCallbackModal({
               </div>
             </div>
 
-            <div className="p-6 lg:p-8 bg-gradient-to-b from-muted/25 via-card/40 to-background/35 backdrop-blur-md">
-              <p className="text-muted-foreground mb-6 text-[15px] leading-relaxed">
+            <div className="p-4 lg:p-8 bg-gradient-to-b from-muted/25 via-card/40 to-background/35 backdrop-blur-md overflow-y-auto">
+              <p className="text-muted-foreground mb-2 sm:mb-6 text-sm sm:text-[15px] leading-relaxed">
                 We’re passionate about elevating your brand. Share your details
                 and we’ll call you to discuss your needs.
               </p>
 
               <form
                 onSubmit={handleSubmit}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-4"
+                className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-4"
               >
                 <div>
                   <Label htmlFor="name" className="text-foreground/90">
@@ -313,27 +310,7 @@ export function RequestCallbackModal({
                     <p className="text-red-500 text-sm mt-1">{errors.email}</p>
                   )}
                 </div>
-
-                <div>
-                  <Label htmlFor="organization" className="text-foreground/90">
-                    Organization
-                  </Label>
-                  <Input
-                    id="organization"
-                    name="organization"
-                    value={formData.organization}
-                    onChange={handleChange}
-                    placeholder="Your organization"
-                    className={`mt-1.5 rounded-lg border border-border bg-background focus-visible:ring-primary ${errors.organization ? "border-destructive" : ""}`}
-                  />
-                  {errors.organization && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.organization}
-                    </p>
-                  )}
-                </div>
-
-                <div className="lg:col-span-2">
+ <div className="lg:col-span-2">
                   <Label htmlFor="location" className="text-foreground/90">
                     Location
                   </Label>
@@ -346,7 +323,7 @@ export function RequestCallbackModal({
                         aria-expanded={locationOpen}
                         className={cn(
                           "mt-1.5 w-full justify-between rounded-lg font-normal border border-border hover:bg-muted/60 hover:border-primary/40 hover:!scale-100",
-                          errors.location && "border-destructive"
+                          errors.location && "border-destructive",
                         )}
                       >
                         {formData.location || "Select your location"}
@@ -382,7 +359,7 @@ export function RequestCallbackModal({
                                     "mr-2 h-4 w-4",
                                     formData.location === location
                                       ? "opacity-100"
-                                      : "opacity-0"
+                                      : "opacity-0",
                                   )}
                                 />
                                 {location}
@@ -399,6 +376,26 @@ export function RequestCallbackModal({
                     </p>
                   )}
                 </div>
+                <div>
+                  <Label htmlFor="organization" className="text-foreground/90">
+                    Organization
+                  </Label>
+                  <Input
+                    id="organization"
+                    name="organization"
+                    value={formData.organization}
+                    onChange={handleChange}
+                    placeholder="Your organization"
+                    className={`mt-1.5 rounded-lg border border-border bg-background focus-visible:ring-primary ${errors.organization ? "border-destructive" : ""}`}
+                  />
+                  {errors.organization && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.organization}
+                    </p>
+                  )}
+                </div>
+
+               
 
                 <Button
                   type="submit"
@@ -408,7 +405,7 @@ export function RequestCallbackModal({
                   {isSubmitting ? "Submitting…" : "Request call back"}
                 </Button>
               </form>
-              <p className="text-center text-sm text-muted-foreground mt-4">
+              <p className="text-center text-xs sm:text-sm text-muted-foreground mt-4">
                 Our team will reach out within{" "}
                 <span className="font-medium text-secondary">24 hours</span>.
               </p>
