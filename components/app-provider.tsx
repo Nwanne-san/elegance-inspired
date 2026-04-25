@@ -8,18 +8,12 @@ import {
   type ReactNode,
 } from "react";
 import RequestCallbackModal from "@/components/request-callback-modal";
-import { WebinarFlyerModal } from "@/components/webinar-flyer-modal";
-
-/** Minimum time between automatic webinar flyer prompts after a dismiss. */
-const WEBINAR_FLYER_COOLDOWN_MS = 15 * 60 * 1000;
 /** Minimum time between automatic callback prompts after a dismiss. */
 const CALLBACK_MODAL_COOLDOWN_MS = 15 * 60 * 1000;
-/** Initial delay before the callback modal auto-opens (5 minutes). */
-const CALLBACK_MODAL_INITIAL_DELAY_MS = 5 * 60 * 1000;
+/** Initial delay before the callback modal auto-opens (15 seconds). */
+const CALLBACK_MODAL_INITIAL_DELAY_MS = 1 * 15 * 1000;
 
-const LS_WEBINAR_DISMISSED = "ei_webinar_flyer_dismissed_at";
 const LS_CALLBACK_DISMISSED = "ei_callback_modal_dismissed_at";
-const SS_INITIAL_LOAD = "ei_initial_load_done";
 type AppContextType = {
   openCallbackModal: () => void;
 };
@@ -46,24 +40,11 @@ function canAutoPromptAgain(
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
-  const [isFlyerModalOpen, setIsFlyerModalOpen] = useState(false);
 
   const openCallbackModal = () => setIsCallbackModalOpen(true);
   const closeCallbackModal = () => setIsCallbackModalOpen(false);
 
-  // Webinar flyer: auto-open once per session when cooldown allows (~2s delay)
-  useEffect(() => {
-    const dismissedAt = localStorage.getItem(LS_WEBINAR_DISMISSED);
-    if (!canAutoPromptAgain(dismissedAt, WEBINAR_FLYER_COOLDOWN_MS)) return;
-
-    const initialTimer = setTimeout(() => {
-      setIsFlyerModalOpen(true);
-    }, 2000);
-
-    return () => clearTimeout(initialTimer);
-  }, []);
-
-  // Callback: auto-open ~3s only if flyer is not scheduled first (flyer on cooldown)
+  // Callback: auto-open after delay when cooldown allows.
   useEffect(() => {
     const formSubmitted = localStorage.getItem("formSubmitted");
     if (formSubmitted) return;
@@ -71,11 +52,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     const callbackDismissed = localStorage.getItem(LS_CALLBACK_DISMISSED);
     if (!canAutoPromptAgain(callbackDismissed, CALLBACK_MODAL_COOLDOWN_MS))
       return;
-
-    const flyerDismissed = localStorage.getItem(LS_WEBINAR_DISMISSED);
-    if (canAutoPromptAgain(flyerDismissed, WEBINAR_FLYER_COOLDOWN_MS)) {
-      return;
-    }
 
     const initialTimer = setTimeout(() => {
       setIsCallbackModalOpen(true);
@@ -83,31 +59,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     return () => clearTimeout(initialTimer);
   }, []);
-  const handleFlyerClose = () => {
-    localStorage.setItem(LS_WEBINAR_DISMISSED, String(Date.now()));
-    setIsFlyerModalOpen(false);
-
-    const formSubmitted = localStorage.getItem("formSubmitted");
-    if (formSubmitted) return;
-
-    const callbackDismissed = localStorage.getItem(LS_CALLBACK_DISMISSED);
-    if (!canAutoPromptAgain(callbackDismissed, CALLBACK_MODAL_COOLDOWN_MS))
-      return;
-
-    // 👇 NEW LOGIC HERE
-    const isInitialLoad = !sessionStorage.getItem(SS_INITIAL_LOAD);
-
-    // mark as visited
-    sessionStorage.setItem(SS_INITIAL_LOAD, "true");
-
-    const delay = isInitialLoad
-      ? CALLBACK_MODAL_INITIAL_DELAY_MS * 2 // e.g. 10 minutes instead of 5
-      : CALLBACK_MODAL_INITIAL_DELAY_MS;
-
-    setTimeout(() => {
-      setIsCallbackModalOpen(true);
-    }, delay);
-  };
 
   const handleCallbackClose = () => {
     localStorage.setItem(LS_CALLBACK_DISMISSED, String(Date.now()));
@@ -117,13 +68,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   return (
     <AppContext.Provider value={{ openCallbackModal }}>
       {children}
-      <WebinarFlyerModal
-        open={isFlyerModalOpen}
-        onOpenChange={(val) => {
-          if (!val) handleFlyerClose();
-          else setIsFlyerModalOpen(val);
-        }}
-      />
       <RequestCallbackModal
         open={isCallbackModalOpen}
         onOpenChange={(val) => {
