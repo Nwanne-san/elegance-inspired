@@ -57,7 +57,6 @@ export function CardStack({
         // Shrink this card while the next one slides up and covers it.
         gsap.to(card, {
           scale: 1 - shrink * (cards.length - 1 - i),
-          opacity: 0.7,
           ease: "none",
           scrollTrigger: {
             trigger: next,
@@ -73,7 +72,15 @@ export function CardStack({
   );
 
   return (
-    <div ref={ref} className={cn("flex flex-col gap-5", className)}>
+    <div
+      ref={ref}
+      className={cn(
+        // Each stacked card gets its own shadow so the pile reads as layers
+        // without dimming anything (dimming greys out cards in light theme).
+        "flex flex-col gap-5 [&>*]:rounded-lg [&>*]:shadow-xl",
+        className
+      )}
+    >
       {children}
     </div>
   );

@@ -3,9 +3,9 @@
 /**
  * Homepage teaser for the Technology service.
  *
- * Photo: "Diverse team collaborating around a laptop in office" by Vitaly
- * Gariev on Unsplash (Unsplash License, free for commercial use).
- * https://unsplash.com/photos/diverse-team-collaborating-around-a-laptop-in-office-yd_RKGH_RH4
+ * Photo: "a person typing on a laptop on a table" (an online store open on
+ * screen) by Shoper on Unsplash (Unsplash License, free for commercial use).
+ * https://unsplash.com/photos/a-person-typing-on-a-laptop-on-a-table-slLo94wES2M
  */
 
 import { motion } from "framer-motion";
@@ -32,10 +32,10 @@ export default function TechnologyHighlight() {
             transition={{ duration: 0.5 }}
           >
             <Image
-              src="/technology-team.jpg"
-              alt="A team gathered around a laptop reviewing work together"
+              src="/technology-ecommerce.jpg"
+              alt="A person browsing an online store on a laptop"
               width={1400}
-              height={788}
+              height={933}
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="h-[300px] w-full rounded-lg object-cover object-center shadow-xl sm:h-[480px]"
             />

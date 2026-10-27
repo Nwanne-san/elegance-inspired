@@ -58,7 +58,7 @@ export default function PremiumPrinting() {
     service: (typeof printingServices)[0],
     index: number
   ) => (
-    <Card className="h-full border-border/50 hover:shadow-md transition-shadow duration-300">
+    <Card className="h-full border-border/50 md:hover:shadow-md transition-shadow duration-300">
       <CardHeader>
         <div className="mb-4">{service.icon}</div>
         <CardTitle>{service.title}</CardTitle>

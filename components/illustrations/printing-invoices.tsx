@@ -17,9 +17,9 @@ export const PrintingInvoices = (props: PrintingInvoicesProps) => {
         <linearGradient gradientUnits="userSpaceOnUse"
             id="a17f7adb-619f-4eca-9f9e-ffa615402df6-2538" x1="316.9" x2="316.9" y1="512.48"
             y2="321.58">
-            <stop offset="0" stop-color="gray" stop-opacity="0.25" />
-            <stop offset="0.54" stop-color="gray" stop-opacity="0.12" />
-            <stop offset="1" stop-color="gray" stop-opacity="0.1" />
+            <stop offset="0" stopColor="gray" stopOpacity="0.25" />
+            <stop offset="0.54" stopColor="gray" stopOpacity="0.12" />
+            <stop offset="1" stopColor="gray" stopOpacity="0.1" />
         </linearGradient>
         <linearGradient href="#a17f7adb-619f-4eca-9f9e-ffa615402df6-2538"
             id="afa9d3b0-698e-4c8c-85f1-7e162fccf1ba-2539" x1="552.73" x2="622.29" y1="709.84"

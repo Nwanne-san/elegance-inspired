@@ -240,7 +240,7 @@ export default function Technology() {
   const renderServiceCard = (service: (typeof techServices)[0]) => {
     const Illustration = service.illustration;
     return (
-      <Card className="h-full overflow-hidden border-border/50 transition-shadow duration-300 hover:shadow-md">
+      <Card className="h-full overflow-hidden border-border/50 transition-shadow duration-300 md:hover:shadow-md">
         <div className="flex h-40 items-center justify-center bg-primary/[0.04] px-8 pt-6">
           <Illustration className="h-full w-auto" aria-hidden />
         </div>
