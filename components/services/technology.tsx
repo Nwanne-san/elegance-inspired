@@ -36,28 +36,28 @@ const techServices = [
   {
     title: "Website Design & Development",
     description:
-      "Corporate websites, landing pages, e-commerce stores and content-managed sites. Responsive, fast and search-ready, built to the same brand guidelines we design.",
+      "Corporate websites, landing pages, e-commerce stores and content-managed sites. Responsive, fast and search-ready.",
     icon: <MonitorSmartphone className="h-10 w-10 text-primary" />,
     illustration: ProgressiveApp,
   },
   {
     title: "Web Application Development",
     description:
-      "Custom portals, dashboards, internal tools and SaaS products, with the APIs and integrations that connect them to payments, CRM, email and the systems you already run.",
+      "Custom portals, dashboards, internal tools and SaaS products, with APIs and integrations to payments, CRM, email and existing systems.",
     icon: <AppWindow className="h-10 w-10 text-primary" />,
     illustration: Programming,
   },
   {
     title: "Mobile App Development",
     description:
-      "iOS and Android apps, cross-platform where it makes sense. We handle design, build, testing, store submission and every release after launch.",
+      "iOS and Android apps, native or cross-platform. Design, development, testing, store submission and ongoing releases.",
     icon: <Smartphone className="h-10 w-10 text-primary" />,
     illustration: MobileApp,
   },
   {
     title: "Managed Hosting, Maintenance & Support",
     description:
-      "We run what we build: hosting, domains and SSL, security patches, backups, uptime monitoring, content updates and a support line, all on a simple monthly retainer.",
+      "Hosting, domains and SSL, security patches, backups, uptime monitoring, content updates and support, on a monthly retainer.",
     icon: <ServerCog className="h-10 w-10 text-primary" />,
     illustration: Maintenance,
   },
@@ -66,27 +66,27 @@ const techServices = [
 const techProcess = [
   {
     number: "01 · Discover",
-    title: "Understand the brief",
+    title: "Requirements",
     description:
-      "A short discovery call and workshop to map users, goals, content and the systems we need to connect to.",
+      "Brief, users, content and the systems to be connected.",
   },
   {
     number: "02 · Design & build",
-    title: "Working software early",
+    title: "Design & development",
     description:
-      "Designs in the brand identity, then development in reviewable stages so you can test and redirect while it is still cheap.",
+      "Designs in the brand identity, developed and reviewed in stages.",
   },
   {
     number: "03 · Launch",
-    title: "Go live, properly",
+    title: "Deployment",
     description:
-      "Hosting, domains, SSL, analytics and store submissions handled by us, with a checklist signed off before anything goes public.",
+      "Hosting, domain, SSL, analytics and app store submission.",
   },
   {
     number: "04 · Run & support",
-    title: "Kept fast and secure",
+    title: "Maintenance",
     description:
-      "Monitoring, backups, security updates, content changes and a support line on a monthly retainer, for as long as you need us.",
+      "Monitoring, backups, security updates, content changes and support on a monthly plan.",
   },
 ];
 
@@ -268,30 +268,14 @@ export default function Technology() {
             <h2 className="mb-6 text-3xl font-bold md:text-4xl">Technology</h2>
             <div className="space-y-4">
               <p>
-                A brand today is experienced on a screen long before it is
-                experienced in a room. We design and build the websites, web
-                applications and mobile apps that carry your brand online, for
-                businesses at every stage from startups to established
-                enterprises.
+                We design and develop websites, web applications and mobile
+                apps for businesses of every size, built to the client&apos;s
+                brand identity and ready for search, speed and scale.
               </p>
               <p>
-                What sets us apart is that we do not hand over and disappear.
-                The same team that designs and builds your product also hosts,
-                monitors, maintains and supports it, so you have one partner to
-                call and nothing to chase.
-              </p>
-              <p>
-                Every engagement starts with a short discovery call to map what
-                you need, who will use it and what success looks like. From
-                there we design, build in reviewable stages so you see working
-                software early, launch on infrastructure we manage, and keep
-                improving it with you after go-live.
-              </p>
-              <p>
-                You own the code, the accounts and the data from day one. We
-                document what we build, hand over cleanly if you ever want to
-                take it in-house, and stay on as the team that keeps it fast,
-                secure and current.
+                We also host, monitor, maintain and support what we build, so
+                the client has one team for development and for everything
+                after launch.
               </p>
             </div>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -352,7 +336,7 @@ export default function Technology() {
             transition={{ duration: 0.5 }}
             className="mb-8 text-center text-2xl font-bold"
           >
-            What we build and manage for you:
+            What we build and manage:
           </motion.h3>
 
           {isMobile ? (
