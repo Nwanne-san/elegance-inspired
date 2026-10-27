@@ -19,11 +19,12 @@ export default function AboutSection() {
             className="relative"
           >
             <Image
-              src="/aboutus image-two.jpg"
-              alt="About Elegance Inspired"
-              width={600}
-              height={600}
-              className="rounded-lg h-[300px] sm:h-[700px] object-center object-cover shadow-xl"
+              src="/about-agm-2026.jpg"
+              alt="The Elegance Inspired team at the AGM 2026 presentation"
+              width={1600}
+              height={1066}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="rounded-lg h-[300px] w-full sm:h-[560px] object-center object-cover shadow-xl"
             />
           </motion.div>
 
