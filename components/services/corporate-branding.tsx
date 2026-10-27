@@ -1,7 +1,10 @@
 "use client";
 
+// Photo: colour fan deck by Mika Baumeister on Unsplash (Unsplash License). https://unsplash.com/photos/color-fan-deck-with-paper-swatches-PtabTe6iJ_8
+
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { ServiceVisual } from "@/components/services/service-visual";
+import { LogoDesign } from "@/components/illustrations/logo-design";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Brush,
@@ -12,7 +15,7 @@ import {
   Target,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Carousel, CarouselSlideResponsive } from "@/components/ui/carousel";
+import { CardStack } from "@/components/ui/card-stack";
 
 const brandingServices = [
   {
@@ -72,7 +75,7 @@ export default function CorporateBranding() {
     service: (typeof brandingServices)[0],
     index: number
   ) => (
-    <Card className="h-full border-border/50 hover:shadow-md transition-shadow duration-300">
+    <Card className="h-full border-border/50 md:hover:shadow-md transition-shadow duration-300">
       <CardHeader>
         <div className="mb-4">{service.icon}</div>
         <CardTitle>{service.title}</CardTitle>
@@ -125,12 +128,11 @@ export default function CorporateBranding() {
             transition={{ duration: 0.5 }}
             className="relative"
           >
-            <Image
-              src="/placeholder.svg?height=500&width=600"
-              alt="Creative Branding"
-              width={600}
-              height={500}
-              className="rounded-lg shadow-xl"
+            <ServiceVisual
+              src="/services-branding.jpg"
+              alt="A fan of colour swatches used to build a brand palette"
+              illustration={LogoDesign}
+              label="Identity design"
             />
           </motion.div>
         </div>
@@ -147,13 +149,13 @@ export default function CorporateBranding() {
           </motion.h3>
 
           {isMobile ? (
-            <Carousel className="mb-8">
+            <CardStack className="mb-8">
               {brandingServices.map((service, index) => (
-                <CarouselSlideResponsive key={index} className="px-2">
+                <div key={index}>
                   {renderServiceCard(service, index)}
-                </CarouselSlideResponsive>
+                </div>
               ))}
-            </Carousel>
+            </CardStack>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {brandingServices.map((service, index) => (

@@ -1,7 +1,10 @@
 "use client";
 
+// Photo: blank billboard by Kate Trysh on Unsplash (Unsplash License). https://unsplash.com/photos/rectangular-blank-billboard-Dnkr_lmdKi8
+
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { ServiceVisual } from "@/components/services/service-visual";
+import { OnlineAd } from "@/components/illustrations/online-ad";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   LayoutDashboardIcon as LayoutBillboard,
@@ -10,7 +13,7 @@ import {
   Users,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Carousel, CarouselSlideResponsive } from "@/components/ui/carousel";
+import { CardStack } from "@/components/ui/card-stack";
 
 const advertisingServices = [
   {
@@ -59,7 +62,7 @@ export default function StrategicAdvertising() {
     service: (typeof advertisingServices)[0],
     index: number
   ) => (
-    <Card className="h-full border-border/50 hover:shadow-md transition-shadow duration-300">
+    <Card className="h-full border-border/50 md:hover:shadow-md transition-shadow duration-300">
       <CardHeader>
         <div className="mb-4">{service.icon}</div>
         <CardTitle>{service.title}</CardTitle>
@@ -84,12 +87,11 @@ export default function StrategicAdvertising() {
             transition={{ duration: 0.5 }}
             className="relative order-2 lg:order-2"
           >
-            <Image
-              src="/placeholder.svg?height=500&width=600"
-              alt="Strategic Advertising"
-              width={600}
-              height={500}
-              className="rounded-lg shadow-xl"
+            <ServiceVisual
+              src="/services-advertising.jpg"
+              alt="A large roadside billboard against the sky"
+              illustration={OnlineAd}
+              label="Media placement"
             />
           </motion.div>
 
@@ -130,13 +132,13 @@ export default function StrategicAdvertising() {
 
           <>
             {isMobile ? (
-              <Carousel className="mb-8">
+              <CardStack className="mb-8">
                 {advertisingServices.map((service, index) => (
-                  <CarouselSlideResponsive key={index} className="px-2">
+                  <div key={index}>
                     {renderServiceCard(service, index)}
-                  </CarouselSlideResponsive>
+                  </div>
                 ))}
-              </Carousel>
+              </CardStack>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {advertisingServices.map((service, index) => (

@@ -45,9 +45,9 @@ const services: ServiceItem[] = [
     position: "bottom-[25%] right-0",
   },
   {
-    title: "HR Consulting",
-    description: "Customizable HR solutions for businesses at every stage",
-    href: "/services#consulting",
+    title: "Technology",
+    description: "Websites, web & mobile apps, built and managed for you",
+    href: "/services#technology",
     position: "bottom-0 left-1/2 transform -translate-x-1/2",
   },
 ];

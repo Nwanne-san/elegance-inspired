@@ -24,6 +24,11 @@ const AboutSection = dynamic(
   { loading: () => <BelowFoldFallback /> }
 );
 
+const TechnologyHighlight = dynamic(
+  () => import("@/components/home/technology-highlight"),
+  { loading: () => <BelowFoldFallback /> }
+);
+
 const PackagesHighlight = dynamic(
   () => import("@/components/home/packages-highlight"),
   { loading: () => <BelowFoldFallback /> }
@@ -66,6 +71,7 @@ export default function Home() {
       <HeroSection />
       <ServicesHighlight />
       <AboutSection />
+      <TechnologyHighlight />
       <PackagesHighlight />
       <WhyChooseUs />
       <TeamSection />

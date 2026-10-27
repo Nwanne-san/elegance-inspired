@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Brush, TrendingUp, Globe, Printer, Users } from "lucide-react";
+import { Brush, TrendingUp, Globe, Printer, Code2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Carousel, CarouselSlideResponsive } from "@/components/ui/carousel";
@@ -50,12 +50,12 @@ const services = [
     href: "/services#premium-printing",
   },
   {
-    icon: <Users className="h-10 w-10 text-white" />,
-    title: "HR Consulting",
+    icon: <Code2 className="h-10 w-10 text-white" />,
+    title: "Technology",
     description:
-      "We offer customizable HR solutions to support businesses at every stage, from startups to established enterprises.",
+      "We design, build and manage websites, web applications and mobile apps, then host and support them after launch.",
     number: "05",
-    href: "/services#consulting",
+    href: "/services#technology",
   },
 ];
 
