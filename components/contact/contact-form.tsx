@@ -35,7 +35,7 @@ export default function ContactForm() {
     "Strategic Advertising",
     "Digital Marketing",
     "Premium Printing",
-    "HR Consulting",
+    "Technology (Web & App Development)",
   ];
 
   const form = useForm<ContactFormValues>({
@@ -59,7 +59,11 @@ export default function ContactForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          to: "hello@eleganceinspired.org",
+          // Website & app enquiries go to the technology team; everything
+          // else to general enquiries.
+          to: data.subject.startsWith("Technology")
+            ? "tech@eleganceinspired.org"
+            : "hello@eleganceinspired.org",
           subject: `Service Requested = ${data.subject}`,
           name: data.name,
           email: data.email,

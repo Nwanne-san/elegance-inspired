@@ -10,7 +10,7 @@ import CorporateBranding from "@/components/services/corporate-branding";
 import StrategicAdvertising from "@/components/services/strategic-advertising";
 import DigitalMarketing from "@/components/services/digital-marketing";
 import PremiumPrinting from "@/components/services/premium-printing";
-import HrConsulting from "@/components/services/hr-consulting";
+import Technology from "@/components/services/technology";
 import CTASection from "@/components/home/cta-section";
 
 export default function ServicesContent() {
@@ -41,7 +41,7 @@ export default function ServicesContent() {
       <StrategicAdvertising />
       <DigitalMarketing />
       <PremiumPrinting />
-      <HrConsulting />
+      <Technology />
       <CTASection />
       <Footer />
     </main>

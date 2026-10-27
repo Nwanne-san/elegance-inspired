@@ -46,8 +46,8 @@ export default function ContactInfo() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <Card className="glass-card">
-            <CardContent className="p-3 h-40">
+          <Card className="glass-card h-full">
+            <CardContent className="p-3 min-h-40">
               <div className="flex gap-2 flex-col items-start space-x-2 xl:space-x-">
                 <div className="bg-primary/10 p-3 rounded-full">
                   <Phone className="h-6 w-6 text-primary" />
@@ -78,19 +78,31 @@ export default function ContactInfo() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Card className="glass-card">
-            <CardContent className="p-3 h-40">
+          <Card className="glass-card h-full">
+            <CardContent className="p-3 min-h-40">
               <div className="flex gap-2 flex-col items-start space-x-2 xl:space-x-">
                 <div className="bg-primary/10 p-3 rounded-full">
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-bold mb-1">Email Us</h3>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground/70">
+                    General Enquiries
+                  </p>
                   <Link
                     href="mailto:hello@eleganceinspired.org"
                     className="text-muted-foreground hover:text-primary text-sm transition-colors"
                   >
                     hello@eleganceinspired.org
+                  </Link>
+                  <p className="mt-2 text-xs uppercase tracking-wider text-muted-foreground/70">
+                    Website &amp; App Enquiries
+                  </p>
+                  <Link
+                    href="mailto:tech@eleganceinspired.org"
+                    className="text-muted-foreground hover:text-primary text-sm transition-colors"
+                  >
+                    tech@eleganceinspired.org
                   </Link>
                 </div>
               </div>
@@ -104,8 +116,8 @@ export default function ContactInfo() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <Card className="glass-card">
-            <CardContent className="p-3 h-40">
+          <Card className="glass-card h-full">
+            <CardContent className="p-3 min-h-40">
               <div className="flex gap-2 flex-col items-start space-x-2 xl:space-x-">
                 <div className="bg-primary/10 p-3 rounded-full">
                   <MapPin className="h-6 w-6 text-primary" />
@@ -127,8 +139,8 @@ export default function ContactInfo() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Card className="glass-card">
-            <CardContent className="p-3 h-40">
+          <Card className="glass-card h-full">
+            <CardContent className="p-3 min-h-40">
               <div className="flex gap-2 flex-col items-start space-x-2 xl:space-x-">
                 <div className="bg-primary/10 p-3 rounded-full">
                   <Clock className="h-6 w-6 text-primary" />

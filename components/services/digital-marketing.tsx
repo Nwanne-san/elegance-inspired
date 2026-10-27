@@ -9,7 +9,6 @@ import {
   Search,
   MousePointer,
   Mail,
-  Globe,
   Users,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -45,12 +44,6 @@ const marketingServices = [
     description:
       "We provide effective email marketing campaigns by sending targeted newsletters.",
     icon: <Mail className="h-10 w-10 text-primary" />,
-  },
-  {
-    title: "Website/App Development",
-    description:
-      "We develop and design responsive websites and mobile applications to effectively represent brands.",
-    icon: <Globe className="h-10 w-10 text-primary" />,
   },
   {
     title: "Influencer Marketing",

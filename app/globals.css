@@ -159,6 +159,10 @@
 
     --radius: 0.5rem;
 
+    /* Brand blue as a plain colour value: read by the unDraw illustration
+       components in components/illustrations (fill="var(--color-primary)"). */
+    --color-primary: #003ead;
+
         /* Font variables */
         --font-nunito-sans: "Nunito Sans", sans-serif;
         --font-raleway: "Raleway", sans-serif;

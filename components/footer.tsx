@@ -192,11 +192,25 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <span className="block text-xs uppercase tracking-wider text-white/50">
+                  General Enquiries
+                </span>
                 <Link
                   href="mailto:hello@eleganceinspired.org"
                   className="text-white/70 hover:text-[#FF6600] transition-colors"
                 >
                   hello@eleganceinspired.org
+                </Link>
+              </li>
+              <li>
+                <span className="block text-xs uppercase tracking-wider text-white/50">
+                  Website &amp; App Enquiries
+                </span>
+                <Link
+                  href="mailto:tech@eleganceinspired.org"
+                  className="text-white/70 hover:text-[#FF6600] transition-colors"
+                >
+                  tech@eleganceinspired.org
                 </Link>
               </li>
               <li className="text-white/70">Abuja, Nigeria</li>
