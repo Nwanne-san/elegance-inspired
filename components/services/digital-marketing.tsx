@@ -1,7 +1,10 @@
 "use client";
 
+// Photo: analytics dashboard on a laptop by Carlos Muza on Unsplash (Unsplash License). https://unsplash.com/photos/laptop-computer-on-glass-top-table-hpjSkU2UYSU
+
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { ServiceVisual } from "@/components/services/service-visual";
+import { SocialMedia } from "@/components/illustrations/social-media";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Instagram,
@@ -12,7 +15,7 @@ import {
   Users,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Carousel, CarouselSlideResponsive } from "@/components/ui/carousel";
+import { CardStack } from "@/components/ui/card-stack";
 
 const marketingServices = [
   {
@@ -124,12 +127,11 @@ export default function DigitalMarketing() {
             transition={{ duration: 0.5 }}
             className="relative"
           >
-            <Image
-              src="/placeholder.svg?height=500&width=600"
-              alt="Digital Transformation"
-              width={600}
-              height={500}
-              className="rounded-lg shadow-xl"
+            <ServiceVisual
+              src="/services-digital-marketing.jpg"
+              alt="A laptop showing a marketing analytics dashboard"
+              illustration={SocialMedia}
+              label="Campaigns that report"
             />
           </motion.div>
         </div>
@@ -146,13 +148,13 @@ export default function DigitalMarketing() {
           </motion.h3>
 
           {isMobile ? (
-            <Carousel className="mb-8">
+            <CardStack className="mb-8">
               {marketingServices.map((service, index) => (
-                <CarouselSlideResponsive key={index} className="px-2">
+                <div key={index}>
                   {renderServiceCard(service, index)}
-                </CarouselSlideResponsive>
+                </div>
               ))}
-            </Carousel>
+            </CardStack>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {marketingServices.map((service, index) => (

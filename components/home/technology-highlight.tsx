@@ -3,9 +3,9 @@
 /**
  * Homepage teaser for the Technology service.
  *
- * Photo: "A person typing code on a laptop beside a potted plant and mug"
- * by Nubelson Fernandes on Unsplash (Unsplash License, free for commercial
- * use). https://unsplash.com/photos/person-coding-on-laptop-workspace-UcYBL5V0xWQ
+ * Photo: "Diverse team collaborating around a laptop in office" by Vitaly
+ * Gariev on Unsplash (Unsplash License, free for commercial use).
+ * https://unsplash.com/photos/diverse-team-collaborating-around-a-laptop-in-office-yd_RKGH_RH4
  */
 
 import { motion } from "framer-motion";
@@ -30,19 +30,15 @@ export default function TechnologyHighlight() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative"
           >
             <Image
-              src="/technology-home.jpg"
-              alt="A developer writing code on a laptop beside a window"
-              width={1120}
-              height={1400}
+              src="/technology-team.jpg"
+              alt="A team gathered around a laptop reviewing work together"
+              width={1400}
+              height={788}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="h-[320px] w-full rounded-lg object-cover object-center shadow-xl sm:h-[520px]"
+              className="h-[300px] w-full rounded-lg object-cover object-center shadow-xl sm:h-[480px]"
             />
-            <div className="absolute bottom-4 left-4 rounded-full bg-secondary px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white shadow-lg sm:bottom-6 sm:left-6">
-              Build · Host · Support
-            </div>
           </motion.div>
 
           <motion.div
@@ -51,11 +47,6 @@ export default function TechnologyHighlight() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
-              <span className="size-1.5 rounded-full bg-secondary" />
-              New · Technology
-            </span>
-
             <h2 className="mb-6 text-3xl font-bold md:text-4xl">
               Websites and apps, built and managed by the same team
             </h2>
@@ -82,16 +73,13 @@ export default function TechnologyHighlight() {
             <div className="flex flex-wrap items-center gap-4">
               <Button asChild size="lg" className="rounded-full" navigate>
                 <Link href="/services#technology">
-                  Explore Technology Services
+                  Explore Technology
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <a
-                href="mailto:tech@eleganceinspired.org"
-                className="text-sm font-semibold text-primary underline-offset-4 hover:underline"
-              >
-                tech@eleganceinspired.org
-              </a>
+              <Button asChild size="lg" variant="outline" className="rounded-full" navigate>
+                <Link href="/contact">Get in Touch</Link>
+              </Button>
             </div>
           </motion.div>
         </div>

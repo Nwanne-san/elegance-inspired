@@ -3,9 +3,13 @@
 import { forwardRef, useEffect, useRef, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Activity,
   AppWindow,
+  ArrowRight,
+  Mail,
   Globe,
   LifeBuoy,
   MonitorSmartphone,
@@ -15,7 +19,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Carousel, CarouselSlideResponsive } from "@/components/ui/carousel";
+import { CardStack } from "@/components/ui/card-stack";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { BorderBeam } from "@/components/ui/border-beam";
@@ -56,6 +60,33 @@ const techServices = [
       "We run what we build: hosting, domains and SSL, security patches, backups, uptime monitoring, content updates and a support line, all on a simple monthly retainer.",
     icon: <ServerCog className="h-10 w-10 text-primary" />,
     illustration: Maintenance,
+  },
+];
+
+const techProcess = [
+  {
+    number: "01 · Discover",
+    title: "Understand the brief",
+    description:
+      "A short discovery call and workshop to map users, goals, content and the systems we need to connect to.",
+  },
+  {
+    number: "02 · Design & build",
+    title: "Working software early",
+    description:
+      "Designs in the brand identity, then development in reviewable stages so you can test and redirect while it is still cheap.",
+  },
+  {
+    number: "03 · Launch",
+    title: "Go live, properly",
+    description:
+      "Hosting, domains, SSL, analytics and store submissions handled by us, with a checklist signed off before anything goes public.",
+  },
+  {
+    number: "04 · Run & support",
+    title: "Kept fast and secure",
+    description:
+      "Monitoring, backups, security updates, content changes and a support line on a monthly retainer, for as long as you need us.",
   },
 ];
 
@@ -249,15 +280,33 @@ export default function Technology() {
                 monitors, maintains and supports it, so you have one partner to
                 call and nothing to chase.
               </p>
-              <p className="text-sm text-muted-foreground">
-                Website &amp; app enquiries:{" "}
-                <a
-                  href="mailto:tech@eleganceinspired.org"
-                  className="font-semibold text-primary underline-offset-4 hover:underline"
-                >
-                  tech@eleganceinspired.org
-                </a>
+              <p>
+                Every engagement starts with a short discovery call to map what
+                you need, who will use it and what success looks like. From
+                there we design, build in reviewable stages so you see working
+                software early, launch on infrastructure we manage, and keep
+                improving it with you after go-live.
               </p>
+              <p>
+                You own the code, the accounts and the data from day one. We
+                document what we build, hand over cleanly if you ever want to
+                take it in-house, and stay on as the team that keeps it fast,
+                secure and current.
+              </p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button asChild size="lg" className="rounded-full" navigate>
+                <Link href="/contact">
+                  Start a Project
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full">
+                <a href="mailto:tech@eleganceinspired.org">
+                  <Mail className="mr-2 h-4 w-4" />
+                  Email Us
+                </a>
+              </Button>
             </div>
           </motion.div>
 
@@ -272,6 +321,29 @@ export default function Technology() {
           </motion.div>
         </div>
 
+        <motion.ol
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {techProcess.map((step) => (
+            <li
+              key={step.number}
+              className="rounded-xl border border-border/50 bg-card/60 p-5"
+            >
+              <span className="text-xs font-semibold uppercase tracking-wider text-secondary">
+                {step.number}
+              </span>
+              <h4 className="mt-2 font-bold">{step.title}</h4>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {step.description}
+              </p>
+            </li>
+          ))}
+        </motion.ol>
+
         <div className="mt-16">
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
@@ -284,13 +356,13 @@ export default function Technology() {
           </motion.h3>
 
           {isMobile ? (
-            <Carousel className="mb-8">
+            <CardStack className="mb-8">
               {techServices.map((service) => (
-                <CarouselSlideResponsive key={service.title} className="px-2">
+                <div key={service.title}>
                   {renderServiceCard(service)}
-                </CarouselSlideResponsive>
+                </div>
               ))}
-            </Carousel>
+            </CardStack>
           ) : (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {techServices.map((service, index) => (

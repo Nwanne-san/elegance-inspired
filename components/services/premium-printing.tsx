@@ -1,11 +1,14 @@
 "use client";
 
+// Photo: printing press by Bank Phrom on Unsplash (Unsplash License). https://unsplash.com/photos/printing-machine-Tzm3Oyu_6sk
+
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { ServiceVisual } from "@/components/services/service-visual";
+import { PrintingInvoices } from "@/components/illustrations/printing-invoices";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Signpost, FileText, Package, Shirt, Printer } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Carousel, CarouselSlideResponsive } from "@/components/ui/carousel";
+import { CardStack } from "@/components/ui/card-stack";
 
 const printingServices = [
   {
@@ -80,12 +83,11 @@ export default function PremiumPrinting() {
             transition={{ duration: 0.5 }}
             className="relative order-2 lg:order-2"
           >
-            <Image
-              src="/placeholder.svg?height=500&width=600"
-              alt="Quality Printing"
-              width={600}
-              height={500}
-              className="rounded-lg shadow-xl"
+            <ServiceVisual
+              src="/services-printing.jpg"
+              alt="Printed sheets running through an offset printing press"
+              illustration={PrintingInvoices}
+              label="Print production"
             />
           </motion.div>
 
@@ -124,13 +126,13 @@ export default function PremiumPrinting() {
           </motion.h3>
 
           {isMobile ? (
-            <Carousel className="mb-8">
+            <CardStack className="mb-8">
               {printingServices.map((service, index) => (
-                <CarouselSlideResponsive key={index} className="px-2">
+                <div key={index}>
                   {renderServiceCard(service, index)}
-                </CarouselSlideResponsive>
+                </div>
               ))}
-            </Carousel>
+            </CardStack>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
               {printingServices.map((service, index) => (
