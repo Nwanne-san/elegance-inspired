@@ -83,7 +83,7 @@ export const team = [
   {
     name: "Temitope Ruth Jacob",
     position: "CEO/Founder",
-    image: "/CEO-new.jpeg",
+    image: "/trj-1.png",
     bio: [
       "Temitope Ruth Jacob is the visionary CEO and Founder of Elegance Inspired Limited. With a passion for crafting impactful brands, she leads the agency with a blend of creativity, strategic insight, and unwavering dedication. Temitope's expertise in branding and business development has helped numerous clients achieve remarkable growth and establish a strong market presence. Her leadership is driven by a commitment to excellence and a belief in the power of authentic brand experiences.",
       "Branding is not just a business for her, she has a passion to see brands thrive in the marketplace. At the core of her ambitions lies a desire to create meaningful connections between brands and consumers.",

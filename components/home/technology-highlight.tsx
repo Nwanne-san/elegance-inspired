@@ -32,7 +32,7 @@ export default function TechnologyHighlight() {
             transition={{ duration: 0.5 }}
           >
             <Image
-              src="/technology-ecommerce.jpg"
+              src="/technology-commerce.jpg"
               alt="A person browsing an online store on a laptop"
               width={1400}
               height={933}
