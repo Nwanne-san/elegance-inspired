@@ -72,7 +72,7 @@ export default function TechnologyHighlight() {
 
             <div className="flex flex-wrap items-center gap-4">
               <Button asChild size="lg" className="rounded-full" navigate>
-                <Link href="/services#technology">
+                <Link href="/technology">
                   Explore Technology
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

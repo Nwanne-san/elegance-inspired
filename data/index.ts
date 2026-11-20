@@ -17,7 +17,7 @@ export const navLinks = [
       { name: "Strategic Advertising", href: "/services#strategic-advertising" },
       { name: "Digital Marketing", href: "/services#digital-marketing" },
       { name: "Premium Printing", href: "/services#premium-printing" },
-      { name: "Technology", href: "/services#technology" },
+      { name: "Technology", href: "/technology" },
     ],
   },
   { name: "Packages", href: "/packages" },
